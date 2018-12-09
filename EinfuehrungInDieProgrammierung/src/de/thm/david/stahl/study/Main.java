@@ -1,4 +1,4 @@
-package de.thm.david.stahl.instancemethod;
+package de.thm.david.stahl.study;
 
 public class Main 
 {
