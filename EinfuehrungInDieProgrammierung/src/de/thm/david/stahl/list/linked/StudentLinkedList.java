@@ -104,6 +104,13 @@ public class StudentLinkedList implements StudentList {
 
 	public Student removeFirstStudent()
 	{
+		if(noOfElements == 0)
+		{
+			return null;
+		}
+
+		noOfElements--;
+
 		StudentListElement first = head.getNext();
 		StudentListElement seoond = first.getNext();
 
