@@ -22,6 +22,8 @@ public class Element
 	public int getPriority() {
 		return priority;
 	}
+
+	public void setPriority(int priority) { this.priority = priority; }
 	
 	public String toString() {
 		return id + " (" + priority + ")";

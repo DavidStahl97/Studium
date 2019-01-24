@@ -42,7 +42,7 @@ public class PriorityQueueCycle implements IPriorityQueue
 	{
 		assert(size > 0);
 		Element min = elements[first];
-		first = (first + 1) % capacity();
+		first = getIncrementIndex(first);
 		size--;
 		return min;
 	}
@@ -68,8 +68,7 @@ public class PriorityQueueCycle implements IPriorityQueue
 		//              until array is sorted
 		for (int i = 1; i < size; i++)
 		{
-			int prev = (index + capacity() - 1) % capacity();
-			                  // add 'capacity' to avoid 'negative numbers'
+			int prev = getDecrementIndex(index);
 
 			if (elements[prev].getPriority() <= elements[index].getPriority()) break;
 			swap(prev, index);
@@ -77,4 +76,40 @@ public class PriorityQueueCycle implements IPriorityQueue
 		}
 	}
 
+	public void decreaseKey(int index, int priority)
+	{
+		assert(index < capacity());
+		assert(priority >= 0);
+
+		Element changedElement = elements[index];
+		changedElement.setPriority(priority);
+
+		while(true)
+		{
+			Element nextElement = elements[getDecrementIndex(index)];
+
+			if(nextElement != null && changedElement.getPriority() < nextElement.getPriority())
+			{
+				elements[index] = nextElement;
+			}
+			else
+			{
+				elements[index] = changedElement;
+				return;
+			}
+
+			index = getDecrementIndex(index);
+		}
+	}
+
+	private int getDecrementIndex(int index)
+	{
+		// add 'capacity' to avoid 'negative numbers'
+		return (index + capacity() - 1) % capacity();
+	}
+
+	private int getIncrementIndex(int index)
+	{
+		return (index + 1) % capacity();
+	}
 }

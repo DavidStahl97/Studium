@@ -94,4 +94,9 @@ public class PriorityQueueHeap implements IPriorityQueue
 			parent = (i-1)/2;
 		}
 	}
+
+	public void decreaseKey(int index, int priority)
+	{
+
+	}
 }
