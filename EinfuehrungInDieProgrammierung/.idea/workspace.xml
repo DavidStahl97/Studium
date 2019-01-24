@@ -131,6 +131,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>head</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -150,19 +155,6 @@
         <option value="$PROJECT_DIR$/src/de/thm/david/stahl/guess/Tuple.java" />
         <option value="$PROJECT_DIR$/src/de/thm/david/stahl/guess/User.java" />
         <option value="$PROJECT_DIR$/src/de/thm/david/stahl/guess/Main.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/Main.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/PriorityQueueCycle.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/PQueue.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/Element.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/PQueue.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/IPriorityQueue.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/PQueueCyclic.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/PriorityQueueCycle.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/Main.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/PQueueHeap.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/PriorityQueueHeap.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/Main.java" />
-        <option value="$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/Main.java" />
       </list>
     </option>
   </component>
@@ -232,13 +224,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548347319119" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544370947355" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -252,9 +239,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main (5)">
-    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.thm.david.stahl.study.Main" />
+  <component name="RunManager" selected="Application.Main (4)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.thm.david.stahl.instancemethod.Main" />
       <module name="EinfuehrungInDieProgrammierung" />
       <extension name="coverage">
         <pattern>
@@ -292,6 +279,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.thm.david.stahl.guess.Main" />
+      <module name="EinfuehrungInDieProgrammierung" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.thm.david.stahl.guess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.thm.david.stahl.priorityQueue.Main" />
       <module name="EinfuehrungInDieProgrammierung" />
@@ -305,12 +305,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="Main (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.thm.david.stahl.list.Main" />
       <module name="EinfuehrungInDieProgrammierung" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.thm.david.stahl.list.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,7 +333,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.Main (2)" />
+      <item itemvalue="Application.Main (1)" />
       <item itemvalue="Application.Main (3)" />
       <item itemvalue="Application.Main (4)" />
       <item itemvalue="Application.Main (5)" />
@@ -341,7 +344,8 @@
         <item itemvalue="Application.Main (4)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main (3)" />
-        <item itemvalue="Application.Main (2)" />
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -357,19 +361,16 @@
       <updated>1544363033854</updated>
       <workItem from="1544363037927" duration="96000" />
       <workItem from="1544363177468" duration="7962000" />
-      <workItem from="1544545729977" duration="40000" />
-      <workItem from="1548345129082" duration="2325000" />
-      <workItem from="1548347475106" duration="796000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11219000" />
+    <option name="totallyTimeSpent" value="8068000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -378,7 +379,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -429,6 +430,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update" />
@@ -437,10 +452,6 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/instancemethod/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/NumberGenerator.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/GuessUser.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Console.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Tuple.java" />
     <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/study/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -455,199 +466,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/NumberGenerator.java" />
+    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/GuessUser.java" />
+    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Console.java" />
+    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Tuple.java" />
     <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
+        <state relative-caret-position="765">
           <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
           <folding>
+            <element signature="e#154#155#0" expanded="true" />
+            <element signature="e#191#192#0" expanded="true" />
             <element signature="e#217#218#0" expanded="true" />
-            <element signature="e#257#258#0" expanded="true" />
+            <element signature="e#246#247#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/RandomNumberGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Output.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/RandomNumberGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/PriorityQueueCycle.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/decreaseKey/PQueue.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/PQueue.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/PQueueCyclic.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/PQueueHeap.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/Main.java" />
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/Main.java" />
     <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/guess/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        <state relative-caret-position="459">
+          <caret line="27" column="36" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/Element.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/cycle/PriorityQueueCycle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/heap/PriorityQueueHeap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/common/IPriorityQueue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/study/Lecturer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/study/Grade.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/study/Course.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="32" selection-start-column="32" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/priorityQueue/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/de/thm/david/stahl/list/linked/StudentListElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding>
-            <element signature="e#441#442#0" expanded="true" />
-            <element signature="e#459#460#0" expanded="true" />
-            <element signature="e#508#509#0" expanded="true" />
-            <element signature="e#531#532#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#584#585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>EinfuehrungInDieProgrammierung</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
