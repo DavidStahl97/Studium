@@ -76,6 +76,7 @@ public class PriorityQueueCycle implements IPriorityQueue
 		}
 	}
 
+	// O(n)
 	public void decreaseKey(int index, int priority)
 	{
 		assert(index < capacity());

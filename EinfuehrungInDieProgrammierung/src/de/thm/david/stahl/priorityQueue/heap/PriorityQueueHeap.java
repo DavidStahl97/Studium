@@ -86,17 +86,31 @@ public class PriorityQueueHeap implements IPriorityQueue
 		
 		// sift up new element in order to restore heap property
 		int i = size - 1;
-		int parent = (i-1)/2;
-		while (i > 0) {
-			if (elements[i].getPriority() >= elements[parent].getPriority()) break;
-			swap(i, parent);
-			i = parent;
-			parent = (i-1)/2;
+		decreaseElement(i);
+	}
+
+	// O(log(n))
+	public void decreaseKey(int index, int priority)
+	{
+		assert size < elements.length;
+
+		elements[index].setPriority(priority);
+		decreaseElement(index);
+	}
+
+	private void decreaseElement(int index)
+	{
+		int parent = calculateParent(index);
+		while (index > 0 || elements[index].getPriority() >= elements[parent].getPriority())
+		{
+			swap(index, parent);
+			index = parent;
+			parent = calculateParent(index);
 		}
 	}
 
-	public void decreaseKey(int index, int priority)
+	private int calculateParent(int index)
 	{
-
+		return (index - 1) / 2;
 	}
 }

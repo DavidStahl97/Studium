@@ -8,8 +8,10 @@ public class Main
 {
     public static void main(String[] args) {
         System.out.println(" Priority Queue Cyclic:");
-        IPriorityQueue pq = new PriorityQueueCycle(10);
+        IPriorityQueue pq = new PriorityQueueHeap(10);
         fillPriorityQueue(pq);
+
+        pq.print();
 
         testDecreaseKey(pq);
     }
@@ -19,20 +21,20 @@ public class Main
         String[] testLetters = {"D", "i", "e", "s", "<Leer>", "t", "n", "T"};
         int[] frequencies = {1, 3, 3, 3, 3, 2, 1, 1};
 
-        for(int i = 0; i < 5; i++)
+        // insert leaves
+        for (int i = 0; i < testLetters.length; i++)
         {
-            Element e = pq.deleteMin();
-            pq.insert(e);
+            pq.insert(new Element(testLetters[i], frequencies[i]));
         }
 
-        // insert leaves
-        for (int i = 0; i < testLetters.length; i++) pq.insert(new Element(testLetters[i], frequencies[i]));
         pq.print();
+
+        pq.insert(new Element("David", 1));
     }
 
     private static void testDecreaseKey(IPriorityQueue pq)
     {
-        pq.decreaseKey(1, 0);
+        pq.decreaseKey(4, 0);
         pq.print();
     }
 }
