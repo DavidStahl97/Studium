@@ -9,7 +9,7 @@ public class Lehrer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int PNr;
 	
-	@OneToOne(mappedBy = "Lehrer")
+	@OneToOne(mappedBy = "Lehrer", cascade = CascadeType.PERSIST)
 	private Klasse Klasse;
 	
 	private String Nachname;

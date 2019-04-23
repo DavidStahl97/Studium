@@ -2,6 +2,7 @@ package de.thm.schule;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class AG {
 	
 	private String Bezeichnung;
 	
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	private List<Schueler> Schueler;
 
 	public String getBezeichnung() {

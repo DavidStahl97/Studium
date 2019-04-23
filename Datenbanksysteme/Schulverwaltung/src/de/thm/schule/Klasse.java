@@ -14,9 +14,10 @@ public class Klasse {
 	
 	private String Bezeichnung;
 	
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Lehrer Lehrer;
 	
-	@OneToMany(mappedBy = "Klasse")
+	@OneToMany(mappedBy = "Klasse", cascade = CascadeType.PERSIST)
 	private List<Schueler> Schueler;
 	
 	

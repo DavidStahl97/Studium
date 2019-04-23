@@ -1,6 +1,8 @@
 package de.thm.schule;
 
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,10 +18,18 @@ public class Schueler {
 	@ManyToOne
 	private Klasse Klasse;
 	
-	@ManyToMany(mappedBy = "Schueler")
+	@ManyToMany(mappedBy = "Schueler", cascade = CascadeType.PERSIST)
 	private List<AG> AG;
-	
 
+	public List<AG> getAG()
+	{
+		return AG;
+	}
+	
+	public void setAG(List<AG> ag)
+	{
+		AG = ag;
+	}
 
 	public String getNachname() {
 		return Nachname;
