@@ -12,8 +12,8 @@ public class Main
 	{
 		verwaltung = new Schulverwaltung();
 		
-		// lehrerAnlegen();
-		lehrerAusgeben();
+		//lehrerAnlegen();
+		//lehrerAusgeben();
 		//updateLehrer();
 		
 		verwaltung.close();
@@ -27,7 +27,6 @@ public class Main
 		Lehrer lehrer = new Lehrer();
 		lehrer.setVorname("David");
 		lehrer.setNachname("Stahl");
-		lehrer.setPNr(11);
 		
 		verwaltung.getEntityManager().persist(lehrer);
 		

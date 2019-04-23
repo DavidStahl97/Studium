@@ -1,36 +1,49 @@
 package de.thm.schule;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class Klasse{
+import javax.persistence.Entity;
+import javax.persistence.*;
 
+@Entity
+public class Klasse {
 
-	private String bezeichnung;
-	private Lehrer lehrer;
-	private ArrayList<Schueler> schueler;
-
-		public ArrayList<Schueler> getSchueler() {
-		return schueler;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int KNr;
+	
+	private String Bezeichnung;
+	
+	private Lehrer Lehrer;
+	
+	@OneToMany(mappedBy = "Klasse")
+	private List<Schueler> Schueler;
+	
+	
+	public List<Schueler> getSchueler()
+	{
+		return Schueler;
+	}
+	
+	public void setSchueler(List<Schueler> Schueler)
+	{
+		this.Schueler = Schueler;
+	}
+	
+	public Lehrer getKlassenlehrer() {
+		return Lehrer;
 	}
 
-	public void setSchueler(ArrayList<Schueler> schueler) {
-		this.schueler = schueler;
-	}
-
-	public Lehrer getLehrer() {
-		return lehrer;
-	}
-
-	public void setLehrer(Lehrer lehrer) {
-		this.lehrer = lehrer;
+	public void setKlassenlehrer(Lehrer lehrer) {
+		this.Lehrer = lehrer;
 	}
 
 	public String getBezeichnung() {
-		return bezeichnung;
+		return Bezeichnung;
 	}
 
 	public void setBezeichnung(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+		this.Bezeichnung = bezeichnung;
 	}
 
 }

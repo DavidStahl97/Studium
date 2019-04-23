@@ -1,26 +1,38 @@
 package de.thm.schule;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+@Entity
 public class AG {
-
-	private String bezeichnung;
-	private ArrayList<Schueler> schueler;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int Id;
+	
+	private String Bezeichnung;
+	
+	private List<Schueler> Schueler;
 
 	public String getBezeichnung() {
-		return bezeichnung;
+		return Bezeichnung;
 	}
 
 	public void setBezeichnung(String bezeichnung) {
-		this.bezeichnung = bezeichnung;
+		this.Bezeichnung = bezeichnung;
 	}
 
-	public ArrayList<Schueler> getSchueler() {
-		return schueler;
+	public List<Schueler> getSchueler() {
+		return Schueler;
 	}
 
-	public void setSchueler(ArrayList<Schueler> schueler) {
-		this.schueler = schueler;
+	public void setSchueler(List<Schueler> schueler) {
+		this.Schueler = schueler;
 	}
 
 }

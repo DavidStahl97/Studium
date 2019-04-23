@@ -4,11 +4,14 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="THM" transaction-type="RESOURCE_LOCAL">
 		<class>de.thm.schule.Lehrer</class>
+		<class>de.thm.schule.Klasse</class>
+		<class>de.thm.schule.Schueler</class>
+		<class>de.thm.schule.AG</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/schule_2" />
 			<property name="javax.persistence.jdbc.user" value="root" />
-			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/> -->
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 		</properties>
 	</persistence-unit>
 </persistence>

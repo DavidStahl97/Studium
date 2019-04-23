@@ -1,44 +1,48 @@
 package de.thm.schule;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
 public class Schueler {
 
-	private String nachname;
-	private String vorname;
-	private Klasse klasse;
-	private ArrayList<AG> ags;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int Id;
+	
+	private String Nachname;
+	private String Vorname;
+	
+	@ManyToOne
+	private Klasse Klasse;
+	
+	@ManyToMany(mappedBy = "Schueler")
+	private List<AG> AG;
+	
 
-	public ArrayList<AG> getAgs() {
-		return ags;
-	}
-
-	public void setAgs(ArrayList<AG> ags) {
-		this.ags = ags;
-	}
 
 	public String getNachname() {
-		return nachname;
+		return Nachname;
 	}
 
 	public void setNachname(String nachname) {
-		this.nachname = nachname;
+		this.Nachname = nachname;
 	}
 
 	public String getVorname() {
-		return vorname;
+		return Vorname;
 	}
 
 	public void setVorname(String vorname) {
-		this.vorname = vorname;
+		this.Vorname = vorname;
 	}
 
 	public Klasse getKlasse() {
-		return klasse;
+		return Klasse;
 	}
 
 	public void setKlasse(Klasse klasse) {
-		this.klasse = klasse;
+		this.Klasse = klasse;
 	}
 
 }
