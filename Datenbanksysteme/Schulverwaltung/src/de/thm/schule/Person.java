@@ -61,4 +61,9 @@ public class Person
 	public void setVorname(String vorname) {
 		Vorname = vorname;
 	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + Id + ", Nachname: " + Nachname + ", Vorname: " + Vorname;
+	}
 }
