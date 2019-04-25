@@ -9,6 +9,6 @@ public class Lehrer extends Person {
 	
 	public static final String LEHRER_BY_NACHNAME = "LEHRER_BY_NACHNAME";
 	
-	@OneToOne(mappedBy = "Lehrer" ,cascade = CascadeType.PERSIST)
+	@OneToOne(mappedBy = "Lehrer", cascade = CascadeType.PERSIST)
 	private Klasse Klasse;
 }

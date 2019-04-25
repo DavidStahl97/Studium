@@ -2,12 +2,11 @@ package de.thm.schule;
 
 import javax.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("S")
-@NamedQuery(name = Schueler.SCHUELER_BY_KLASSE, query = "select s from Schueler s inner join s.Klasse k where k.Bezeichnung = :bezeichnung")
+@NamedQuery(name = Schueler.SCHUELER_BY_KLASSE, query = "select s from Schueler s inner join s.Klasse k where k.Bezeichnung = :" + Schueler.SCHUELER_BY_KLASSE_BEZEICHNUNG)
 public class Schueler extends Person {
 	
 	public static final String SCHUELER_BY_KLASSE = "SCHUELER_BY_KLASSE";

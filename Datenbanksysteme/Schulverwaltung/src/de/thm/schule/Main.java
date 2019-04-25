@@ -2,7 +2,6 @@ package de.thm.schule;
 
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +26,7 @@ public class Main
 		Query query = verwaltung.getEntityManager().createNamedQuery(Schueler.SCHUELER_BY_KLASSE);
 		query.setParameter(Schueler.SCHUELER_BY_KLASSE_BEZEICHNUNG, bezeichnung);
 		
+		@SuppressWarnings("unchecked")
 		List<Schueler> list = query.getResultList();
 		for(Schueler s : list)
 		{
@@ -39,6 +39,7 @@ public class Main
 		Query query = verwaltung.getEntityManager().createNamedQuery(Lehrer.LEHRER_BY_NACHNAME);
 		query.setParameter("name", nachname);
 		
+		@SuppressWarnings("unchecked")
 		List<Lehrer> list = query.getResultList();
 		for(Lehrer l : list)
 		{
