@@ -8,9 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
-public class AG {
+@Table(name = "AG")
+public class Arbeitsgruppe {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

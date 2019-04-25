@@ -5,8 +5,9 @@
 	<persistence-unit name="THM" transaction-type="RESOURCE_LOCAL">
 		<class>de.thm.schule.Lehrer</class>
 		<class>de.thm.schule.Klasse</class>
+		<class>de.thm.schule.Person</class>
 		<class>de.thm.schule.Schueler</class>
-		<class>de.thm.schule.AG</class>
+		<class>de.thm.schule.Arbeitsgruppe</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/schule_2" />

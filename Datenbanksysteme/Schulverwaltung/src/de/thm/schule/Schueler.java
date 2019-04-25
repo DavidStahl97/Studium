@@ -6,45 +6,23 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Schueler {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
+@DiscriminatorValue("S")
+public class Schueler extends Person {
 	
-	private String Nachname;
-	private String Vorname;
-	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Klasse Klasse;
 	
 	@ManyToMany(mappedBy = "Schueler", cascade = CascadeType.PERSIST)
-	private List<AG> AG;
+	private List<Arbeitsgruppe> AG;
 
-	public List<AG> getAG()
+	public List<Arbeitsgruppe> getArbeitsgruppe()
 	{
 		return AG;
 	}
 	
-	public void setAG(List<AG> ag)
+	public void setArbeitsgruppe(List<Arbeitsgruppe> ag)
 	{
 		AG = ag;
-	}
-
-	public String getNachname() {
-		return Nachname;
-	}
-
-	public void setNachname(String nachname) {
-		this.Nachname = nachname;
-	}
-
-	public String getVorname() {
-		return Vorname;
-	}
-
-	public void setVorname(String vorname) {
-		this.Vorname = vorname;
 	}
 
 	public Klasse getKlasse() {
