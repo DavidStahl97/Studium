@@ -24,8 +24,7 @@ public class Main
 
 	private static void showLehrer(String nachname) 
 	{
-		String select = "select l from Lehrer l where l.Nachname = :name";
-		TypedQuery<Lehrer> query = verwaltung.getEntityManager().createQuery(select, Lehrer.class);
+		Query query = verwaltung.getEntityManager().createNamedQuery(Lehrer.LEHRER_BY_NACHNAME);
 		query.setParameter("name", nachname);
 		
 		List<Lehrer> list = query.getResultList();
@@ -65,6 +64,4 @@ public class Main
 		
 		tx.commit();
 	}
-	
-
 }
