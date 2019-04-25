@@ -18,8 +18,20 @@ public class Main
 		anlegen();
 		showLehrer("Hammett");
 		showLehrer("Dickinson");
+		showKlasse("11a");
 		
 		verwaltung.close();
+	}
+
+	private static void showKlasse(String bezeichnung) {
+		Query query = verwaltung.getEntityManager().createNamedQuery(Schueler.SCHUELER_BY_KLASSE);
+		query.setParameter(Schueler.SCHUELER_BY_KLASSE_BEZEICHNUNG, bezeichnung);
+		
+		List<Schueler> list = query.getResultList();
+		for(Schueler s : list)
+		{
+			System.out.println(s);
+		}
 	}
 
 	private static void showLehrer(String nachname) 

@@ -7,7 +7,11 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("S")
+@NamedQuery(name = Schueler.SCHUELER_BY_KLASSE, query = "select s from Schueler s inner join s.Klasse k where k.Bezeichnung = :bezeichnung")
 public class Schueler extends Person {
+	
+	public static final String SCHUELER_BY_KLASSE = "SCHUELER_BY_KLASSE";
+	public static final String SCHUELER_BY_KLASSE_BEZEICHNUNG = "bezeichnung";
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Klasse Klasse;
@@ -32,5 +36,9 @@ public class Schueler extends Person {
 	public void setKlasse(Klasse klasse) {
 		this.Klasse = klasse;
 	}
-
+	
+	 @Override
+	public String toString() {
+		return super.toString() + ", Klasse: " + Klasse.getBezeichnung();
+	}
 }

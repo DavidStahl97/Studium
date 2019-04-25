@@ -47,6 +47,6 @@ public class DummyFactory {
 	private static final String[] vornamen = { "Kirk", "James", "Lars", "Robert", "Elvis", "Lemmy", "Bruce", "Tony" };
 	private static final String[] nachnamen = { "Hammett", "Hetfield", "Ulrich", "Trujillo", "Presley", "Kilmister", "Dickinson", "Iommy" };
 	private static final String[] ags = { "Gitarre", "Gesang", "Schlagzeug", "Bass", "Keyboard", "Triangel" };
-	private static final String[] klassen = { "11a", "12b", "10c", "9d" };
+	private static final String[] klassen = { "11a", "12b", "10c", "9d", "9e", "9a", "9z", "11b" };
 
 }
