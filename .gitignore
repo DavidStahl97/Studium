@@ -266,6 +266,6 @@ local.properties
 .worksheet
 
 
-!Datenbanksysteme/lib/eclipselink.jar
-!Datenbanksysteme/lib/javax.persistence_2.0.4.v201112161009.jar
-!Datenbanksysteme/lib/mysql-connector-java-5.1.24-bin.jar
+!Datenbanksysteme/Schulverwaltung/lib/eclipselink.jar
+!Datenbanksysteme/Schulverwaltung/lib/javax.persistence_2.0.4.v201112161009.jar
+!Datenbanksysteme/Schulverwaltung/lib/mysql-connector-java-5.1.24-bin.jar

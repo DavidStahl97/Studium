@@ -1,4 +1,4 @@
-package de.thm.schule.dao;
+package de.thm.schule.repository;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
@@ -6,15 +6,14 @@ import java.lang.reflect.ParameterizedType;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 
-public abstract class JpaDao<E, PK extends Serializable> implements IDao<E, PK> {
+public abstract class JpaDataAccessObject<E, PK extends Serializable> implements IDataAccessObject<E, PK> {
 
 	protected Class<E> entityClass;
 	protected EntityManager entityManager;
 
 	@SuppressWarnings("unchecked")
-	public JpaDao() {
+	public JpaDataAccessObject() {
 		this.entityManager = createEntityManager();
 		ParameterizedType genericSuperclass = (ParameterizedType) getClass()
 				.getGenericSuperclass();

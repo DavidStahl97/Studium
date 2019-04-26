@@ -2,42 +2,41 @@ package de.thm.schule;
 
 import java.util.Date;
 
-import de.thm.schule.Entity.Arbeitsgruppe;
-import de.thm.schule.Entity.Klasse;
-import de.thm.schule.Entity.Lehrer;
-import de.thm.schule.Entity.Schueler;
+import de.thm.schule.repository.entities.Group;
+import de.thm.schule.repository.entities.Class;
+import de.thm.schule.repository.entities.Teacher;
+import de.thm.schule.repository.entities.Student;
 
 public class DummyFactory {
 
-	public static Lehrer createLehrer() {
-		Lehrer lehrer = new Lehrer();
-		lehrer.setVorname(getRandom(vornamen));
-		lehrer.setNachname(getRandom(nachnamen));
-		lehrer.setGeburtstag(createDate());
-		lehrer.setEintritt(createDate());
-		return lehrer;
+	public static Teacher createTeacher() {
+		var teacher = new Teacher();
+		teacher.setFirstName(getRandom(FIRST_NAMES));
+		teacher.setLastName(getRandom(LAST_NAMES));
+		teacher.setBirthday(createDate());
+		teacher.setEntryDate(createDate());
+		return teacher;
 	}
 
-	public static Klasse createKlasse() {
-		Klasse klasse = new Klasse();
-		klasse.setBezeichnung(getRandom(klassen));
-		return klasse;
+	public static Class createClass() {
+		var schoolClass = new Class();
+		schoolClass.setDescription(getRandom(CLASSES));
+		return schoolClass;
 	}
 
-	public static Schueler createSchueler() {
-		Schueler schueler = new Schueler();
-		schueler.setVorname(getRandom(vornamen));
-		schueler.setNachname(getRandom(nachnamen));
-		schueler.setGeburtstag(createDate());
-		schueler.setEintritt(createDate());
-		return schueler;
+	public static Student createStudent() {
+		var student = new Student();
+		student.setFirstName(getRandom(FIRST_NAMES));
+		student.setLastName(getRandom(LAST_NAMES));
+		student.setBirthday(createDate());
+		student.setEntryDate(createDate());
+		return student;
 	}
 
-	public static Arbeitsgruppe createAG() {
-		Arbeitsgruppe ag = new Arbeitsgruppe();
-		ag.setBezeichnung(getRandom(ags));
-		return ag;
-
+	public static Group createGroup() {
+		var group = new Group();
+		group.setDescription(getRandom(GROUPS));
+		return group;
 	}
 	
     private static Date createDate() {
@@ -49,9 +48,9 @@ public class DummyFactory {
 		return strings[(int) (Math.random() * strings.length)];
 	}
 
-	private static final String[] vornamen = { "Kirk", "James", "Lars", "Robert", "Elvis", "Lemmy", "Bruce", "Tony" };
-	private static final String[] nachnamen = { "Hammett", "Hetfield", "Ulrich", "Trujillo", "Presley", "Kilmister", "Dickinson", "Iommy" };
-	private static final String[] ags = { "Gitarre", "Gesang", "Schlagzeug", "Bass", "Keyboard", "Triangel" };
-	private static final String[] klassen = { "11a", "12b", "10c", "9d", "9e", "9a", "9z", "11b" };
+	private static final String[] FIRST_NAMES = { "Kirk", "James", "Lars", "Robert", "Elvis", "Lemmy", "Bruce", "Tony" };
+	private static final String[] LAST_NAMES = { "Hammett", "Hetfield", "Ulrich", "Trujillo", "Presley", "Kilmister", "Dickinson", "Iommy" };
+	private static final String[] GROUPS = { "Gitarre", "Gesang", "Schlagzeug", "Bass", "Keyboard", "Triangel" };
+	private static final String[] CLASSES = { "11a", "12b", "10c", "9d", "9e", "9a", "9z", "11b" };
 
 }

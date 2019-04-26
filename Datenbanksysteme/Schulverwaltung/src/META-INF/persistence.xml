@@ -3,11 +3,11 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="THM" transaction-type="RESOURCE_LOCAL">
-		<class>de.thm.schule.Entity.Lehrer</class>
-		<class>de.thm.schule.Entity.Klasse</class>
-		<class>de.thm.schule.Entity.Person</class>
-		<class>de.thm.schule.Entity.Schueler</class>
-		<class>de.thm.schule.Entity.Arbeitsgruppe</class>
+		<class>de.thm.schule.repository.entities.Teacher</class>
+		<class>de.thm.schule.repository.entities.Class</class>
+		<class>de.thm.schule.repository.entities.Person</class>
+		<class>de.thm.schule.repository.entities.Student</class>
+		<class>de.thm.schule.repository.entities.Group</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/schule_2" />

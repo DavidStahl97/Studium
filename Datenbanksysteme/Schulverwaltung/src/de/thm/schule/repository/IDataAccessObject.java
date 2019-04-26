@@ -1,8 +1,8 @@
-package de.thm.schule.dao;
+package de.thm.schule.repository;
 
 import java.io.Serializable;
 
-public interface IDao<E, PK extends Serializable> {
+public interface IDataAccessObject<E, PK extends Serializable> {
 
 	public void persist(E entity);
 	
