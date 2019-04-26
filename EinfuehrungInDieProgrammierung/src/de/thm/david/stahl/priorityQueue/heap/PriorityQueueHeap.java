@@ -40,6 +40,7 @@ public class PriorityQueueHeap implements IPriorityQueue
 		}
 		System.out.println("");
 	}
+
 	
 	/** Auxiliary function. Swaps the two elements at the
 	   given positions. */
