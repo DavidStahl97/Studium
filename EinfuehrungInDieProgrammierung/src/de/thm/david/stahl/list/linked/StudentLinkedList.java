@@ -112,9 +112,9 @@ public class StudentLinkedList implements StudentList {
 		noOfElements--;
 
 		StudentListElement first = head.getNext();
-		StudentListElement seoond = first.getNext();
+		StudentListElement second = first.getNext();
 
-		head.setNext(seoond);
+		head.setNext(second);
 		return first.getStudent();
 	}
 
