@@ -151,8 +151,3 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-
-
-!Datenbanksysteme/lib/eclipselink.jar
-!Datenbanksysteme/lib/javax.persistence_2.0.4.v201112161009.jar
-!Datenbanksysteme/lib/mysql-connector-java-5.1.24-bin.jar
