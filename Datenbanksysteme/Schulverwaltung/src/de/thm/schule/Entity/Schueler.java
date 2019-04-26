@@ -1,4 +1,4 @@
-package de.thm.schule;
+package de.thm.schule.Entity;
 
 import javax.persistence.*;
 

@@ -2,6 +2,11 @@ package de.thm.schule;
 
 import java.util.Date;
 
+import de.thm.schule.Entity.Arbeitsgruppe;
+import de.thm.schule.Entity.Klasse;
+import de.thm.schule.Entity.Lehrer;
+import de.thm.schule.Entity.Schueler;
+
 public class DummyFactory {
 
 	public static Lehrer createLehrer() {

@@ -3,6 +3,14 @@ package de.thm.schule;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import de.thm.schule.Entity.Arbeitsgruppe;
+import de.thm.schule.Entity.Klasse;
+import de.thm.schule.Entity.Lehrer;
+import de.thm.schule.Entity.Person;
+import de.thm.schule.Entity.Schueler;
+import de.thm.schule.EntityDao.LehrerDao;
+import de.thm.schule.EntityDao.PersonDao;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +22,10 @@ public class Main
 	{
 		verwaltung = new Schulverwaltung();
 		
-		anlegen();
-		showLehrer("Hammett");
-		showLehrer("Dickinson");
-		showKlasse("11a");
+		//anlegen();
+		//showLehrer("Hammett");
+		showPersonen("Dickinson");
+		//showKlasse("11a");
 		
 		verwaltung.close();
 	}
@@ -34,13 +42,9 @@ public class Main
 		}
 	}
 
-	private static void showLehrer(String nachname) 
+	private static void showPersonen(String nachname) 
 	{
-		Query query = verwaltung.getEntityManager().createNamedQuery(Lehrer.LEHRER_BY_NACHNAME);
-		query.setParameter("name", nachname);
-		
-		@SuppressWarnings("unchecked")
-		List<Lehrer> list = query.getResultList();
+		List<Lehrer> list = new LehrerDao().byNachname(nachname);
 		for(Lehrer l : list)
 		{
 			System.out.println(l);
