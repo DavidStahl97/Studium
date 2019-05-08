@@ -13,9 +13,9 @@ class PersonDataAccess extends JpaDataAccessObject<Person, Integer> implements I
 	@Override
 	public List<Person> byNachname(String nachname) {
 		
-		String select = "select p from Person p where p.Nachname = :name";
+		var select = "select p from Person p where p.Nachname = :name";
 		
-		Query query = entityManager.createQuery(select);
+		var query = entityManager.createQuery(select);
 		query.setParameter("name", nachname);
 		
 		return query.getResultList();
