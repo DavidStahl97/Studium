@@ -2,6 +2,9 @@ package de.thm.algo.sorting;
 
 import java.util.ArrayList;
 
+import de.thm.algo.log.ConsoleLogger;
+import de.thm.algo.log.FileLogger;
+import de.thm.algo.log.ILogger;
 import de.thm.algo.sorting.algorithms.*;
 import de.thm.algo.sorting.algorithms.insertionSort.*;
 import de.thm.algo.sorting.data.*;
@@ -40,6 +43,9 @@ public class MainProgram {
 		if (args[1].contains("If")) sorters.add(new FastInsertionSort());
 		if (args[1].contains("Im")) sorters.add(new FastInsertionSortWithMark());
 		
+		if (args[1].contains("SN")) sorters.add(new SelectionSortNoSwapCheck());
+		if (args[1].contains("S")) sorters.add(new SelectionSort());
+		
 		if (args[1].contains("Qm1f"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, false));
 		if (args[1].contains("Qm1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, true));
 		if (args[1].contains("Qt1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, true));
@@ -57,7 +63,9 @@ public class MainProgram {
 		int stepN = Integer.parseInt(args[4]) * 1000;
 		int maxN = Integer.parseInt(args[5]) * 1000;
 		
-		TestCases tc = new TestCases(elements, sorters.toArray(new AbstractSort[0]), permutations, minN, stepN, maxN);
+		ILogger logger = (args.length >= 7) ? new FileLogger(args[6]) : new ConsoleLogger();
+		
+		TestCases tc = new TestCases(elements, sorters.toArray(new AbstractSort[0]), permutations, minN, stepN, maxN, logger);
 		tc.run();
 	}
 
