@@ -1,5 +1,7 @@
 package de.thm.schule;
 
+import de.thm.schule.repository.access.AccessFactory;
+
 public class Main 
 {
 
@@ -7,10 +9,8 @@ public class Main
 	{
 		var administration = new SchoolAdministration();
 		
-		//anlegen();
-		//showLehrer("Hammett");
-		//showPersonen("Dickinson");
-		//showKlasse("11a");
+		var personDataAccess = AccessFactory.getPersonDataAccess();
+		personDataAccess.udpateTest();
 	}
 
 }

@@ -8,12 +8,12 @@ import de.thm.schule.repository.access.interfaces.IClassDataAccess;
 
 class ClassDataAccess extends JpaDataAccessObject<Class, Integer> implements IClassDataAccess {
 	
-	public void persist(List<Class> klassen) {
+	public void persist(List<Class> classes) {
 		
 		var transaction = entityManager.getTransaction();
 		transaction.begin();
 		
-		for(var c : klassen) {			
+		for(var c : classes) {			
 			entityManager.persist(c);			
 		}
 		

@@ -21,4 +21,18 @@ class PersonDataAccess extends JpaDataAccessObject<Person, Integer> implements I
 		return query.getResultList();
 	}
 	
+	@Override
+	public void udpateTest() {
+		var person = entityManager.find(Person.class, 2);
+		
+		person.setFirstName("David");
+		person.setLastName("Stahl");
+		
+		var transaction = entityManager.getTransaction();
+		transaction.begin();
+	
+		
+		transaction.commit();
+	}
+	
 }

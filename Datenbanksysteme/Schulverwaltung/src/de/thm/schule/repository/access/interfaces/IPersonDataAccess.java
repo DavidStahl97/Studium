@@ -9,4 +9,5 @@ public interface IPersonDataAccess extends IDataAccessObject<Person, Integer> {
 
 	List<Person> byNachname(String nachname);
 	
+	void udpateTest();
 }

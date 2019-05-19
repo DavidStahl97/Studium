@@ -4,9 +4,7 @@ import java.util.ArrayList;
 
 import de.thm.schule.repository.access.AccessFactory;
 import de.thm.schule.repository.entities.Class;
-import de.thm.schule.repository.entities.Group;
 import de.thm.schule.repository.entities.Student;
-import de.thm.schule.repository.entities.Teacher;
 
 public class SchoolAdministration {
 	
