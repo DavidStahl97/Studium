@@ -8,9 +8,6 @@ public class Main
 	public static void main(String[] args) 
 	{
 		var administration = new SchoolAdministration();
-		
-		var personDataAccess = AccessFactory.getPersonDataAccess();
-		personDataAccess.udpateTest();
 	}
 
 }

@@ -54,7 +54,7 @@ public class QuickSort extends AbstractSort {
 	/**
 	 * Iterative Quicksort implementation.
 	 */
-	private void sortIterative(final SortableElements e) {
+	protected void sortIterative(final SortableElements e) {
 		int left = 0;
 		int right = e.size() - 1;
 		while (true) {
@@ -92,7 +92,7 @@ public class QuickSort extends AbstractSort {
 	/**
 	 * (Normal) recursive Quicksort implementation.
 	 */
-	private void sort(final SortableElements e, final int left, final int right) {
+	protected void sort(final SortableElements e, final int left, final int right) {
 		if (left >= right) return;
 
 		final int p = pivot(e, left, right);
