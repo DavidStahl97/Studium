@@ -1,5 +1,6 @@
-package de.thm.algo.sorting.algorithms;
+package de.thm.algo.sorting.algorithms.selectionsort;
 
+import de.thm.algo.sorting.algorithms.AbstractSort;
 import de.thm.algo.sorting.data.SortableElements;
 
 public class SelectionSort extends AbstractSort {

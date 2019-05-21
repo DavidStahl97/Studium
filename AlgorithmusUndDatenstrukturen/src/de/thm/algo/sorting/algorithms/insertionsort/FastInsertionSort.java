@@ -1,4 +1,4 @@
-package de.thm.algo.sorting.algorithms.insertionSort;
+package de.thm.algo.sorting.algorithms.insertionsort;
 
 import de.thm.algo.sorting.data.SortableElements;
 

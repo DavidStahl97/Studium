@@ -1,6 +1,6 @@
-package de.thm.algo.sorting.algorithms;
+package de.thm.algo.sorting.algorithms.quicksort;
 
-import de.thm.algo.sorting.algorithms.QuickSort.PivotMethod;
+import de.thm.algo.sorting.algorithms.quicksort.QuickSort.PivotMethod;
 import de.thm.algo.sorting.data.SortableElements;
 
 public class OptimizedQuickSort extends QuickSort {

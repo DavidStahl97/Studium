@@ -1,8 +1,9 @@
-package de.thm.algo.sorting.algorithms;
+package de.thm.algo.sorting.algorithms.quicksort;
 
 import java.util.Random;
 
 import de.thm.algo.sorting.Config;
+import de.thm.algo.sorting.algorithms.AbstractSort;
 import de.thm.algo.sorting.data.SortableElements;
 
 /**

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import de.thm.algo.log.CsvWriter;
 import de.thm.algo.log.ILogger;
 import de.thm.algo.sorting.algorithms.AbstractSort;
-import de.thm.algo.sorting.algorithms.QuickSort;
+import de.thm.algo.sorting.algorithms.quicksort.QuickSort;
 import de.thm.algo.sorting.data.*;
 
 /**

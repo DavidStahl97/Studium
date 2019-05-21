@@ -6,7 +6,10 @@ import de.thm.algo.log.ConsoleLogger;
 import de.thm.algo.log.FileLogger;
 import de.thm.algo.log.ILogger;
 import de.thm.algo.sorting.algorithms.*;
-import de.thm.algo.sorting.algorithms.insertionSort.*;
+import de.thm.algo.sorting.algorithms.insertionsort.*;
+import de.thm.algo.sorting.algorithms.quicksort.QuickSort;
+import de.thm.algo.sorting.algorithms.selectionsort.SelectionSort;
+import de.thm.algo.sorting.algorithms.selectionsort.SelectionSortNoSwapCheck;
 import de.thm.algo.sorting.data.*;
 import de.thm.algo.sorting.testing.*;
 
