@@ -9,12 +9,17 @@ public class NormalElements extends AbstractElements {
 	
 	protected Element[] elements;
 	protected Element remembered;
-
+	
+	protected void allocateElementList(int n) {
+		elements = new Element[n];
+	}
+	
+	protected void 
 
 	@Override
 	public void init(int n) {
 		super.init(n);
-		elements = new Element[n];
+		allocateElementList(n);
 		long timestamp = System.nanoTime();
 		for (int i = 0; i < n; i++) {
 			elements[i] = new Element(i);

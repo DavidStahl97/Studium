@@ -117,4 +117,6 @@
 "FastElements","FastInsertionSort","ReversePermutation","160000","12799920000","109416","0"
 "FastElements","FastInsertionSort","ReversePermutation","170000""FastElements","FastInsertionSort","RandomPermutation","40000","14449915000","98926","0"
 "FastElements","FastInsertionSort","ReversePermutation","180000","16199910000","105692","0"
-"FastElements","FastInsertionSort","ReversePermutation","190000"
+"FastElements","FastInsertionSort","ReversePermutation","190000""FastElements","FastInsertionSort","RandomPermutation","40000","399430713","2549","0"
+"FastElements","FastInsertionSort","RandomPermutation","50000","623265531","3794","0"
+"FastElements","FastInsertionSort","RandomPermutation","60000"
