@@ -14,7 +14,6 @@ public class NormalElements extends AbstractElements {
 		elements = new Element[n];
 	}
 	
-	protected void 
 
 	@Override
 	public void init(int n) {
