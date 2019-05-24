@@ -1,6 +1,11 @@
 package de.thm.algo.sorting;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 import de.thm.algo.log.ConsoleLogger;
 import de.thm.algo.log.FileLogger;
@@ -34,6 +39,36 @@ public class MainProgram {
 			new AdversePermutation()};
 	
 	public static void main(String[] args) {
+		
+		if(args.length < 1) {
+			System.out.println("Dateiname angeben!");
+			return;
+		}
+		
+		List<String[]> parameters = null;
+		try {
+			parameters = readArguments(args[0]);
+		} catch (IOException e) {
+			System.out.println("Fehler beim Lesen der Datei!");
+		}
+		
+		for(var p : parameters) {
+			start(p);
+		}
+	}
+	
+	private static List<String[]> readArguments(String fileName) throws IOException {
+		
+		var parameters = new ArrayList<String[]>();
+		
+		Files.lines(Paths.get(fileName)).forEach(line -> {
+			parameters.add(line.split(" "));
+		});
+		
+		return parameters;
+	}
+	
+	private static void start(String[] args) {
 		if (args.length < 6) return;
 		
 		PermutableElements[] elements = new PermutableElements[] {new NormalElements(), new FastElements()};
@@ -73,6 +108,5 @@ public class MainProgram {
 		
 		TestCases tc = new TestCases(elements, sorters.toArray(new AbstractSort[0]), permutations, minN, stepN, maxN, logger);
 		tc.run();
-	}
-
+	}	
 }
