@@ -2,7 +2,6 @@ package de.thm.algo.sorting;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +11,9 @@ import de.thm.algo.log.FileLogger;
 import de.thm.algo.log.ILogger;
 import de.thm.algo.sorting.algorithms.*;
 import de.thm.algo.sorting.algorithms.insertionsort.*;
+import de.thm.algo.sorting.algorithms.quicksort.OptimizedQuickSort;
 import de.thm.algo.sorting.algorithms.quicksort.QuickSort;
 import de.thm.algo.sorting.algorithms.selectionsort.SelectionSort;
-import de.thm.algo.sorting.algorithms.selectionsort.SelectionSortNoSwapCheck;
 import de.thm.algo.sorting.data.*;
 import de.thm.algo.sorting.testing.*;
 
@@ -82,12 +81,13 @@ public class MainProgram {
 		if (args[1].contains("If")) sorters.add(new FastInsertionSort());
 		if (args[1].contains("Im")) sorters.add(new FastInsertionSortWithMark());
 		
-		if (args[1].contains("SN")) sorters.add(new SelectionSortNoSwapCheck());
 		if (args[1].contains("S")) sorters.add(new SelectionSort());
 		
 		if (args[1].contains("Qm1f"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, false));
 		if (args[1].contains("Qm1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, true));
 		if (args[1].contains("Qt1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, true));
+		if (args[1].contains("Qt1o"))  sorters.add(new OptimizedQuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, true));
+		if (args[1].contains("Qt1f"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, false));
 		if (args[1].contains("Qr1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.RANDOM, true));
 		
 		//if(args[1].contains("H")) sorters.add(new HeapSort());

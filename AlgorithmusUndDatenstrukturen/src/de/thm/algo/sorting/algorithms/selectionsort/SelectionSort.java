@@ -7,11 +7,14 @@ public class SelectionSort extends AbstractSort {
 
 	@Override
 	public void sort(SortableElements e) {
-
-		for(int i = 0; i < e.size() - 1; i++) {
+		sort(e, 0, e.size() - 1);
+	}
+	
+	public void sort(SortableElements e, int left, int right) {
+		for(int i = left; i < right; i++) {
 			int min = i;
 			
-			for(int j = i + 1; j < e.size(); j++) {
+			for(int j = i + 1; j <= right; j++) {
 				
 				if(e.compare(min, j) > 0) {
 					min = j;
@@ -19,11 +22,8 @@ public class SelectionSort extends AbstractSort {
 				
 			}
 			
-			if(i != min) {
-				e.swap(i, min);
-			}
-		}
-		
+			e.swap(i, min);
+		}		
 	}
 
 }

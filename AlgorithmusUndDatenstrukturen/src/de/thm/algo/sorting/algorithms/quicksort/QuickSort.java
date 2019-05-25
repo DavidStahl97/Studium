@@ -20,8 +20,8 @@ public class QuickSort extends AbstractSort {
 	private final boolean iterativeVariant;
 	private int pivotComparisons;
 	
-	private int[] tasks = new int[100];
-	private int noOfTasks = 0;
+	protected int[] tasks = new int[100];
+	protected int noOfTasks = 0;
 	
 	public QuickSort(PivotMethod pivotMethod, boolean iterativeVariant) {
 		this.pivotMethod = pivotMethod;
@@ -103,7 +103,7 @@ public class QuickSort extends AbstractSort {
 		sort(e, i+1, right);
 	}
 	
-	private int pivot(final SortableElements e, final int left, final int right) {
+	protected int pivot(final SortableElements e, final int left, final int right) {
 		int p = 0;
 		switch (pivotMethod) {
 		case MIDDLE:
@@ -143,7 +143,7 @@ public class QuickSort extends AbstractSort {
 		return p;
 	}
 	
-	private int partition(final SortableElements e, final int left, final int right, final int p) {
+	protected int partition(final SortableElements e, final int left, final int right, final int p) {
 		e.swap(p, right);
 
 		int i = left;
