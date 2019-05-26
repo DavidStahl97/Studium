@@ -86,7 +86,7 @@ public class MainProgram {
 		if (args[1].contains("Qm1f"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, false));
 		if (args[1].contains("Qm1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MIDDLE, true));
 		if (args[1].contains("Qt1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, true));
-		if (args[1].contains("Qt1o"))  sorters.add(new OptimizedQuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, true));
+		if (args[1].contains("Qt1o"))  sorters.add(new OptimizedQuickSort());
 		if (args[1].contains("Qt1f"))  sorters.add(new QuickSort(QuickSort.PivotMethod.MEDIAN_OF_THREE, false));
 		if (args[1].contains("Qr1t"))  sorters.add(new QuickSort(QuickSort.PivotMethod.RANDOM, true));
 		
