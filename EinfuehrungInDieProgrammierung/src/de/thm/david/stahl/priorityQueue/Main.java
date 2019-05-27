@@ -12,12 +12,25 @@ public class Main
         fillPriorityQueue(pq);
 
         pq.print();
-
-        testDecreaseKey(pq);
+        
+        testDeleteMin(pq);
+        testDeleteMin(pq);
+        testDeleteMin(pq);
+        testDeleteMin(pq);
     }
-
-    private static void fillPriorityQueue(IPriorityQueue pq)
-    {
+    
+    private static void testDeleteMin(IPriorityQueue pq) {
+    	System.out.println();
+    	pq.print();
+    	System.out.println();
+    	
+    	pq.deleteMin();
+    	System.out.println();
+    	pq.print();
+    	System.out.println();
+    }
+    
+    private static void fillPriorityQueue(IPriorityQueue pq) {
         String[] testLetters = {"D", "i", "e", "s", "<Leer>", "t", "n", "T"};
         int[] frequencies = {1, 3, 3, 3, 3, 2, 1, 1};
 
@@ -30,11 +43,5 @@ public class Main
         pq.print();
 
         pq.insert(new Element("David", 1));
-    }
-
-    private static void testDecreaseKey(IPriorityQueue pq)
-    {
-        pq.decreaseKey(4, 0);
-        pq.print();
     }
 }

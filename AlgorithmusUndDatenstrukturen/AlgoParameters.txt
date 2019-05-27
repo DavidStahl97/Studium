@@ -1,15 +1,2 @@
-F Qt1o R 1000 1000 30000 Analyse.csv
-F Qt1t R 1000 1000 30000 Analyse.csv
-F Qt1o R 100 100 2000 Analyse.csv
-F Qt1t R 100 100 2000 Analyse.csv
-F Qt1o R 1000 1000 30000 Analyse.csv
-F Qt1t R 1000 1000 30000 Analyse.csv
-F Qt1o R 100 100 2000 Analyse.csv
-F Qt1t R 100 100 2000 Analyse.csv
-F Qt1o R 1000 1000 30000 Analyse.csv
-F Qt1t R 1000 1000 30000 Analyse.csv
-F Qt1o R 100 100 2000 Analyse.csv
-F Qt1t R 100 100 2000 Analyse.csv
-F Qt1o R 1000 1000 30000 Analyse.csv
-F Qt1t R 1000 1000 30000 Analyse.csv
-F Qt1o R 100 100 2000 Analyse.csv
+F H R 40 20 1000 Analyse.csv
+F H R 1000 1000 30000 Analyse.csv

@@ -16,11 +16,11 @@ public class Element implements Comparable<Element> {
 		this.key = key;
 	}
 
-	int getKey() {
+	public int getKey() {
 		return key;
 	}
 
-	void setKey(int key) {
+	public void setKey(int key) {
 		this.key = key;
 	}
 
