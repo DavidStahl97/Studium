@@ -269,3 +269,6 @@ local.properties
 !Datenbanksysteme/Schulverwaltung/lib/eclipselink.jar
 !Datenbanksysteme/Schulverwaltung/lib/javax.persistence_2.0.4.v201112161009.jar
 !Datenbanksysteme/Schulverwaltung/lib/mysql-connector-java-5.1.24-bin.jar
+
+.txt
+.csv

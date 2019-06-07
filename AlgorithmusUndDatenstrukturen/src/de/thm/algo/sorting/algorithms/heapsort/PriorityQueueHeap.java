@@ -1,28 +1,26 @@
 package de.thm.algo.sorting.algorithms.heapsort;
 
-/** Represents a priority queue,
- * implemented as a binary heap.
- */
-public class PriorityQueueHeap implements IPriorityQueue
-{
+import de.thm.algo.sorting.data.Element;
+
+public class PriorityQueueHeap {
 	
 	/** Array containing the elements of the heap. */
-	private PriorityElement[] elements;
+	private Element[] elements;
 	
 	/** Current size of the data structure (number of contained elements). */
 	private int size;
 	
-	
-	public PriorityQueueHeap(int capacity)
-	{
+	public PriorityQueueHeap(int capacity) {
 		assert capacity > 0;
-		elements = new PriorityElement[capacity];
+		elements = new Element[capacity];
 		size = 0;
 	}
-
-	@Override
-	public void print()
-	{
+	
+	public int getSize() {
+		return size;
+	}
+	
+	public void print() {
 		// print heap level by level
 		int levelSize = 1;
 		int lastLevelIndex = 0;
@@ -37,23 +35,28 @@ public class PriorityQueueHeap implements IPriorityQueue
 		}
 		System.out.println("");
 	}
-
 	
-	/** Auxiliary function. Swaps the two elements at the
-	   given positions. */
-	private void swap(int i, int j)
-	{
-		PriorityElement tmp = elements[i];
-		elements[i] = elements[j];
-		elements[j] = tmp;
+	public void insert(Element e) {
+		assert size < elements.length;
+		// add new element to the end
+		elements[size] = e;
+		size++;
+		
+		// sift up new element in order to restore heap property
+		int i = size - 1;
+		int parent = (i-1)/2;
+		while (i > 0) {
+			if (elements[i].getKey() >= elements[parent].getKey()) break;
+			swap(i, parent);
+			i = parent;
+			parent = (i-1)/2;
+		}
 	}
-
-	@Override
-	public PriorityElement deleteMin()
-	{
+	
+	public Element deleteMin() {
 		assert size > 0;
 		// retrieve and remove min element
-		PriorityElement min = elements[0];
+		Element min = elements[0];
 		elements[0] = elements[size-1];
 		size--;
 		
@@ -63,8 +66,8 @@ public class PriorityQueueHeap implements IPriorityQueue
 		int rightChild = leftChild+1;
 		while (leftChild < size) {
 			int minChild = leftChild;
-			if ((rightChild < size) && (elements[rightChild].getPriority() < elements[leftChild].getPriority())) minChild = rightChild;
-			if (elements[minChild].getPriority() >= elements[i].getPriority()) break;
+			if ((rightChild < size) && (elements[rightChild].getKey() < elements[leftChild].getKey())) minChild = rightChild;
+			if (elements[minChild].getKey() >= elements[i].getKey()) break;
 			swap(i, minChild);
 			i = minChild;
 			leftChild = 2*i+1;
@@ -73,42 +76,13 @@ public class PriorityQueueHeap implements IPriorityQueue
 		
 		return min;
 	}
-
-	@Override
-	public void insert(PriorityElement e)
-	{
-		assert size < elements.length;
-		// add new element to the end
-		elements[size] = e;
-		size++;
-		
-		// sift up new element in order to restore heap property
-		int i = size - 1;
-		decreaseElement(i);
+	
+	/** Auxiliary function. Swaps the two elements at the
+	   given positions. */
+	private void swap(int i, int j) {
+		Element tmp = elements[i];
+		elements[i] = elements[j];
+		elements[j] = tmp;
 	}
-
-	// O(log(n))
-	public void decreaseKey(int index, int priority)
-	{
-		assert size < elements.length;
-
-		elements[index].setPriority(priority);
-		decreaseElement(index);
-	}
-
-	private void decreaseElement(int index)
-	{
-		int parent = calculateParent(index);
-		while (index > 0 || elements[index].getPriority() >= elements[parent].getPriority())
-		{
-			swap(index, parent);
-			index = parent;
-			parent = calculateParent(index);
-		}
-	}
-
-	private int calculateParent(int index)
-	{
-		return (index - 1) / 2;
-	}
+	
 }

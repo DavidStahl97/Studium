@@ -16,16 +16,14 @@ public class PriorityQueueHeap implements IPriorityQueue
 	private int size;
 	
 	
-	public PriorityQueueHeap(int capacity)
-	{
+	public PriorityQueueHeap(int capacity) {
 		assert capacity > 0;
 		elements = new Element[capacity];
 		size = 0;
 	}
 
 	@Override
-	public void print()
-	{
+	public void print() {
 		// print heap level by level
 		int levelSize = 1;
 		int lastLevelIndex = 0;
@@ -40,20 +38,17 @@ public class PriorityQueueHeap implements IPriorityQueue
 		}
 		System.out.println("");
 	}
-
 	
 	/** Auxiliary function. Swaps the two elements at the
 	   given positions. */
-	private void swap(int i, int j)
-	{
+	private void swap(int i, int j) {
 		Element tmp = elements[i];
 		elements[i] = elements[j];
 		elements[j] = tmp;
 	}
 
 	@Override
-	public Element deleteMin()
-	{
+	public Element deleteMin() {
 		assert size > 0;
 		// retrieve and remove min element
 		Element min = elements[0];
@@ -78,8 +73,7 @@ public class PriorityQueueHeap implements IPriorityQueue
 	}
 
 	@Override
-	public void insert(Element e)
-	{
+	public void insert(Element e) {
 		assert size < elements.length;
 		// add new element to the end
 		elements[size] = e;
@@ -87,31 +81,13 @@ public class PriorityQueueHeap implements IPriorityQueue
 		
 		// sift up new element in order to restore heap property
 		int i = size - 1;
-		decreaseElement(i);
-	}
-
-	// O(log(n))
-	public void decreaseKey(int index, int priority)
-	{
-		assert size < elements.length;
-
-		elements[index].setPriority(priority);
-		decreaseElement(index);
-	}
-
-	private void decreaseElement(int index)
-	{
-		int parent = calculateParent(index);
-		while (index > 0 || elements[index].getPriority() >= elements[parent].getPriority())
-		{
-			swap(index, parent);
-			index = parent;
-			parent = calculateParent(index);
+		int parent = (i-1)/2;
+		while (i > 0) {
+			if (elements[i].getPriority() >= elements[parent].getPriority()) break;
+			swap(i, parent);
+			i = parent;
+			parent = (i-1)/2;
 		}
 	}
 
-	private int calculateParent(int index)
-	{
-		return (index - 1) / 2;
-	}
 }

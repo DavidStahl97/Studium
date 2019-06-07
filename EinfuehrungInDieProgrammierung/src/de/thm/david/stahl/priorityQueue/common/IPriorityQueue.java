@@ -11,5 +11,5 @@ public interface IPriorityQueue
 	/** Inserts the given element into the data structure. */
 	void insert(Element e);
 
-	void decreaseKey(int index, int priority);
+	//void decreaseKey(int index, int priority);
 }
