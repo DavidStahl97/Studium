@@ -1,3 +1,4 @@
+package de.thm.algo.correctness;
 
 public class Main {
 
@@ -7,11 +8,11 @@ public class Main {
 	}
 	
 	private static int sum(int n) {
-		//boolean minus = n < 0;
-		//n = (n < 0) ? -n : n;
+		boolean minus = n < 0;
+		n = (n < 0) ? -n : n;
 		int ergebnis = (n * (n + 1)) / 2;
-		return ergebnis;
-		//return minus ? -ergebnis : ergebnis;
+
+		return minus ? -ergebnis : ergebnis;
 	}
 	
 	

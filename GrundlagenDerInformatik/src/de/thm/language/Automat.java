@@ -1,4 +1,4 @@
-package formaleSprache;
+package de.thm.language;
 
 public abstract class Automat {
 	
