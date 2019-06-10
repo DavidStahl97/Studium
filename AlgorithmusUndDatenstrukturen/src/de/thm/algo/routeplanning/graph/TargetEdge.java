@@ -1,4 +1,4 @@
-package de.thm.algo.routplanning.graph;
+package de.thm.algo.routeplanning.graph;
 
 /**
  * Represents an edge, storing target and weight, but omitting the source (in order to reduce the memory consumption).
