@@ -1,4 +1,4 @@
-package de.thm.algo.routeplanning.graph;
+package de.thm.algo.routplanning.graph;
 
 /**
  * Represents an edge, storing target and weight, but omitting the source (in order to reduce the memory consumption).
@@ -28,6 +28,11 @@ public class TargetEdge extends BasicEdge {
 
 	public int getTarget() {
 		return target;
+	}
+	
+	@Override
+	public String toString() {
+		return "target: " + target + ", " + super.toString();
 	}
 
 }

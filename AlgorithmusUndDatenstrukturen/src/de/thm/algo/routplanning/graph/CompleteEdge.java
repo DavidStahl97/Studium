@@ -1,4 +1,4 @@
-package de.thm.algo.routeplanning.graph;
+package de.thm.algo.routplanning.graph;
 
 /**
  * Represents an edge storing source, target, and weight.

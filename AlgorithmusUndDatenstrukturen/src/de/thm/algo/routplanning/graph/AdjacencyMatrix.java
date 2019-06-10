@@ -1,4 +1,4 @@
-package de.thm.algo.routeplanning.graph;
+package de.thm.algo.routplanning.graph;
 
 import java.util.Iterator;
 
@@ -32,28 +32,35 @@ public class AdjacencyMatrix implements UpdateableGraph {
 	
 	private class AdjacencyMatrixIterator implements Iterator<TargetEdge> {
 		
-		private final int source;
-		private int nextTarget;
+		private final Integer[] array;
+		private int currentNode = -1;
+		private int nextNode = -1;
 		
 		public AdjacencyMatrixIterator(int source) {
-			this.source = source;
+			array = matrix[source];
 		}
 		
 		@Override
 		public boolean hasNext() {
-			for(var i : matrix[source]) {
-				if(i != null) {
-					nextTarget = i;
-					return true;
-				}
-			}
-			
-			return false;
+			updateNextNode();
+			return nextNode < array.length;
 		}
 
 		@Override
 		public TargetEdge next() {
-			return new TargetEdge(nextTarget, matrix[source][nextTarget]);
+			updateNextNode();
+			currentNode = nextNode;
+			return new TargetEdge(currentNode, array[currentNode]);
+		}
+		
+		private void updateNextNode() {
+			if(currentNode == nextNode) {
+				for(nextNode = currentNode + 1; nextNode < array.length; nextNode++) {
+					if(array[nextNode] != null) {
+						return;
+					}
+				}
+			}
 		}
 		
 	}

@@ -1,4 +1,4 @@
-package de.thm.algo.routeplanning.graph;
+package de.thm.algo.routplanning.graph;
 
 /**
  * Note that in addition to providing an addEdge-method an UpdateableGraph's getEdges-method

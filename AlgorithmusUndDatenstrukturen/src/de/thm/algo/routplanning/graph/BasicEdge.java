@@ -1,4 +1,4 @@
-package de.thm.algo.routeplanning.graph;
+package de.thm.algo.routplanning.graph;
 
 /**
  * Represents an edge without explicitly storing source and target
@@ -27,6 +27,11 @@ public class BasicEdge {
 
 	public int getWeight() {
 		return weight;
-	}		
+	}	
+	
+	@Override
+	public String toString() {
+		return "weight: " + weight;
+	}
 
 }
