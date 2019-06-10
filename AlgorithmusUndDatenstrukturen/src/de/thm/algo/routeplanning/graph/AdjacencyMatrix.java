@@ -53,6 +53,11 @@ public class AdjacencyMatrix implements UpdateableGraph {
 			return new TargetEdge(currentNode, array[currentNode]);
 		}
 		
+		@Override
+		public void remove() {
+			array[currentNode] = null;
+		}
+		
 		private void updateNextNode() {
 			if(currentNode == nextNode) {
 				for(nextNode = currentNode + 1; nextNode < array.length; nextNode++) {

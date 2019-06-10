@@ -13,6 +13,9 @@ public class BasicTests {
 
 	public static void main(String[] args) {
 		readonlyTest();
+		
+		System.out.println();
+		
 		updateableTest();		
 	}	
 	
