@@ -43,6 +43,7 @@ public class BasicTests {
 		for (SettleOnceSearch algo : algorithms) {
 			System.out.println(algo);
 			printPath(algo.query(S, T));
+			System.out.println();
 		}
 	}
 	
