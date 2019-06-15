@@ -1,10 +1,10 @@
-package de.thm.maschine.framework.configuration;
+package de.thm.machine.framework.configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import de.thm.maschine.framework.Util;
-import de.thm.maschine.framework.tupleElements.State;
+import de.thm.machine.framework.Util;
+import de.thm.machine.framework.tupleElements.State;
 
 public class TuringConfiguration extends Configuration {
 

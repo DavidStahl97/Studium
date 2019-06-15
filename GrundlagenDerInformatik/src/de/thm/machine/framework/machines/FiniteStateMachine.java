@@ -1,14 +1,14 @@
-package de.thm.maschine.framework;
+package de.thm.machine.framework.machines;
 
 import java.util.List;
 
-import de.thm.maschine.framework.configuration.Configuration;
-import de.thm.maschine.framework.tupleElements.Domain;
-import de.thm.maschine.framework.tupleElements.Image;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.configuration.Configuration;
+import de.thm.machine.framework.tupleElements.Domain;
+import de.thm.machine.framework.tupleElements.Image;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
 
-public class FiniteStateMaschine {
+public class FiniteStateMachine {
 	
 	private List<TransitionFunction> functions;
 	
@@ -18,7 +18,7 @@ public class FiniteStateMaschine {
 	protected int currentCellIndex;
 	protected String word;
 	
-	public FiniteStateMaschine(List<TransitionFunction> functions, State start) {
+	public FiniteStateMachine(List<TransitionFunction> functions, State start) {
 		this.functions = functions;
 		this.start = start;
 	}
@@ -37,8 +37,8 @@ public class FiniteStateMaschine {
 			
 			if(image == null) return returnResult();
 			
+			processFunction(image);
 			currentState = image.getState();
-			processImage(image);
 			
 			showCurrentConfiguration();
 		}
@@ -48,7 +48,7 @@ public class FiniteStateMaschine {
 		return new Domain(currentState, cell);
 	}
 	
-	protected void processImage(Image image) {
+	protected void processFunction(Image image) {
 		currentCellIndex++;
 	}
 	

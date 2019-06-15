@@ -1,12 +1,12 @@
-package de.thm.maschine;
+package de.thm.machine.framework.test;
 
 import java.util.Arrays;
 
-import de.thm.maschine.framework.FiniteStateMaschine;
-import de.thm.maschine.framework.tupleElements.Domain;
-import de.thm.maschine.framework.tupleElements.Image;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.machines.FiniteStateMachine;
+import de.thm.machine.framework.tupleElements.Domain;
+import de.thm.machine.framework.tupleElements.Image;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
 
 public class FinitStateMachineAlgorithm {
 	
@@ -25,7 +25,7 @@ public class FinitStateMachineAlgorithm {
 			new TransitionFunction(new Domain(notAccepted, 'b'), new Image(notAccepted))
 		};
 		
-		var maschine = new FiniteStateMaschine(Arrays.asList(function), sa);
+		var maschine = new FiniteStateMachine(Arrays.asList(function), sa);
 		var input = "aaaaabbbbbbbbbababab";
 		
 		System.out.println("Eingabe: " + input);

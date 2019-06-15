@@ -1,18 +1,18 @@
-package de.thm.maschine.framework;
+package de.thm.machine.framework.machines;
 
 import java.util.List;
 import java.util.Stack;
 
-import de.thm.maschine.framework.configuration.Configuration;
-import de.thm.maschine.framework.configuration.PushdownConfiguration;
-import de.thm.maschine.framework.tupleElements.Domain;
-import de.thm.maschine.framework.tupleElements.Image;
-import de.thm.maschine.framework.tupleElements.PushdownDomain;
-import de.thm.maschine.framework.tupleElements.PushdownImage;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.configuration.Configuration;
+import de.thm.machine.framework.configuration.PushdownConfiguration;
+import de.thm.machine.framework.tupleElements.Domain;
+import de.thm.machine.framework.tupleElements.Image;
+import de.thm.machine.framework.tupleElements.PushdownDomain;
+import de.thm.machine.framework.tupleElements.PushdownImage;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
 
-public class PushdownAutomaton extends FiniteStateMaschine {
+public class PushdownAutomaton extends FiniteStateMachine {
 	
 	private Stack<Character> stack;
 	
@@ -28,8 +28,8 @@ public class PushdownAutomaton extends FiniteStateMaschine {
 	}
 	
 	@Override
-	protected void processImage(Image image) {
-		super.processImage(image);
+	protected void processFunction(Image image) {
+		super.processFunction(image);
 		
 		var pushdownImage = (PushdownImage)image;
 		var pushValues = pushdownImage.getPushValues();

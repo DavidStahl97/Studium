@@ -1,23 +1,24 @@
-package de.thm.maschine.framework;
+package de.thm.machine.framework.machines;
 
 import java.util.List;
 
-import de.thm.maschine.framework.configuration.Configuration;
-import de.thm.maschine.framework.configuration.TuringConfiguration;
-import de.thm.maschine.framework.tupleElements.Image;
-import de.thm.maschine.framework.tupleElements.ReadDirection;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
-import de.thm.maschine.framework.tupleElements.TuringImage;
+import de.thm.machine.framework.Util;
+import de.thm.machine.framework.configuration.Configuration;
+import de.thm.machine.framework.configuration.TuringConfiguration;
+import de.thm.machine.framework.tupleElements.Image;
+import de.thm.machine.framework.tupleElements.ReadDirection;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.tupleElements.TuringImage;
 
-public class TuringAcceptorMaschine extends FiniteStateMaschine {
+public class TuringAcceptorMachine extends FiniteStateMachine {
 
-	public TuringAcceptorMaschine(List<TransitionFunction> functions, State start) {
+	public TuringAcceptorMachine(List<TransitionFunction> functions, State start) {
 		super(functions, start);
 	}
 	
 	@Override
-	protected void processImage(Image image) {
+	protected void processFunction(Image image) {
 		var turingImage = (TuringImage)image;
 		
 		writeOutput(turingImage.getOutput());

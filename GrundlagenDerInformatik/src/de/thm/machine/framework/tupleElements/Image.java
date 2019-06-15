@@ -1,6 +1,6 @@
-package de.thm.maschine.framework.tupleElements;
+package de.thm.machine.framework.tupleElements;
 
-import de.thm.maschine.framework.Util;
+import de.thm.machine.framework.Util;
 
 public class Image {
 	

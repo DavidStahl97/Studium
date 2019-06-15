@@ -1,10 +1,10 @@
-package de.thm.maschine.framework.configuration;
+package de.thm.machine.framework.configuration;
 
 import java.util.List;
 import java.util.Stack;
 
-import de.thm.maschine.framework.Util;
-import de.thm.maschine.framework.tupleElements.State;
+import de.thm.machine.framework.Util;
+import de.thm.machine.framework.tupleElements.State;
 
 public class PushdownConfiguration extends Configuration {
 	

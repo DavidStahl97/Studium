@@ -1,12 +1,12 @@
-package de.thm.maschine;
+package de.thm.machine.framework.test;
 
 import java.util.Arrays;
 
-import de.thm.maschine.framework.PushdownAutomaton;
-import de.thm.maschine.framework.tupleElements.PushdownDomain;
-import de.thm.maschine.framework.tupleElements.PushdownImage;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.machines.PushdownAutomaton;
+import de.thm.machine.framework.tupleElements.PushdownDomain;
+import de.thm.machine.framework.tupleElements.PushdownImage;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
 
 public class PushdownAutomatonAlgorithm {
 	

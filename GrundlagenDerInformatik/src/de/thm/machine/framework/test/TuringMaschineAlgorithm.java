@@ -1,15 +1,15 @@
-package de.thm.maschine;
+package de.thm.machine.framework.test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-import de.thm.maschine.framework.TuringMaschine;
-import de.thm.maschine.framework.Util;
-import de.thm.maschine.framework.tupleElements.Domain;
-import de.thm.maschine.framework.tupleElements.ReadDirection;
-import de.thm.maschine.framework.tupleElements.State;
-import de.thm.maschine.framework.tupleElements.TransitionFunction;
-import de.thm.maschine.framework.tupleElements.TuringImage;
+import de.thm.machine.framework.Util;
+import de.thm.machine.framework.machines.TuringAcceptorMachine;
+import de.thm.machine.framework.machines.TuringMachine;
+import de.thm.machine.framework.tupleElements.Domain;
+import de.thm.machine.framework.tupleElements.ReadDirection;
+import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.tupleElements.TuringImage;
 
 public class TuringMaschineAlgorithm {
 	
@@ -25,7 +25,7 @@ public class TuringMaschineAlgorithm {
 			new TransitionFunction(new Domain(s1, Util.SPACE), new TuringImage(end, '1', ReadDirection.NEUTRAL))
 		};
 		
-		var maschine = new TuringMaschine(Arrays.asList(function), s0);
+		var maschine = new TuringMachine(Arrays.asList(function), s0);
 		var input = "1111 11";
 		
 		System.out.println("Eingabe: " + input);
@@ -170,7 +170,7 @@ public class TuringMaschineAlgorithm {
 		};
 		
 		
-		var maschine = new TuringMaschine(Arrays.asList(function), lm0);
+		var maschine = new TuringMachine(Arrays.asList(function), lm0);
 		var input = "111111111111111111111111111111 111";
 		
 		System.out.println("Eingabe: " + input);

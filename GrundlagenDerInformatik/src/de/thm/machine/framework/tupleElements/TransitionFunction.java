@@ -1,4 +1,4 @@
-package de.thm.maschine.framework.tupleElements;
+package de.thm.machine.framework.tupleElements;
 
 public class TransitionFunction {
 	
