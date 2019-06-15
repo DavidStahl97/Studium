@@ -8,6 +8,8 @@ import de.thm.maschine.framework.tupleElements.State;
 
 public class Configuration {
 	
+	private static int STEP;
+	
 	protected State state;
 	protected String word;
 	protected int cellIndex;
@@ -19,11 +21,9 @@ public class Configuration {
 	}
 	
 	protected List<String> captureCurrentConfiguration(State state, String word, int cellIndex) {
-		var array = new ArrayList<String>();
-		
+		var array = new ArrayList<String>();	
 		array.add(state.toString());
-		array.add(getUpcommingInput(word, cellIndex));
-		
+		array.add(getUpcommingInput(word, cellIndex));		
 		return array;
 	}
 	
@@ -35,6 +35,12 @@ public class Configuration {
 	@Override
 	public String toString() {
 		var parameters = captureCurrentConfiguration(state, word, cellIndex);
-		return Util.toTupleString(parameters.toArray());
+		var string = STEP + ". " + Util.toTupleString(parameters.toArray());
+		STEP++;
+		return string;
+	}
+	
+	public static void intitialStepCount() {
+		STEP = 1;
 	}
 }

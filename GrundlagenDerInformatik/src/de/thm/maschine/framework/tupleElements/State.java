@@ -10,6 +10,11 @@ public class State {
 		this.acceptedEndState = acceptedEndState;
 	}
 	
+	public State(String name) {
+		this.name = name;
+		this.acceptedEndState = false;
+	}
+	
 	public String getName() {
 		return name;
 	}

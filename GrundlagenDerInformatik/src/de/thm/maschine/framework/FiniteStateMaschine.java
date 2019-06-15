@@ -27,6 +27,7 @@ public class FiniteStateMaschine {
 		currentState = start;
 		currentCellIndex = 0;
 		this.word = word;
+		Configuration.intitialStepCount();
 		
 		showCurrentConfiguration();
 		

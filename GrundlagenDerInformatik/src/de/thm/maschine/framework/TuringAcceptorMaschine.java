@@ -25,34 +25,28 @@ public class TuringAcceptorMaschine extends FiniteStateMaschine {
 	}
 	
 	@Override
-	protected Character getInputCell() {
-		if(currentCellIndex < 0) {
-			word = Util.SPACE + word;
-			currentCellIndex = 0;
-			return Util.SPACE;
-		}
-		else if(currentCellIndex >= word.length()) {
-			word += Util.SPACE;
-			return Util.SPACE;
-		}
-		else {
-			return word.charAt(currentCellIndex);
-		}
-	}
-	
-	@Override
 	protected Configuration getCurrentConfiguration(State state, String word, int cellIndex) {
 		return new TuringConfiguration(state, word, cellIndex);
 	}
 	
 	private void setNextCellIndex(ReadDirection direction) {
 		switch(direction) {
+			
 			case RIGHT:
 				currentCellIndex++;
+				if(currentCellIndex >= word.length()) {
+					word += Util.SPACE;
+				}
 				break;
+				
 			case LEFT:
 				currentCellIndex--;
+				if(currentCellIndex < 0) {
+					word = Util.SPACE + word;
+					currentCellIndex = 0;
+				}
 				break;
+				
 			default:
 				break;
 		}

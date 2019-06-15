@@ -15,8 +15,8 @@ public class TuringConfiguration extends Configuration {
 	@Override
 	protected List<String> captureCurrentConfiguration(State state, String word, int cellIndex) {
 		var array = new ArrayList<String>();
-		array.add(state.toString());
 		array.add(getLeftPart(word, cellIndex));
+		array.add(state.toString());
 		array.add(getRightPart(word, cellIndex));
 		return array;
 	}
