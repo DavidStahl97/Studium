@@ -1,5 +1,7 @@
 package de.thm.maschine.framework.tupleElements;
 
+import de.thm.maschine.framework.Util;
+
 public class Domain {
 	
 	private Character input;
@@ -26,7 +28,7 @@ public class Domain {
 	
 	@Override
 	public String toString() {
-		return "(" + state + ", " + input + ")";
+		return Util.toTupleString(state, input);
 	}
 	
 }

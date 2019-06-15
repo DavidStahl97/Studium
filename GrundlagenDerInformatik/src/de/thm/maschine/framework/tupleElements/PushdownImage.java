@@ -1,5 +1,7 @@
 package de.thm.maschine.framework.tupleElements;
 
+import de.thm.maschine.framework.Util;
+
 public class PushdownImage extends Image {
 	
 	private Character[] pushValues;
@@ -15,7 +17,7 @@ public class PushdownImage extends Image {
 	
 	@Override
 	public String toString() {
-		return "(" + getState() + ", " + pushValues + ")";
+		return Util.toTupleString(getState(), pushValues);
 	}
 	
 }

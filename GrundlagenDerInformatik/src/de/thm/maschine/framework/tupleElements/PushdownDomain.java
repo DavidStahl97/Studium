@@ -1,5 +1,7 @@
 package de.thm.maschine.framework.tupleElements;
 
+import de.thm.maschine.framework.Util;
+
 public class PushdownDomain extends Domain {
 	
 	private Character popValue;
@@ -22,7 +24,7 @@ public class PushdownDomain extends Domain {
 	
 	@Override
 	public String toString() {
-		return "(" + getState() + ", " + getInput() + ", " + popValue + ")";
+		return Util.toTupleString(getState(), getInput(), popValue);
 	}
 	
 }

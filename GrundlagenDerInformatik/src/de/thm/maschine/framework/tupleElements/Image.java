@@ -1,5 +1,7 @@
 package de.thm.maschine.framework.tupleElements;
 
+import de.thm.maschine.framework.Util;
+
 public class Image {
 	
 	private State state;
@@ -14,6 +16,6 @@ public class Image {
 	
 	@Override
 	public String toString() {
-		return state.toString();
+		return Util.toTupleString(state);
 	}
 }

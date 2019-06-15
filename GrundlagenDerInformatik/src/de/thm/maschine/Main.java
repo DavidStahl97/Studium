@@ -3,9 +3,11 @@ package de.thm.maschine;
 public class Main {
 	
 	public static void main(String[] args) {
-		FinitStateMachineAlgorithm.excerciseOne();		
+		/*FinitStateMachineAlgorithm.excerciseOne();		
 		System.out.println();
-		PushdownAutomatonAlgorithm.excerciseTwo();
+		PushdownAutomatonAlgorithm.excerciseTwo();*/
+		
+		TuringMaschineAlgorithm.addition();
 	}
 	
 }

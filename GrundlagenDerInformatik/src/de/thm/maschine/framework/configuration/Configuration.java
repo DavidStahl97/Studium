@@ -8,9 +8,9 @@ import de.thm.maschine.framework.tupleElements.State;
 
 public class Configuration {
 	
-	private State state;
-	private String word;
-	private int cellIndex;
+	protected State state;
+	protected String word;
+	protected int cellIndex;
 	
 	public Configuration(State state, String word, int cellIndex) {
 		this.state = state;
@@ -27,20 +27,6 @@ public class Configuration {
 		return array;
 	}
 	
-	private String parameterListToString(Object... parameters) {
-		var string = "(";
-		
-		int i = 0;
-		for(var p : parameters) {
-			if(i != 0) string += ", ";
-			string += p;
-			i++;
-		}
-		
-		string += ")";
-		return string;
-	}
-	
 	private String getUpcommingInput(String word, int cellIndex) {
 		var input = word.substring(cellIndex);
 		return input.isEmpty() ? Character.toString(Util.EMPTY) : input;
@@ -49,6 +35,6 @@ public class Configuration {
 	@Override
 	public String toString() {
 		var parameters = captureCurrentConfiguration(state, word, cellIndex);
-		return parameterListToString(parameters.toArray());
+		return Util.toTupleString(parameters.toArray());
 	}
 }

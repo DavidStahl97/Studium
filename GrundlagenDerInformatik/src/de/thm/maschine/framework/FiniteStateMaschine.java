@@ -15,8 +15,8 @@ public class FiniteStateMaschine {
 	private State currentState;
 	private State start;
 	
-	private int currentCellIndex;
-	private String word;
+	protected int currentCellIndex;
+	protected String word;
 	
 	public FiniteStateMaschine(List<TransitionFunction> functions, State start) {
 		this.functions = functions;
