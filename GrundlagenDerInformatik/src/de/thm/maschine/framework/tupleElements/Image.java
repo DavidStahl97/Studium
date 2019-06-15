@@ -1,4 +1,4 @@
-package de.thm.automat.framework.tupleElements;
+package de.thm.maschine.framework.tupleElements;
 
 public class Image {
 	

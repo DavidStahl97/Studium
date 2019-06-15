@@ -1,4 +1,4 @@
-package de.thm.automat.framework.tupleElements;
+package de.thm.maschine.framework.tupleElements;
 
 public class Domain {
 	
@@ -26,7 +26,7 @@ public class Domain {
 	
 	@Override
 	public String toString() {
-		return "(" + state.toString() + ", " + input + ")";
+		return "(" + state + ", " + input + ")";
 	}
 	
 }

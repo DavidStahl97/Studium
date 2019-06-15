@@ -1,4 +1,4 @@
-package de.thm.automat.framework.tupleElements;
+package de.thm.maschine.framework.tupleElements;
 
 public class TransitionFunction {
 	
@@ -8,11 +8,6 @@ public class TransitionFunction {
 	public TransitionFunction(Domain domain, Image image) {
 		this.image = image;
 		this.domain = domain;
-	}
-	
-	public TransitionFunction(State state, char input, State nextState) {
-		this.domain = new Domain(state, input);
-		this.image = new Image(nextState);
 	}
 
 	public Image getImage() {

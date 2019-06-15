@@ -1,11 +1,12 @@
-package de.thm.automat.framework;
+package de.thm.maschine.framework;
 
 import java.util.List;
 
-import de.thm.automat.framework.tupleElements.Domain;
-import de.thm.automat.framework.tupleElements.Image;
-import de.thm.automat.framework.tupleElements.State;
-import de.thm.automat.framework.tupleElements.TransitionFunction;
+import de.thm.maschine.framework.configuration.Configuration;
+import de.thm.maschine.framework.tupleElements.Domain;
+import de.thm.maschine.framework.tupleElements.Image;
+import de.thm.maschine.framework.tupleElements.State;
+import de.thm.maschine.framework.tupleElements.TransitionFunction;
 
 public class FiniteStateMaschine {
 	
@@ -15,19 +16,19 @@ public class FiniteStateMaschine {
 	private State start;
 	
 	private int currentCellIndex;
-	private String input;
+	private String word;
 	
 	public FiniteStateMaschine(List<TransitionFunction> functions, State start) {
 		this.functions = functions;
 		this.start = start;
 	}
 	
-	public String start(String input) {
+	public String start(String word) {
 		currentState = start;
 		currentCellIndex = 0;
-		this.input = input;
+		this.word = word;
 		
-		printConfiguration();
+		showCurrentConfiguration();
 		
 		while(true) {			
 			var domain = nextDomain(currentState, getInputCell());
@@ -38,7 +39,7 @@ public class FiniteStateMaschine {
 			currentState = image.getState();
 			processImage(image);
 			
-			printConfiguration();
+			showCurrentConfiguration();
 		}
 	}
 	
@@ -55,13 +56,16 @@ public class FiniteStateMaschine {
 	}
 	
 	protected Character getInputCell() {
-		if(currentCellIndex >= input.length()) return null;
-		return input.charAt(currentCellIndex);
+		if(currentCellIndex >= word.length()) return null;
+		return word.charAt(currentCellIndex);
 	}
 	
-	protected void printConfiguration() {
-		var relation = "(" + currentState + ", " + input.substring(currentCellIndex) + ") ->";
-		System.out.println(relation);
+	protected Configuration getCurrentConfiguration(State state, String word, int cellIndex) {
+		return new Configuration(state, word, cellIndex);
+	}
+	
+	private void showCurrentConfiguration() {
+		System.out.println(getCurrentConfiguration(currentState, word, currentCellIndex));
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
