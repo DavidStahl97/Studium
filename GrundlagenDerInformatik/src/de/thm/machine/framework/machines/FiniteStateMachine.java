@@ -37,7 +37,7 @@ public class FiniteStateMachine {
 			
 			if(image == null) return returnResult();
 			
-			processFunction(image);
+			processFunction(domain, image);
 			currentState = image.getState();
 			
 			showCurrentConfiguration();
@@ -48,8 +48,9 @@ public class FiniteStateMachine {
 		return new Domain(currentState, cell);
 	}
 	
-	protected void processFunction(Image image) {
-		currentCellIndex++;
+	protected void processFunction(Domain domain, Image image) {
+		if(domain.getInput() != null)
+			currentCellIndex++;
 	}
 	
 	protected String returnResult() {

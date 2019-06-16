@@ -24,4 +24,9 @@ public class TransitionFunction {
 		return this.domain.equals(domain);
 	}
 	
+	@Override
+	public String toString() {
+		return domain.toString() + " --> " + image.toString();
+	}
+	
 }

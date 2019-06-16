@@ -28,8 +28,8 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	}
 	
 	@Override
-	protected void processFunction(Image image) {
-		super.processFunction(image);
+	protected void processFunction(Domain domain, Image image) {
+		super.processFunction(domain, image);
 		
 		var pushdownImage = (PushdownImage)image;
 		var pushValues = pushdownImage.getPushValues();

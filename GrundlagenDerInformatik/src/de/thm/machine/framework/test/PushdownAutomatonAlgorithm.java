@@ -17,12 +17,12 @@ public class PushdownAutomatonAlgorithm {
 		var notAccepted = new State("notAccepted", false);
 		
 		var function = new TransitionFunction[] {
-			new TransitionFunction(new PushdownDomain(sa, 'a', null), new PushdownImage(sa, null)),
-			new TransitionFunction(new PushdownDomain(sa, 'b', null), new PushdownImage(sb, null)),
-			new TransitionFunction(new PushdownDomain(sb, 'a', null), new PushdownImage(notAccepted, null)),
-			new TransitionFunction(new PushdownDomain(sb, 'b', null), new PushdownImage(sb, null)),
-			new TransitionFunction(new PushdownDomain(notAccepted, 'a', null), new PushdownImage(notAccepted, null)),
-			new TransitionFunction(new PushdownDomain(notAccepted, 'b', null), new PushdownImage(notAccepted, null))
+			new TransitionFunction(new PushdownDomain(sa, 'a', null), new PushdownImage(sa)),
+			new TransitionFunction(new PushdownDomain(sa, 'b', null), new PushdownImage(sb)),
+			new TransitionFunction(new PushdownDomain(sb, 'a', null), new PushdownImage(notAccepted)),
+			new TransitionFunction(new PushdownDomain(sb, 'b', null), new PushdownImage(sb)),
+			new TransitionFunction(new PushdownDomain(notAccepted, 'a', null), new PushdownImage(notAccepted)),
+			new TransitionFunction(new PushdownDomain(notAccepted, 'b', null), new PushdownImage(notAccepted))
 		};
 		
 		var maschine = new PushdownAutomaton(Arrays.asList(function), sa);
@@ -31,6 +31,13 @@ public class PushdownAutomatonAlgorithm {
 		System.out.println("Eingabe: " + input);
 		var result = maschine.start(input);
 		System.out.println(result);
+	}
+	
+	public static void excerciseFour() {
+		var s0 = new State("s0");
+		var s1 = new State("s1");
+		
+		
 	}
 	
 }

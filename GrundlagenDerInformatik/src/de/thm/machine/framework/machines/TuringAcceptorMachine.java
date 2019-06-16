@@ -5,6 +5,7 @@ import java.util.List;
 import de.thm.machine.framework.Util;
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.configuration.TuringConfiguration;
+import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.ReadDirection;
 import de.thm.machine.framework.tupleElements.State;
@@ -18,7 +19,7 @@ public class TuringAcceptorMachine extends FiniteStateMachine {
 	}
 	
 	@Override
-	protected void processFunction(Image image) {
+	protected void processFunction(Domain domain, Image image) {
 		var turingImage = (TuringImage)image;
 		
 		writeOutput(turingImage.getOutput());
