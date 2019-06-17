@@ -1,4 +1,4 @@
-package de.thm.parsen;
+package de.thm.parsen.framework;
 
 public abstract class Parser {
 	
@@ -10,13 +10,18 @@ public abstract class Parser {
 		consume();
 	}
 	
-	public void match(int x) {
+	protected void match(int x) {
 		if(lookahead.getType() == x) consume();
 		else throw new RuntimeException("Excepting " + input.getTokenName(x) + "; but was " + lookahead);
 	}
 	
-	public void consume() {
+	private void consume() {
 		lookahead = input.nextToken();
 	}
 	
+	public abstract void valid();
+	
+	public String getInput() {
+		return input.getInput();
+	}
 }

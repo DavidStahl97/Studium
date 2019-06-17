@@ -1,4 +1,7 @@
-package de.thm.parsen;
+package de.thm.parsen.list;
+
+import de.thm.parsen.framework.Lexer;
+import de.thm.parsen.framework.Parser;
 
 public class ListParser extends Parser {
 

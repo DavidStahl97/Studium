@@ -1,4 +1,7 @@
-package de.thm.parsen;
+package de.thm.parsen.list;
+
+import de.thm.parsen.framework.Lexer;
+import de.thm.parsen.framework.Token;
 
 public class ListLexer extends Lexer {
 	
@@ -28,15 +31,15 @@ public class ListLexer extends Lexer {
 				
 				case ',': 
 					consume();
-					return new Token(COMMA, ",");
+					return new Token(COMMA, ",", tokenNames[COMMA]);
 					
 				case '[':
 					consume();
-					return new Token(LBRACK, "[");
+					return new Token(LBRACK, "[", tokenNames[LBRACK]);
 					
 				case ']':
 					consume();
-					return new Token(RBRACK, "]");
+					return new Token(RBRACK, "]", tokenNames[RBRACK]);
 					
 				default:
 					if(isLetter()) return createLetterToken();
@@ -44,7 +47,7 @@ public class ListLexer extends Lexer {
 			}
 		}
 		
-		return new Token(EOF_TYPE, "<EOF>");
+		return new Token(EOF_TYPE, "<EOF>", tokenNames[EOF_TYPE]);
 	}
 
 	private Token createLetterToken() {
@@ -54,7 +57,7 @@ public class ListLexer extends Lexer {
 			consume();
 		} while(isLetter());
 		
-		return new Token(NAME, buffer.toString());
+		return new Token(NAME, buffer.toString(), tokenNames[NAME]);
 	}
 
 	@Override

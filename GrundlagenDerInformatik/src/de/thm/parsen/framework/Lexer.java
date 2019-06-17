@@ -1,4 +1,4 @@
-package de.thm.parsen;
+package de.thm.parsen.framework;
 
 public abstract class Lexer {
 	
@@ -27,4 +27,8 @@ public abstract class Lexer {
 	
 	public abstract Token nextToken();
 	public abstract String getTokenName(int tokenType);
+	
+	public String getInput() {
+		return input;
+	}
 }
