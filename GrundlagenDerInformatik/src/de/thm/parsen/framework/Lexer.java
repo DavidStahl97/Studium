@@ -26,7 +26,6 @@ public abstract class Lexer {
 	}
 	
 	public abstract Token nextToken();
-	public abstract String getTokenName(int tokenType);
 	
 	public String[] getTokenTypes(int... types) {
 		var array = new String[types.length];

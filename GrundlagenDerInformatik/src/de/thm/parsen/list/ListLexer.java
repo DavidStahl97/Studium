@@ -6,15 +6,6 @@ import de.thm.parsen.framework.exception.InvalidCharException;
 
 public class ListLexer extends Lexer {
 	
-	public static int NAME = 2;
-	public static int COMMA = 3;
-	public static int LBRACK = 4;
-	public static int RBRACK = 5;
-	
-	public static String[] tokenNames = {
-		"n/a", "<EOF>", "NAME", "COMMA", "LBRACK", "RBRACK"	
-	};
-	
 	public ListLexer(String input) {
 		super(input);
 	}
@@ -32,15 +23,15 @@ public class ListLexer extends Lexer {
 				
 				case ',': 
 					consume();
-					return new Token(COMMA, ",", tokenNames[COMMA]);
+					return new Token(",", TupleType.COMMA.name());
 					
 				case '[':
 					consume();
-					return new Token(LBRACK, "[", tokenNames[LBRACK]);
+					return new Token("[", TupleType.LBRACK.name());
 					
 				case ']':
 					consume();
-					return new Token(RBRACK, "]", tokenNames[RBRACK]);
+					return new Token("]", TupleType.RBRACK.name());
 					
 				default:
 					if(isLetter()) return createLetterToken();
@@ -48,7 +39,7 @@ public class ListLexer extends Lexer {
 			}
 		}
 		
-		return new Token(EOF_TYPE, "<EOF>", tokenNames[EOF_TYPE]);
+		return new Token("<EOF>", TupleType.EOF.name());
 	}
 
 	private Token createLetterToken() {
@@ -58,12 +49,7 @@ public class ListLexer extends Lexer {
 			consume();
 		} while(isLetter());
 		
-		return new Token(NAME, buffer.toString(), tokenNames[NAME]);
-	}
-
-	@Override
-	public String getTokenName(int tokenType) {
-		return tokenNames[tokenType];
+		return new Token(buffer.toString(), TupleType.NAME.name());
 	}
 	
 	private boolean isLetter() {
