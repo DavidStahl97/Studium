@@ -2,6 +2,7 @@ package de.thm.parsen.list;
 
 import de.thm.parsen.framework.Lexer;
 import de.thm.parsen.framework.Parser;
+import de.thm.parsen.framework.exception.TokenTypeException;
 
 public class ListParser extends Parser {
 
@@ -33,7 +34,7 @@ public class ListParser extends Parser {
 			match(ListLexer.NAME);
 		else if(lookahead.getType() == ListLexer.LBRACK)
 			list();
-		else throw new RuntimeException("Excepted name or list but was " + lookahead);
+		else throw new TokenTypeException(input.getTokenTypes(ListLexer.NAME, ListLexer.LBRACK), lookahead);
 	}
 	
 }

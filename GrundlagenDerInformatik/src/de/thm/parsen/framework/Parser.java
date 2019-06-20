@@ -1,5 +1,7 @@
 package de.thm.parsen.framework;
 
+import de.thm.parsen.framework.exception.TokenTypeException;
+
 public abstract class Parser {
 	
 	protected Lexer input;
@@ -12,7 +14,7 @@ public abstract class Parser {
 	
 	protected void match(int x) {
 		if(lookahead.getType() == x) consume();
-		else throw new RuntimeException("Excepting " + input.getTokenName(x) + "; but was " + lookahead);
+		else throw new TokenTypeException(input.getTokenTypes(x), lookahead);
 	}
 	
 	private void consume() {

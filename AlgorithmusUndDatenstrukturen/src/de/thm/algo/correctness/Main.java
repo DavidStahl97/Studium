@@ -1,8 +1,14 @@
 package de.thm.algo.correctness;
 
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(String[] args) {
+		String[] s = { "test", "test" };
+		
+		System.out.println(Arrays.toString(s));
+		
 		System.out.println(sum(-4));
 		System.out.println(recursiveSum(-4));
 	}

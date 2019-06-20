@@ -2,6 +2,7 @@ package de.thm.parsen.list;
 
 import de.thm.parsen.framework.Lexer;
 import de.thm.parsen.framework.Token;
+import de.thm.parsen.framework.exception.InvalidCharException;
 
 public class ListLexer extends Lexer {
 	
@@ -43,7 +44,7 @@ public class ListLexer extends Lexer {
 					
 				default:
 					if(isLetter()) return createLetterToken();
-					throw new RuntimeException("Invalid char: " + c);
+					throw new InvalidCharException(c);
 			}
 		}
 		
