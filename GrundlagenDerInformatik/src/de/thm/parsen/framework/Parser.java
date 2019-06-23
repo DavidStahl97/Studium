@@ -12,9 +12,9 @@ public abstract class Parser {
 		consume();
 	}
 	
-	protected void match(int x) {
-		if(lookahead.getType() == x) consume();
-		else throw new TokenTypeException(input.getTokenTypes(x), lookahead);
+	protected void match(String expectedType) {
+		if(lookahead.getType() == expectedType) consume();
+		else throw new TokenTypeException(expectedType, lookahead);
 	}
 	
 	private void consume() {

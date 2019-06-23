@@ -12,29 +12,29 @@ public class ListParser extends Parser {
 	
 	public void valid() {
 		list();
-		match(ListLexer.EOF_TYPE);
+		match(TokenType.EOF.name());
 	}
 	
 	private void list() {
-		match(ListLexer.LBRACK);
+		match(TokenType.LBRACK.name());
 		elements();
-		match(ListLexer.RBRACK);
+		match(TokenType.RBRACK.name());
 	}
 	
 	private void elements() {
 		element();
-		while(lookahead.getType() == ListLexer.COMMA) {
-			match(ListLexer.COMMA);
+		while(lookahead.getType() == TokenType.COMMA.name()) {
+			match(TokenType.COMMA.name());
 			element();
 		}
 	}
 	
 	private void element() {
-		if(lookahead.getType() == ListLexer.NAME)
-			match(ListLexer.NAME);
-		else if(lookahead.getType() == ListLexer.LBRACK)
+		if(lookahead.getType() == TokenType.NAME.name())
+			match(TokenType.NAME.name());
+		else if(lookahead.getType() == TokenType.LBRACK.name())
 			list();
-		else throw new TokenTypeException(input.getTokenTypes(ListLexer.NAME, ListLexer.LBRACK), lookahead);
+		else throw new TokenTypeException(new String[] {TokenType.NAME.name(), TokenType.LBRACK.name()}, lookahead);
 	}
 	
 }

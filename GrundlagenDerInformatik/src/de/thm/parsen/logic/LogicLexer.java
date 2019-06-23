@@ -5,21 +5,6 @@ import de.thm.parsen.framework.Token;
 
 public class LogicLexer extends Lexer {
 	
-	public static final int INDIV = 2;
-	public static final int SET_NAME = 3;
-	public static final int AND = 4;
-	public static final int OR = 5;
-	public static final int OPEN_BRACKET = 6;
-	public static final int CLOSE_BRACKET = 7;
-	public static final int COMMA = 8;
-	public static final int OPEN_BRACKET_2 = 9;
-	public static final int CLOSE_BRACKET_2 = 10;
-	
-	public static final String[] tokenNames = {
-		"n/a", "EXPRESSION", "INDIV", "SET_NAME", "AND", "OR", "OPEN_BRACKET", "CLOSE_BRACKET", "COMMA",
-		"OPEN_BRACKET_2", "CLOSE_BRACKET_2"
-	};
-	
 	public LogicLexer(String input) {
 		super(input);
 	}
@@ -37,31 +22,31 @@ public class LogicLexer extends Lexer {
 			
 				case '|':
 					consume();
-					return new Token(OR, "|", getTokenName(OR));
+					return new Token("|", TokenType.OR.name());
 					
 				case '&':
 					consume();
-					return new Token(AND, "&", getTokenName(AND));
+					return new Token("&", TokenType.AND.name());
 					
 				case '{':
 					consume();
-					return new Token(OPEN_BRACKET, "{", getTokenName(OPEN_BRACKET));
+					return new Token("{", TokenType.OPEN_BRACKET.name());
 					
 				case '}':
 					consume();
-					return new Token(CLOSE_BRACKET, "}", getTokenName(CLOSE_BRACKET));
+					return new Token("}", TokenType.CLOSE_BRACKET.name());
 					
 				case ',':
 					consume();
-					return new Token(COMMA, ",", getTokenName(COMMA));
+					return new Token(",", TokenType.COMMA.name());
 					
 				case '(':
 					consume();
-					return new Token(OPEN_BRACKET_2, "(", getTokenName(OPEN_BRACKET_2));
+					return new Token("(", TokenType.OPEN_BRACKET_2.name());
 					
 				case ')':
 					consume();
-					return new Token(CLOSE_BRACKET_2, ")", getTokenName(CLOSE_BRACKET_2));
+					return new Token(")", TokenType.CLOSE_BRACKET_2.name());
 					
 				default:
 					if(isSetName(c)) return createSetNameToken();
@@ -71,12 +56,7 @@ public class LogicLexer extends Lexer {
 			}
 		}
 		
-		return new Token(EOF_TYPE, "<EOF>", tokenNames[EOF_TYPE]);
-	}
-
-	@Override
-	public String getTokenName(int tokenType) {
-		return tokenNames[tokenType];
+		return new Token("<EOF>", TokenType.EOF.name());
 	}
 	
 	private Token createSetNameToken() {
@@ -86,7 +66,7 @@ public class LogicLexer extends Lexer {
 			consume();
 		} while(isSetName(c));
 		
-		return new Token(SET_NAME, buffer.toString(), getTokenName(SET_NAME));
+		return new Token(buffer.toString(), TokenType.SET_NAME.name());
 	}
 	
 	private Token createIndivToken() {
@@ -96,7 +76,7 @@ public class LogicLexer extends Lexer {
 			consume();
 		} while(isIndiv(c));
 		
-		return new Token(INDIV, buffer.toString(), getTokenName(INDIV));
+		return new Token(buffer.toString(), TokenType.INDIV.name());
 	}
 	
 	private boolean isSetName(char c) {

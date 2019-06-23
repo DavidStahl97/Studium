@@ -23,15 +23,15 @@ public class ListLexer extends Lexer {
 				
 				case ',': 
 					consume();
-					return new Token(",", TupleType.COMMA.name());
+					return new Token(",", TokenType.COMMA.name());
 					
 				case '[':
 					consume();
-					return new Token("[", TupleType.LBRACK.name());
+					return new Token("[", TokenType.LBRACK.name());
 					
 				case ']':
 					consume();
-					return new Token("]", TupleType.RBRACK.name());
+					return new Token("]", TokenType.RBRACK.name());
 					
 				default:
 					if(isLetter()) return createLetterToken();
@@ -39,7 +39,7 @@ public class ListLexer extends Lexer {
 			}
 		}
 		
-		return new Token("<EOF>", TupleType.EOF.name());
+		return new Token("<EOF>", TokenType.EOF.name());
 	}
 
 	private Token createLetterToken() {
@@ -49,7 +49,7 @@ public class ListLexer extends Lexer {
 			consume();
 		} while(isLetter());
 		
-		return new Token(buffer.toString(), TupleType.NAME.name());
+		return new Token(buffer.toString(), TokenType.NAME.name());
 	}
 	
 	private boolean isLetter() {

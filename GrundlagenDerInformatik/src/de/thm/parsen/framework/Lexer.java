@@ -2,8 +2,7 @@ package de.thm.parsen.framework;
 
 public abstract class Lexer {
 	
-	public static final char EOF = (char) -1;
-	public static final int EOF_TYPE = 1;
+	public static final String EOF = "<EOF>";
 	
 	protected String input;
 	protected int p = 0;
@@ -26,18 +25,6 @@ public abstract class Lexer {
 	}
 	
 	public abstract Token nextToken();
-	
-	public String[] getTokenTypes(int... types) {
-		var array = new String[types.length];
-		
-		int i = 0;
-		for(int t : types) {
-			array[i] = getTokenName(t);
-			i++;
-		}
-		
-		return array;
-	}
 	
 	public String getInput() {
 		return input;

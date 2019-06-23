@@ -2,6 +2,7 @@ package de.thm.parsen.logic;
 
 import de.thm.parsen.framework.Lexer;
 import de.thm.parsen.framework.Parser;
+import de.thm.parsen.framework.exception.TokenTypeException;
 import de.thm.parsen.list.ListLexer;
 
 public class LogicParser extends Parser {
@@ -12,14 +13,14 @@ public class LogicParser extends Parser {
 	
 	public void valid() {
 		expression();
-		match(ListLexer.EOF_TYPE);
+		match(TokenType.EOF.name());
 	}
 	
 	private void expression() {
 		term();
 		
-		while(lookahead.getType() == LogicLexer.OR) {
-			match(LogicLexer.OR);
+		while(lookahead.getType() == TokenType.OR.name()) {
+			match(TokenType.OR.name());
 			term();
 		}
 	}
@@ -27,45 +28,44 @@ public class LogicParser extends Parser {
 	private void term() {
 		atom();
 		
-		while(lookahead.getType() == LogicLexer.AND) {
-			match(LogicLexer.AND);
+		while(lookahead.getType() == TokenType.AND.name()) {
+			match(TokenType.AND.name());
 			atom();
 		}
 	}
 	
 	private void atom() {
 		
-		switch(lookahead.getType()) {
-			case LogicLexer.SET_NAME:
-				match(LogicLexer.SET_NAME);
-				break;
-				
-			case LogicLexer.OPEN_BRACKET:
-				indivSet();
-				break;
-				
-			case LogicLexer.OPEN_BRACKET_2:
-				match(LogicLexer.OPEN_BRACKET_2);
-				expression();
-				match(LogicLexer.CLOSE_BRACKET_2);
-				break;
-				
-			default:
-				throw new RuntimeException("Excepted set_name, indiv_set or new expression but was " + lookahead);
-		}
+		var usedType = lookahead.getType();
 		
+		if(usedType.equals(TokenType.SET_NAME.name())) {
+			match(TokenType.SET_NAME.name());
+		}
+		else if(usedType.equals(TokenType.OPEN_BRACKET.name())) {
+			indivSet();
+		}
+		else if(usedType.equals(TokenType.OPEN_BRACKET_2.name())) {
+			match(TokenType.OPEN_BRACKET_2.name());
+			expression();
+			match(TokenType.CLOSE_BRACKET_2.name());
+		}
+		else {
+			throw new TokenTypeException(
+					new String[] { TokenType.SET_NAME.name(), "INDIV_SET", "EXPRESSION" }, 
+					lookahead);
+		}
 	}
 	
 	private void indivSet() {
-		match(LogicLexer.OPEN_BRACKET);
-		match(LogicLexer.INDIV);
+		match(TokenType.OPEN_BRACKET.name());
+		match(TokenType.INDIV.name());
 		
-		while(lookahead.getType() == LogicLexer.COMMA) {
-			match(LogicLexer.COMMA);
-			match(LogicLexer.INDIV);
+		while(lookahead.getType() == TokenType.COMMA.name()) {
+			match(TokenType.COMMA.name());
+			match(TokenType.INDIV.name());
 		}
 		
-		match(LogicLexer.CLOSE_BRACKET);
+		match(TokenType.CLOSE_BRACKET.name());
 	}
 	
 	

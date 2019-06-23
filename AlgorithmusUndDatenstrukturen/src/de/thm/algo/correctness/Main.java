@@ -1,17 +1,10 @@
 package de.thm.algo.correctness;
 
-import java.util.Arrays;
-
 public class Main {
 	
 	enum Tag { MONTAG, DIENSTAG }
 	
 	public static void main(String[] args) {
-		
-		var s = Tag.MONTAG.name();
-		
-		System.out.println(s);
-		
 		System.out.println(sum(-4));
 		System.out.println(recursiveSum(-4));
 	}

@@ -11,4 +11,8 @@ public class TokenTypeException extends RuntimeException {
 		super("Expected " + Arrays.toString(expectedTokenTypes) + " but was " + usedToken);
 	}
 	
+	public TokenTypeException(String expectedTokenType, Token usedToken) {
+		super("Expected " + expectedTokenType + " but was " + usedToken);
+	}
+	
 }
