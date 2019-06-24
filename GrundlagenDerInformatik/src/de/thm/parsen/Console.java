@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import de.thm.parsen.framework.Parser;
 import de.thm.parsen.list.ListLexer;
 import de.thm.parsen.list.ListParser;
+import de.thm.parsen.logic.LogicLexer;
 import de.thm.parsen.logic.LogicParser;
 
 public class Console {
@@ -46,7 +47,7 @@ public class Console {
 					case 1:
 						return new ListParser(new ListLexer(word));
 					case 2:
-						return new LogicParser(new ListLexer(word));
+						return new LogicParser(new LogicLexer(word));
 						
 					default:
 						System.out.println("Keine valide Nummer!");

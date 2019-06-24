@@ -3,7 +3,6 @@ package de.thm.parsen.logic;
 import de.thm.parsen.framework.Lexer;
 import de.thm.parsen.framework.Parser;
 import de.thm.parsen.framework.exception.TokenTypeException;
-import de.thm.parsen.list.ListLexer;
 
 public class LogicParser extends Parser {
 
@@ -41,13 +40,13 @@ public class LogicParser extends Parser {
 		if(usedType.equals(TokenType.SET_NAME.name())) {
 			match(TokenType.SET_NAME.name());
 		}
-		else if(usedType.equals(TokenType.OPEN_BRACKET.name())) {
+		else if(usedType.equals(TokenType.OPEN_CURLY_BRACKET.name())) {
 			indivSet();
 		}
-		else if(usedType.equals(TokenType.OPEN_BRACKET_2.name())) {
-			match(TokenType.OPEN_BRACKET_2.name());
+		else if(usedType.equals(TokenType.OPEN_BRACKET.name())) {
+			match(TokenType.OPEN_BRACKET.name());
 			expression();
-			match(TokenType.CLOSE_BRACKET_2.name());
+			match(TokenType.CLOSE_BRACKET.name());
 		}
 		else {
 			throw new TokenTypeException(
@@ -57,7 +56,7 @@ public class LogicParser extends Parser {
 	}
 	
 	private void indivSet() {
-		match(TokenType.OPEN_BRACKET.name());
+		match(TokenType.OPEN_CURLY_BRACKET.name());
 		match(TokenType.INDIV.name());
 		
 		while(lookahead.getType() == TokenType.COMMA.name()) {
@@ -65,7 +64,7 @@ public class LogicParser extends Parser {
 			match(TokenType.INDIV.name());
 		}
 		
-		match(TokenType.CLOSE_BRACKET.name());
+		match(TokenType.CLOSE_CURLY_BRACKET.name());
 	}
 	
 	

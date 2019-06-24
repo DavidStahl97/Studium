@@ -2,6 +2,7 @@ package de.thm.parsen.logic;
 
 import de.thm.parsen.framework.Lexer;
 import de.thm.parsen.framework.Token;
+import de.thm.parsen.framework.exception.InvalidCharException;
 
 public class LogicLexer extends Lexer {
 	
@@ -30,11 +31,11 @@ public class LogicLexer extends Lexer {
 					
 				case '{':
 					consume();
-					return new Token("{", TokenType.OPEN_BRACKET.name());
+					return new Token("{", TokenType.OPEN_CURLY_BRACKET.name());
 					
 				case '}':
 					consume();
-					return new Token("}", TokenType.CLOSE_BRACKET.name());
+					return new Token("}", TokenType.CLOSE_CURLY_BRACKET.name());
 					
 				case ',':
 					consume();
@@ -42,55 +43,29 @@ public class LogicLexer extends Lexer {
 					
 				case '(':
 					consume();
-					return new Token("(", TokenType.OPEN_BRACKET_2.name());
+					return new Token("(", TokenType.OPEN_BRACKET.name());
 					
 				case ')':
 					consume();
-					return new Token(")", TokenType.CLOSE_BRACKET_2.name());
+					return new Token(")", TokenType.CLOSE_BRACKET.name());
 					
 				default:
-					if(isSetName(c)) return createSetNameToken();
-					if(isIndiv(c)) return createIndivToken();
+					if(isSetName(c)) return readToken(LogicLexer::isSetName, TokenType.SET_NAME.name());
+					if(isIndiv(c)) return readToken(LogicLexer::isIndiv, TokenType.INDIV.name());
 					
-					throw new RuntimeException("Invalid char: " + c);
+					throw new InvalidCharException(c);
 			}
 		}
 		
 		return new Token("<EOF>", TokenType.EOF.name());
 	}
 	
-	private Token createSetNameToken() {
-		var buffer = new StringBuilder();
-		do {
-			buffer.append(c);
-			consume();
-		} while(isSetName(c));
-		
-		return new Token(buffer.toString(), TokenType.SET_NAME.name());
-	}
-	
-	private Token createIndivToken() {
-		var buffer = new StringBuilder();
-		do {
-			buffer.append(c);
-			consume();
-		} while(isIndiv(c));
-		
-		return new Token(buffer.toString(), TokenType.INDIV.name());
-	}
-	
-	private boolean isSetName(char c) {
+	private static boolean isSetName(Character c) {
 		return c >= 'A' && c <= 'Z';
 	}
 	
-	private boolean isIndiv(char c) {
+	private static boolean isIndiv(Character c) {
 		return c >= 'a' && c <= 'z';
-	}
-	
-	private void whiteSpace() {
-		while(c == ' ' || c == '\t') {
-			consume();
-		}
 	}
 
 }
