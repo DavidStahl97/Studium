@@ -8,7 +8,7 @@ import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.State;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 
-public class FiniteStateMachine {
+public class FiniteStateMachine implements IMachine {
 	
 	private List<TransitionFunction> functions;
 	
@@ -23,6 +23,7 @@ public class FiniteStateMachine {
 		this.start = start;
 	}
 	
+	@Override
 	public String start(String word) {
 		currentState = start;
 		currentCellIndex = 0;

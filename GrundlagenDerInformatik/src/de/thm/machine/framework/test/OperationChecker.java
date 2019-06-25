@@ -1,4 +1,4 @@
-package de.thm.machine;
+package de.thm.machine.framework.test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
