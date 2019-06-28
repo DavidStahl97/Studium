@@ -20,6 +20,10 @@ public class Domain {
 		return state;
 	}
 	
+	public void setInput(Character input) {
+		this.input = input;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		var domain = (Domain)obj;

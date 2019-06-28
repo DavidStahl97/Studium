@@ -34,7 +34,13 @@ public class FiniteStateMachine implements IMachine {
 			var domain = nextDomain(currentState, getInputCell());
 			var image = getImage(domain);
 			
-			if(image == null) return returnResult();
+			if(image == null) {
+				// lamda transition function
+				domain.setInput(null);
+				image = getImage(domain);
+				
+				if(image == null) return returnResult();
+			}
 			
 			processFunction(domain, image);
 			currentState = image.getState();
