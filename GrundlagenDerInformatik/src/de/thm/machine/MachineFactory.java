@@ -13,12 +13,19 @@ import java.util.regex.Pattern;
 
 import de.thm.machine.framework.machines.FiniteStateMachine;
 import de.thm.machine.framework.machines.IMachine;
+import de.thm.machine.framework.machines.PushdownAutomaton;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
+import de.thm.machine.framework.tupleElements.PushdownDomain;
+import de.thm.machine.framework.tupleElements.PushdownImage;
 import de.thm.machine.framework.tupleElements.State;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 
+// refactor
 public class MachineFactory {
+	
+	private static final String START_STATE = "s0";
+	private static final Character BLANK = '_';
 	
 	public static IMachine getMachine(String fileName) {
 		
@@ -47,6 +54,10 @@ public class MachineFactory {
 				var map = createStateMap(lines, getEndStates(lines));
 				return createFiniteStateMachine(lines, map);
 			
+			case "pda":
+				map = createStateMap(lines, getEndStates(lines));
+				return createPushdownAutomaton(lines, map);
+				
 			default:
 				System.out.println("Falsches Dateiformat");
 				return null;
@@ -69,7 +80,35 @@ public class MachineFactory {
 			function.add(new TransitionFunction(domain, image));
 		}
 		
-		return new FiniteStateMachine(function, map.get("s0"));
+		return new FiniteStateMachine(function, map.get(START_STATE));
+	}
+	
+	private static IMachine createPushdownAutomaton(List<String[]> lines, Map<String, State> map) {
+		var function = new ArrayList<TransitionFunction>();
+		
+		for(var line : lines) {
+			Character popValue = line[2].charAt(0);
+			if(popValue == BLANK) {
+				popValue = null;
+			}
+			
+			Character input = line[1].charAt(0);
+			if(input == BLANK) {
+				input = null;
+			}
+			
+			var domain = new PushdownDomain(map.get(line[0]), input, popValue);
+			
+			Character[] pushValue = line[3].chars().mapToObj(c -> (char)c).toArray(Character[]::new);
+			if(pushValue.length == 1 && pushValue[0] == BLANK) {
+				pushValue = null;
+			}
+			var image = new PushdownImage(map.get(line[4]), pushValue);
+			
+			function.add(new TransitionFunction(domain, image));
+		}
+		
+		return new PushdownAutomaton(function, map.get(START_STATE));
 	}
 	
 	private static Map<String, State> createStateMap(List<String[]> lines, String[] endStates) {
@@ -100,7 +139,10 @@ public class MachineFactory {
 			if(line.length() == 0) return;
 			if(line.charAt(0) == ';') return;
 			
-			array.add(line.split(" "));
+			var split = line.split(" ");
+			if(split.length == 0) return;
+			
+			array.add(split);
 		});
 		return array;
 	}

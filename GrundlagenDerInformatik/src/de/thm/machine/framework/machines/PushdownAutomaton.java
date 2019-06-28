@@ -18,7 +18,6 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	
 	public PushdownAutomaton(List<TransitionFunction> functions, State start) {
 		super(functions, start);
-		stack = new Stack<Character>();
 	}
 	
 	@Override
@@ -44,6 +43,12 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	@Override
 	protected Configuration getCurrentConfiguration(State state, String word, int cellIndex) {
 		return new PushdownConfiguration(state, word, cellIndex, stack);
+	}
+	
+	@Override
+	protected void initialize() {
+		super.initialize();
+		stack = new Stack<Character>();
 	}
 	
 }

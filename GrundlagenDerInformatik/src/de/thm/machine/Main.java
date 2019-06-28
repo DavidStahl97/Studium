@@ -16,11 +16,16 @@ public class Main {
 		var machine = MachineFactory.getMachine(getPath(args));
 		if(machine == null) return;
 		
-		
-		var word = readWord();
-		var result = machine.start(word);
-		
-		System.out.println(result);
+		while(true) {
+			var word = readWord();
+			
+			if(word.equals("exit")) return;
+			
+			var result = machine.start(word);
+			
+			System.out.println(result);
+			System.out.println();
+		}
 		
 	}
 	

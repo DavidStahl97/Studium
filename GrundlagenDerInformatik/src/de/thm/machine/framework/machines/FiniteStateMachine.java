@@ -25,10 +25,8 @@ public class FiniteStateMachine implements IMachine {
 	
 	@Override
 	public String start(String word) {
-		currentState = start;
-		currentCellIndex = 0;
 		this.word = word;
-		Configuration.intitialStepCount();
+		initialize();
 		
 		showCurrentConfiguration();
 		
@@ -43,6 +41,12 @@ public class FiniteStateMachine implements IMachine {
 			
 			showCurrentConfiguration();
 		}
+	}
+	
+	protected void initialize() {
+		currentState = start;
+		currentCellIndex = 0;
+		Configuration.intitialStepCount();
 	}
 	
 	protected Domain nextDomain(State currentState, Character cell) {
