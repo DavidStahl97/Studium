@@ -39,7 +39,10 @@ public class FiniteStateMachine implements IMachine {
 				domain.setInput(null);
 				image = getImage(domain);
 				
-				if(image == null) return returnResult();
+				if(image == null) {
+					if(terminate()) return returnResult();
+					else continue;
+				}
 			}
 			
 			processFunction(domain, image);
@@ -53,6 +56,14 @@ public class FiniteStateMachine implements IMachine {
 		currentState = start;
 		currentCellIndex = 0;
 		Configuration.intitialStepCount();
+	}
+	
+	protected boolean terminate() {
+		if(currentCellIndex >= word.length()) {
+			return true;
+		}
+		
+		throw new RuntimeException("Der Automat darf erst dann terminieren, wenn das Wort komplett gelesen wurde.");
 	}
 	
 	protected Domain nextDomain(State currentState, Character cell) {

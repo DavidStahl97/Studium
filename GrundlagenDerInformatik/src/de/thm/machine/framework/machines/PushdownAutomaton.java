@@ -51,4 +51,8 @@ public class PushdownAutomaton extends FiniteStateMachine {
 		stack = new Stack<Character>();
 	}
 	
+	@Override
+	protected boolean terminate() {
+		return true;
+	}
 }

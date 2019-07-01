@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 
 import de.thm.machine.framework.machines.FiniteStateMachine;
 import de.thm.machine.framework.machines.IMachine;
 import de.thm.machine.framework.machines.PushdownAutomaton;
+import de.thm.machine.framework.machines.TuringAcceptorMachine;
 import de.thm.machine.framework.machines.TuringMachine;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
@@ -63,7 +65,13 @@ public class MachineFactory {
 				
 			case "tm":
 				map = createStateMap(lines);
-				return createTuringMachine(lines, map);
+				return createTuringMachine(lines, map, 
+						(function, state) -> new TuringMachine(function, state) );
+				
+			case "tam":
+				map = createStateMap(lines, getEndStates(lines));
+				return createTuringMachine(lines, map,
+						(function, state) -> new TuringAcceptorMachine(function, state) );
 				
 			default:
 				System.out.println("Falsches Dateiformat");
@@ -78,7 +86,8 @@ public class MachineFactory {
 		return endStates;
 	}
 	
-	private static IMachine createTuringMachine(List<String[]> lines, Map<String, State> map) {
+	private static IMachine createTuringMachine(List<String[]> lines, Map<String, State> map, 
+			Function<ArrayList<TransitionFunction>, State, IMachine> createMachine) {
 		var function = new ArrayList<TransitionFunction>();
 		
 		for(var line : lines) {
@@ -100,7 +109,7 @@ public class MachineFactory {
 			function.add(new TransitionFunction(domain, image));
 		}
 		
-		return new TuringMachine(function, map.get(START_STATE));
+		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
 	private static IMachine createFiniteStateMachine(List<String[]> lines, Map<String, State> map) {
@@ -177,6 +186,11 @@ public class MachineFactory {
 			array.add(split);
 		});
 		return array;
+	}
+	
+	@FunctionalInterface
+	interface Function<Parameter1, Parameter2, Output> {
+		Output apply(Parameter1 par1, Parameter2 par2);
 	}
 	
 }

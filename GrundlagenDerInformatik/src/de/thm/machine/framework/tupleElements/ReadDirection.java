@@ -15,7 +15,7 @@ public enum ReadDirection {
 				return NEUTRAL;
 				
 			default:
-				throw new RuntimeException("Akzeptieriende Möglichkeiten: r - RIGHT, l - LEFT, n - NEUTRAL");
+				throw new RuntimeException("Akzeptieriende Möglichkeiten: r - RIGHT, l - LEFT, n - NEUTRAL, aber es wurde " + c + " gelesen.");
 		}
 	}
 }
