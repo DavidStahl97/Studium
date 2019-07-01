@@ -23,6 +23,7 @@ import de.thm.machine.framework.tupleElements.PushdownDomain;
 import de.thm.machine.framework.tupleElements.PushdownImage;
 import de.thm.machine.framework.tupleElements.ReadDirection;
 import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 import de.thm.machine.framework.tupleElements.TuringImage;
 
@@ -87,8 +88,8 @@ public class MachineFactory {
 	}
 	
 	private static IMachine createTuringMachine(List<String[]> lines, Map<String, State> map, 
-			Function<ArrayList<TransitionFunction>, State, IMachine> createMachine) {
-		var function = new ArrayList<TransitionFunction>();
+			Function<TransitionFunction, State, IMachine> createMachine) {
+		var function = new TransitionFunction();
 		
 		for(var line : lines) {
 			Character input = line[1].charAt(0);
@@ -106,26 +107,26 @@ public class MachineFactory {
 			var direction = ReadDirection.getDirection(line[3].charAt(0));			
 			var image = new TuringImage(map.get(line[4]), output, direction);
 			
-			function.add(new TransitionFunction(domain, image));
+			function.add(domain, image);
 		}
 		
 		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
 	private static IMachine createFiniteStateMachine(List<String[]> lines, Map<String, State> map) {
-		var function = new ArrayList<TransitionFunction>();
+		var function = new TransitionFunction();
 		
 		for(var line : lines) {
 			var domain = new Domain(map.get(line[0]), line[1].charAt(0));
 			var image = new Image(map.get(line[2]));
-			function.add(new TransitionFunction(domain, image));
+			function.add(domain, image);
 		}
 		
 		return new FiniteStateMachine(function, map.get(START_STATE));
 	}
 	
 	private static IMachine createPushdownAutomaton(List<String[]> lines, Map<String, State> map) {
-		var function = new ArrayList<TransitionFunction>();
+		var function = new TransitionFunction();
 		
 		for(var line : lines) {
 			Character popValue = line[2].charAt(0);
@@ -146,7 +147,7 @@ public class MachineFactory {
 			}
 			var image = new PushdownImage(map.get(line[4]), pushValue);
 			
-			function.add(new TransitionFunction(domain, image));
+			function.add(domain, image);
 		}
 		
 		return new PushdownAutomaton(function, map.get(START_STATE));

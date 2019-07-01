@@ -9,13 +9,14 @@ import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.ReadDirection;
 import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 import de.thm.machine.framework.tupleElements.TuringImage;
 
 public class TuringAcceptorMachine extends FiniteStateMachine {
 
-	public TuringAcceptorMachine(List<TransitionFunction> functions, State start) {
-		super(functions, start);
+	public TuringAcceptorMachine(TransitionFunction function, State start) {
+		super(function, start);
 	}
 	
 	@Override

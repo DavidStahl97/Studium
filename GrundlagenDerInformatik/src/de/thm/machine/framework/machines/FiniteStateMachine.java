@@ -1,5 +1,6 @@
 package de.thm.machine.framework.machines;
 
+import java.util.Arrays;
 import java.util.List;
 
 import de.thm.machine.framework.configuration.Configuration;
@@ -7,10 +8,11 @@ import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.State;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
+import de.thm.machine.framework.tupleElements.Transition;
 
 public class FiniteStateMachine implements IMachine {
 	
-	private List<TransitionFunction> functions;
+	private TransitionFunction function;
 	
 	private State currentState;
 	private State start;
@@ -18,8 +20,8 @@ public class FiniteStateMachine implements IMachine {
 	protected int currentCellIndex;
 	protected String word;
 	
-	public FiniteStateMachine(List<TransitionFunction> functions, State start) {
-		this.functions = functions;
+	public FiniteStateMachine(TransitionFunction function, State start) {
+		this.function = function;
 		this.start = start;
 	}
 	
@@ -31,22 +33,16 @@ public class FiniteStateMachine implements IMachine {
 		showCurrentConfiguration();
 		
 		while(true) {			
-			var domain = nextDomain(currentState, getInputCell());
-			var image = getImage(domain);
+			var domainList = nextDomainList(currentState, getInputCell());
+			var transition = getTransition(domainList);
 			
-			if(image == null) {
-				// lamda transition function
-				domain.setInput(null);
-				image = getImage(domain);
-				
-				if(image == null) {
-					if(terminate()) return returnResult();
-					else continue;
-				}
+			if(transition == null) {
+				if(terminate()) return returnResult();
+				else continue;
 			}
 			
-			processFunction(domain, image);
-			currentState = image.getState();
+			processFunction(transition.getDomain(), transition.getImage());
+			currentState = transition.getImage().getState();
 			
 			showCurrentConfiguration();
 		}
@@ -66,8 +62,12 @@ public class FiniteStateMachine implements IMachine {
 		throw new RuntimeException("Der Automat darf erst dann terminieren, wenn das Wort komplett gelesen wurde.");
 	}
 	
-	protected Domain nextDomain(State currentState, Character cell) {
-		return new Domain(currentState, cell);
+	protected List<Domain> nextDomainList(State currentState, Character cell) {
+		return Arrays.asList(
+			new Domain(currentState, cell),
+			// lambda transition
+			new Domain(currentState, null)
+		);
 	}
 	
 	protected void processFunction(Domain domain, Image image) {
@@ -88,16 +88,19 @@ public class FiniteStateMachine implements IMachine {
 		return new Configuration(state, word, cellIndex);
 	}
 	
-	private void showCurrentConfiguration() {
-		System.out.println(getCurrentConfiguration(currentState, word, currentCellIndex));
-	}
-	
-	@SuppressWarnings("unlikely-arg-type")
-	private Image getImage(Domain domain) {	
-		for(var f : functions) {
-			if(f.equals(domain)) return f.getImage();
-		}
+	protected Transition getTransition(List<Domain> domain) {
+		var elments = function.getImages(domain);
+		
+		if(elments.size() > 1)
+			throw new RuntimeException("Es darf höchstens ein Folgezustand geben.");
+		
+		if(elments.size() == 1)
+			return elments.get(0);
 		
 		return null;
+	}
+	
+	private void showCurrentConfiguration() {
+		System.out.println(getCurrentConfiguration(currentState, word, currentCellIndex));
 	}
 }

@@ -1,5 +1,6 @@
 package de.thm.machine.framework.machines;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -10,20 +11,24 @@ import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.PushdownDomain;
 import de.thm.machine.framework.tupleElements.PushdownImage;
 import de.thm.machine.framework.tupleElements.State;
+import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 
 public class PushdownAutomaton extends FiniteStateMachine {
 	
 	private Stack<Character> stack;
 	
-	public PushdownAutomaton(List<TransitionFunction> functions, State start) {
-		super(functions, start);
+	public PushdownAutomaton(TransitionFunction function, State start) {
+		super(function, start);
 	}
 	
 	@Override
-	protected Domain nextDomain(State currentState, Character cell) {
+	protected List<Domain> nextDomainList(State currentState, Character cell) {
 		var value = stack.isEmpty() ? null : stack.pop();
-		return new PushdownDomain(currentState, cell, value);
+		return Arrays.asList(
+			new PushdownDomain(currentState, cell, value),
+			new PushdownDomain(currentState, null, value)
+		);
 	}
 	
 	@Override

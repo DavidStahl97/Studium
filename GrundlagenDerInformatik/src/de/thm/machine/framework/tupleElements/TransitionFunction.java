@@ -1,32 +1,26 @@
 package de.thm.machine.framework.tupleElements;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class TransitionFunction {
 	
-	private Image image;
-	private Domain domain;
+	private List<Transition> elements;
 	
-	public TransitionFunction(Domain domain, Image image) {
-		this.image = image;
-		this.domain = domain;
+	public TransitionFunction() {
+		elements = new ArrayList<Transition>();
+	}
+	
+	public void add(Domain domain, Image image) {
+		elements.add(new Transition(domain, image));
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public List<Transition> getImages(List<Domain> domain) {
+		return elements.stream()
+				       .filter(e -> domain.contains(e))
+				       .collect(Collectors.toList());
 	}
 
-	public Image getImage() {
-		return image;
-	}
-
-	public Domain getDomain() {
-		return domain;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		var domain = (Domain)obj;
-		return this.domain.equals(domain);
-	}
-	
-	@Override
-	public String toString() {
-		return domain.toString() + " --> " + image.toString();
-	}
-	
 }
