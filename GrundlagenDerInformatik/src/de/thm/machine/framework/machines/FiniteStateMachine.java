@@ -14,8 +14,8 @@ public class FiniteStateMachine implements IMachine {
 	
 	protected TransitionFunction function;
 	
-	private State currentState;
-	private State start;
+	protected State currentState;
+	protected State start;
 	
 	protected int currentCellIndex;
 	protected String word;

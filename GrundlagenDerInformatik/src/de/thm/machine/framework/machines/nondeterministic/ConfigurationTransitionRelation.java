@@ -1,4 +1,4 @@
-package de.thm.machine.framework.machines.nondeterministic.capture;
+package de.thm.machine.framework.machines.nondeterministic;
 
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.tupleElements.Transition;

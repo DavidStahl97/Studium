@@ -15,6 +15,10 @@ public class PushdownConfiguration extends Configuration {
 		this.stack = stack;
 	}
 	
+	public Stack<Character> getStack() {
+		return stack;
+	}
+	
 	@Override
 	protected List<String> captureCurrentConfiguration(State state, String word, int cellIndex) {
 		var parameters = super.captureCurrentConfiguration(state, word, cellIndex);

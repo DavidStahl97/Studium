@@ -18,6 +18,7 @@ import de.thm.machine.framework.machines.PushdownAutomaton;
 import de.thm.machine.framework.machines.TuringAcceptorMachine;
 import de.thm.machine.framework.machines.TuringMachine;
 import de.thm.machine.framework.machines.nondeterministic.NDFiniteStateMachine;
+import de.thm.machine.framework.machines.nondeterministic.NDPushdownAutomaton;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.PushdownDomain;
@@ -69,7 +70,13 @@ public class MachineFactory {
 			
 			case "pda":
 				map = createStateMap(lines, getEndStates(lines));
-				return createPushdownAutomaton(lines, map);
+				return createPushdownAutomaton(lines, map,
+						(function, state) -> new PushdownAutomaton(function, state));
+				
+			case "ndpda":
+				map = createStateMap(lines, getEndStates(lines));
+				return createPushdownAutomaton(lines, map,
+						(function, state) -> new NDPushdownAutomaton(function, state));
 				
 			case "tm":
 				map = createStateMap(lines);
@@ -138,7 +145,8 @@ public class MachineFactory {
 		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
-	private static IMachine createPushdownAutomaton(List<String[]> lines, Map<String, State> map) {
+	private static IMachine createPushdownAutomaton(List<String[]> lines, Map<String, State> map,
+			Function<TransitionFunction, State, IMachine> createMachine) {
 		var function = new TransitionFunction();
 		
 		for(var line : lines) {
@@ -163,7 +171,7 @@ public class MachineFactory {
 			function.add(domain, image);
 		}
 		
-		return new PushdownAutomaton(function, map.get(START_STATE));
+		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
 	private static Map<String, State> createStateMap(List<String[]> lines, String[] endStates) {
