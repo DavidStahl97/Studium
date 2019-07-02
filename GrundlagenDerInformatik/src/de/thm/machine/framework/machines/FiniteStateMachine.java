@@ -12,7 +12,7 @@ import de.thm.machine.framework.tupleElements.Transition;
 
 public class FiniteStateMachine implements IMachine {
 	
-	private TransitionFunction function;
+	protected TransitionFunction function;
 	
 	private State currentState;
 	private State start;
@@ -30,7 +30,8 @@ public class FiniteStateMachine implements IMachine {
 		this.word = word;
 		initialize();
 		
-		showCurrentConfiguration();
+		var configuration = getCurrentConfiguration(currentState, word, currentCellIndex);
+		showCurrentConfiguration(configuration);
 		
 		while(true) {			
 			var domainList = nextDomainList(currentState, getInputCell());
@@ -38,13 +39,16 @@ public class FiniteStateMachine implements IMachine {
 			
 			if(transition == null) {
 				if(terminate()) return returnResult();
-				else continue;
+				else {
+					throw new RuntimeException("Der Automat darf noch nicht terminieren");
+				}
 			}
 			
 			processFunction(transition.getDomain(), transition.getImage());
 			currentState = transition.getImage().getState();
 			
-			showCurrentConfiguration();
+			configuration = getCurrentConfiguration(currentState, word, currentCellIndex);
+			showCurrentConfiguration(configuration);
 		}
 	}
 	
@@ -55,11 +59,7 @@ public class FiniteStateMachine implements IMachine {
 	}
 	
 	protected boolean terminate() {
-		if(currentCellIndex >= word.length()) {
-			return true;
-		}
-		
-		throw new RuntimeException("Der Automat darf erst dann terminieren, wenn das Wort komplett gelesen wurde.");
+		return currentCellIndex >= word.length();
 	}
 	
 	protected List<Domain> nextDomainList(State currentState, Character cell) {
@@ -100,7 +100,7 @@ public class FiniteStateMachine implements IMachine {
 		return null;
 	}
 	
-	private void showCurrentConfiguration() {
-		System.out.println(getCurrentConfiguration(currentState, word, currentCellIndex));
+	protected void showCurrentConfiguration(Configuration configuration) {
+		System.out.println(configuration);
 	}
 }

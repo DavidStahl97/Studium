@@ -17,6 +17,7 @@ import de.thm.machine.framework.machines.IMachine;
 import de.thm.machine.framework.machines.PushdownAutomaton;
 import de.thm.machine.framework.machines.TuringAcceptorMachine;
 import de.thm.machine.framework.machines.TuringMachine;
+import de.thm.machine.framework.machines.nondeterministic.NDFiniteStateMachine;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.PushdownDomain;
@@ -58,7 +59,13 @@ public class MachineFactory {
 		switch(format) {
 			case "fsm":
 				var map = createStateMap(lines, getEndStates(lines));
-				return createFiniteStateMachine(lines, map);
+				return createFiniteStateMachine(lines, map,
+						(function, state) -> new FiniteStateMachine(function, state));
+				
+			case "ndfsm":
+				map = createStateMap(lines, getEndStates(lines));
+				return createFiniteStateMachine(lines, map,
+						(function, state) -> new NDFiniteStateMachine(function, state));
 			
 			case "pda":
 				map = createStateMap(lines, getEndStates(lines));
@@ -113,16 +120,22 @@ public class MachineFactory {
 		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
-	private static IMachine createFiniteStateMachine(List<String[]> lines, Map<String, State> map) {
+	private static IMachine createFiniteStateMachine(List<String[]> lines, Map<String, State> map, 
+			Function<TransitionFunction, State, IMachine> createMachine) {
 		var function = new TransitionFunction();
 		
 		for(var line : lines) {
-			var domain = new Domain(map.get(line[0]), line[1].charAt(0));
+			Character input = line[1].charAt(0);
+			if(input == BLANK) {
+				input = null;
+			}
+			
+			var domain = new Domain(map.get(line[0]), input);
 			var image = new Image(map.get(line[2]));
 			function.add(domain, image);
 		}
 		
-		return new FiniteStateMachine(function, map.get(START_STATE));
+		return createMachine.apply(function, map.get(START_STATE));
 	}
 	
 	private static IMachine createPushdownAutomaton(List<String[]> lines, Map<String, State> map) {

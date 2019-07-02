@@ -5,28 +5,45 @@ import java.util.List;
 import java.util.Queue;
 
 import de.thm.machine.framework.configuration.Configuration;
+import de.thm.machine.framework.machines.nondeterministic.capture.ConfigurationTransitionRelation;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 
 public class BreadthFirstSearch {
 	
-	private Queue<Capture> queue;
+	private Queue<ConfigurationTransitionRelation> queue;
 	private TransitionFunction function;
 	
+	private int border = 0;
+	private boolean reachedBorder;
+	
 	public BreadthFirstSearch(TransitionFunction function) {
-		queue = new LinkedList<Capture>();
+		this.function = function;
+		queue = new LinkedList<ConfigurationTransitionRelation>();
 	}
 	
-	public Capture getNextTransition() {
+	public ConfigurationTransitionRelation getNextTransition() {
+		reachedBorder = false;
+		border--;
 		return queue.poll();
 	}
 	
 	public void captureTransitions(List<Domain> domain, Configuration configuration) {
-		for(var transition : function.getTransitions(domain)) {
-			var capture = new Capture(transition, configuration);
+		var transitions = function.getTransitions(domain);
+		
+		for(var t : transitions) {
+			var capture = new ConfigurationTransitionRelation(t, configuration);
 			queue.add(capture);
+		}
+		
+		if(border == 0) {
+			border = queue.size();
+			reachedBorder = true;
 		}
 	}
 	
+	public boolean reachedBorder() {
+		return reachedBorder;
+	}
 }

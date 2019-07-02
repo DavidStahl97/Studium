@@ -1,14 +1,14 @@
-package de.thm.machine.framework.machines.nondeterministic;
+package de.thm.machine.framework.machines.nondeterministic.capture;
 
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.tupleElements.Transition;
 
-public class Capture {
+public class ConfigurationTransitionRelation {
 	
 	private Transition transition;
 	private Configuration configuration;
 	
-	public Capture(Transition transition, Configuration configuration) {
+	public ConfigurationTransitionRelation(Transition transition, Configuration configuration) {
 		super();
 		this.transition = transition;
 		this.configuration = configuration;
@@ -20,6 +20,11 @@ public class Capture {
 
 	public Configuration getConfiguration() {
 		return configuration;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + transition + ", " + configuration + ")";
 	}
 	
 }
