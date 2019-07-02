@@ -89,7 +89,7 @@ public class FiniteStateMachine implements IMachine {
 	}
 	
 	protected Transition getTransition(List<Domain> domain) {
-		var elments = function.getImages(domain);
+		var elments = function.getTransitions(domain);
 		
 		if(elments.size() > 1)
 			throw new RuntimeException("Es darf höchstens ein Folgezustand geben.");

@@ -20,6 +20,10 @@ public class Configuration {
 		this.cellIndex = cellIndex;
 	}
 	
+	public int getCellIndex() {
+		return cellIndex;
+	}
+	
 	protected List<String> captureCurrentConfiguration(State state, String word, int cellIndex) {
 		var array = new ArrayList<String>();	
 		array.add(state.toString());

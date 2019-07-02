@@ -17,7 +17,7 @@ public class TransitionFunction {
 	}
 	
 	@SuppressWarnings("unlikely-arg-type")
-	public List<Transition> getImages(List<Domain> domain) {
+	public List<Transition> getTransitions(List<Domain> domain) {
 		return elements.stream()
 				       .filter(e -> domain.contains(e))
 				       .collect(Collectors.toList());
