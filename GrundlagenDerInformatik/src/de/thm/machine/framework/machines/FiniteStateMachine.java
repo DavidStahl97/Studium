@@ -59,6 +59,14 @@ public class FiniteStateMachine implements IMachine {
 	}
 	
 	protected boolean terminate() {
+		return readWord();
+	}
+	
+	protected boolean accepted() {
+		return readWord() && currentState.isAcceptedEndState();
+	}
+	
+	private boolean readWord() {
 		return currentCellIndex >= word.length();
 	}
 	
@@ -76,7 +84,7 @@ public class FiniteStateMachine implements IMachine {
 	}
 	
 	protected String returnResult() {
-		return currentState.isAcceptedEndState() ? "Das Wort ist Element der Sprache." : "Das Wort ist nicht Element der Sprache.";
+		return accepted() ? "Das Wort ist Element der Sprache." : "Das Wort ist nicht Element der Sprache.";
 	}
 	
 	protected Character getInputCell() {

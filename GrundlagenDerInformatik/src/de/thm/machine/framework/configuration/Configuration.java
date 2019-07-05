@@ -24,6 +24,10 @@ public class Configuration {
 		return cellIndex;
 	}
 	
+	public State getState() {
+		return state;
+	}
+	
 	protected List<String> captureCurrentConfiguration(State state, String word, int cellIndex) {
 		var array = new ArrayList<String>();	
 		array.add(state.toString());

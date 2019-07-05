@@ -15,15 +15,14 @@ public class BreadthFirstSearch {
 		queue = new LinkedList<ConfigurationTransitionRelation>();
 	}
 	
-	public ConfigurationTransitionRelation getNextTransition() {
+	public ConfigurationTransitionRelation getNextRelation() {
 		reachedBorder = false;
 		border--;
 		return queue.poll();
 	}
 	
-	public void captureTransitions(List<ConfigurationTransitionRelation> relations) {
+	public void pushRelations(List<ConfigurationTransitionRelation> relations) {
 		queue.addAll(relations);
-		
 		if(border == 0) {
 			border = queue.size();
 			reachedBorder = true;
@@ -32,9 +31,5 @@ public class BreadthFirstSearch {
 	
 	public boolean reachedBorder() {
 		return reachedBorder;
-	}
-	
-	public int getRelationCount() {
-		return queue.size();
 	}
 }

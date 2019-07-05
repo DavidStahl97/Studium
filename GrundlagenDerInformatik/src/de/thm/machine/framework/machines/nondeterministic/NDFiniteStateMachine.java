@@ -6,7 +6,9 @@ import java.util.List;
 
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.machines.FiniteStateMachine;
+import de.thm.machine.framework.machines.IMachine;
 import de.thm.machine.framework.tupleElements.Domain;
+import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.State;
 import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
@@ -14,60 +16,46 @@ import de.thm.machine.framework.tupleElements.TransitionFunction;
 public class NDFiniteStateMachine extends FiniteStateMachine {
 	
 	private BreadthFirstSearch search;
-	protected ConfigurationTransitionRelation currentRelation;
 	
-	private boolean canTerminate;
+	private ConfigurationTransitionRelation currentRelation;
 	
 	public NDFiniteStateMachine(TransitionFunction function, State start) {
-		super(function, start);		
+		super(function, start);
 	}
 	
 	@Override
 	protected void initialize() {
 		super.initialize();
-		canTerminate = false;
 		search = new BreadthFirstSearch();
+		
+		storeUpcommingTransitions(super.start);
 	}
 	
 	@Override
 	protected List<Domain> nextDomainList(State currentState, Character cell) {
-		if(canTerminate) return null;
+		if(accepted()) return null;
 		
-		currentRelation = search.getNextTransition();
+		currentRelation = search.getNextRelation();
+		
 		if(currentRelation == null) return null;
 		
 		super.currentCellIndex = currentRelation.getConfiguration().getCellIndex();
+		super.currentState = currentRelation.getConfiguration().getState();
+		
 		return Arrays.asList(currentRelation.getTransition().getDomain());
 	}
 	
 	@Override
 	protected Transition getTransition(List<Domain> domain) {
-		if(canTerminate || currentRelation == null) return null;
+		if(domain == null) return null;
 		return currentRelation.getTransition();
 	}
 	
 	@Override
-	protected Configuration getCurrentConfiguration(State state, String word, int cellIndex) {
-		var relations = getRelations(state, word, cellIndex);
-		search.captureTransitions(relations);
+	protected void processFunction(Domain domain, Image image) {
+		super.processFunction(domain, image);
 		
-		if(super.terminate() && state.isAcceptedEndState()) {
-			canTerminate = true;
-		}
-		
-		return currentRelation == null ? getStartConfiguration() : currentRelation.getConfiguration();
-	}
-	
-	protected List<ConfigurationTransitionRelation> getRelations(State state, String word, int cellIndex) {
-		var configuration = super.getCurrentConfiguration(state, word, cellIndex);
-		var domain = super.nextDomainList(state, getInputCell());
-		
-		var relations = new ArrayList<ConfigurationTransitionRelation>();
-		for(var transition : function.getTransitions(domain)) {
-			relations.add(new ConfigurationTransitionRelation(transition, configuration));
-		}
-		
-		return relations;
+		storeUpcommingTransitions(image.getState());
 	}
 	
 	@Override
@@ -78,13 +66,19 @@ public class NDFiniteStateMachine extends FiniteStateMachine {
 			System.out.print(configuration + "  ");
 	}
 	
-	protected Configuration getStartConfiguration() {
-		return super.getCurrentConfiguration(start, word, 0);
+	protected void storeUpcommingTransitions(State state) {
+		var cell = super.getInputCell();
+		var domainList = super.nextDomainList(state, cell);
+		var transitions = function.getTransitions(domainList);
+		var configuration = super.getCurrentConfiguration(state, word, currentCellIndex);
+		
+		var relations = new ArrayList<ConfigurationTransitionRelation>();
+		for(var t : transitions) {
+			var r = new ConfigurationTransitionRelation(t, configuration);
+			relations.add(r);
+		}
+		
+		search.pushRelations(relations);
 	}
-	
-	@Override
-	protected boolean terminate() {
-		return true;
-	}
-	
+
 }

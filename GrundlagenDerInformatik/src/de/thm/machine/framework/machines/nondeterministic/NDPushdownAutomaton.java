@@ -20,53 +20,5 @@ public class NDPushdownAutomaton extends NDFiniteStateMachine {
 		super(function, start);
 	}
 	
-	@Override
-	protected void initialize() {
-		super.initialize();
-		currentRelation = new ConfigurationTransitionRelation(null, getStartConfiguration());
-	}
 	
-	@Override
-	protected List<ConfigurationTransitionRelation> getRelations(State state, String word, int cellIndex) {
-		var stack = ((PushdownConfiguration)currentRelation.getConfiguration()).getStack();
-		
-		var popValue = stack.isEmpty() ? null : stack.pop();
-		List<Domain> domain = Arrays.asList(
-			new PushdownDomain(state, getInputCell(), popValue),
-			new PushdownDomain(state, null, popValue)
-		);
-		
-		var relations = new ArrayList<ConfigurationTransitionRelation>();
-		var transitions = function.getTransitions(domain);
-		for(var t : transitions) {
-			@SuppressWarnings("unchecked")
-			var clonedStack = (Stack<Character>)stack.clone(); 
-			var configuration = new PushdownConfiguration(state, word, cellIndex, clonedStack);
-			
-			relations.add(new ConfigurationTransitionRelation(t, configuration));
-		}
-		
-		return relations;
-	}
-	
-	@Override
-	protected void processFunction(Domain domain, Image image) {
-		super.processFunction(domain, image);
-		
-		var pushdownImage = (PushdownImage)image;
-		var pushValues = pushdownImage.getPushValues();
-		var configuration = (PushdownConfiguration) currentRelation.getConfiguration();
-		var stack = configuration.getStack();
-		
-		if(pushValues != null) {
-			for(var value : pushValues) {
-				stack.push(value);
-			}
-		}
-	}
-	
-	@Override
-	protected Configuration getStartConfiguration() {
-		return new PushdownConfiguration(start, word, 0, new Stack<Character>());
-	}
 }

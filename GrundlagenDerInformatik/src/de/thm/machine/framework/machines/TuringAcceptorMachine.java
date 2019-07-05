@@ -37,6 +37,11 @@ public class TuringAcceptorMachine extends FiniteStateMachine {
 		return true;
 	}
 	
+	@Override
+	protected boolean accepted() {
+		return currentState.isAcceptedEndState();
+	}
+	
 	private void setNextCellIndex(ReadDirection direction) {
 		switch(direction) {
 			
