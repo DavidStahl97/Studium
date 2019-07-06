@@ -24,6 +24,10 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	
 	@Override
 	protected List<Domain> nextDomainList(State currentState, Character cell) {
+		return nextDomainList(currentState, cell, stack);
+	}
+	
+	public static List<Domain> nextDomainList(State currentState, Character cell, Stack<Character> stack) {
 		var value = stack.isEmpty() ? null : stack.pop();
 		return Arrays.asList(
 			new PushdownDomain(currentState, cell, value),
@@ -34,7 +38,10 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	@Override
 	protected void processFunction(Domain domain, Image image) {
 		super.processFunction(domain, image);
-		
+		processFunction(domain, image, stack);
+	}
+	
+	public static void processFunction(Domain domain, Image image, Stack<Character> stack) {
 		var pushdownImage = (PushdownImage)image;
 		var pushValues = pushdownImage.getPushValues();
 		
@@ -47,6 +54,11 @@ public class PushdownAutomaton extends FiniteStateMachine {
 	
 	@Override
 	protected Configuration getCurrentConfiguration(State state, String word, int cellIndex) {
+		return getCurrentConfiguration(state, word, cellIndex, stack);
+	}
+	
+	public static Configuration getCurrentConfiguration(State state, String word, int cellIndex, 
+			Stack<Character> stack) {
 		return new PushdownConfiguration(state, word, cellIndex, stack);
 	}
 	

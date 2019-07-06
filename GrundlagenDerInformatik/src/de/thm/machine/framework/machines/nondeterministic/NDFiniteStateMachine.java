@@ -6,7 +6,6 @@ import java.util.List;
 
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.machines.FiniteStateMachine;
-import de.thm.machine.framework.machines.IMachine;
 import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.State;
@@ -15,9 +14,8 @@ import de.thm.machine.framework.tupleElements.TransitionFunction;
 
 public class NDFiniteStateMachine extends FiniteStateMachine {
 	
-	private BreadthFirstSearch search;
-	
-	private ConfigurationTransitionRelation currentRelation;
+	private BreadthFirstSearch search;	
+	protected ConfigurationTransitionRelation currentRelation;
 	
 	public NDFiniteStateMachine(TransitionFunction function, State start) {
 		super(function, start);
@@ -27,8 +25,8 @@ public class NDFiniteStateMachine extends FiniteStateMachine {
 	protected void initialize() {
 		super.initialize();
 		search = new BreadthFirstSearch();
-		
-		storeUpcommingTransitions(super.start);
+			
+		storeUpcommingRelations(currentState);
 	}
 	
 	@Override
@@ -53,9 +51,12 @@ public class NDFiniteStateMachine extends FiniteStateMachine {
 	
 	@Override
 	protected void processFunction(Domain domain, Image image) {
+		processDeterministicFunction(domain, image);
+		storeUpcommingRelations(image.getState());
+	}
+	
+	protected void processDeterministicFunction(Domain domain, Image image) {
 		super.processFunction(domain, image);
-		
-		storeUpcommingTransitions(image.getState());
 	}
 	
 	@Override
@@ -66,19 +67,29 @@ public class NDFiniteStateMachine extends FiniteStateMachine {
 			System.out.print(configuration + "  ");
 	}
 	
-	protected void storeUpcommingTransitions(State state) {
+	protected void storeUpcommingRelations(State state) {
 		var cell = super.getInputCell();
-		var domainList = super.nextDomainList(state, cell);
+		var domainList = getUncommingDomain(state, cell);
+		
 		var transitions = function.getTransitions(domainList);
-		var configuration = super.getCurrentConfiguration(state, word, currentCellIndex);
 		
 		var relations = new ArrayList<ConfigurationTransitionRelation>();
 		for(var t : transitions) {
+			var configuration = getCurrentConfiguration(state, word, currentCellIndex);
 			var r = new ConfigurationTransitionRelation(t, configuration);
 			relations.add(r);
 		}
 		
 		search.pushRelations(relations);
+	}
+	
+	protected List<Domain> getUncommingDomain(State state, Character cell) {
+		return super.nextDomainList(state, cell);
+	}
+	
+	@Override
+	protected boolean terminate() {
+		return true;
 	}
 
 }

@@ -32,4 +32,13 @@ public class BreadthFirstSearch {
 	public boolean reachedBorder() {
 		return reachedBorder;
 	}
+	
+	@Override
+	public String toString() {
+		var s = "";
+		for(var r : queue.toArray()) {
+			s += r.toString() + "\n";
+		}
+		return s;
+	}
 }
