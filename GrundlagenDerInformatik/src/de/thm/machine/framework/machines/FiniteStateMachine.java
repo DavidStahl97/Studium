@@ -26,8 +26,8 @@ public class FiniteStateMachine implements IMachine {
 	}
 	
 	@Override
-	public String start(String word) {
-		this.word = word;
+	public String start(String w) {
+		this.word = w;
 		initialize();
 		
 		var configuration = getCurrentConfiguration(currentState, word, currentCellIndex);

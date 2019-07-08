@@ -1,7 +1,5 @@
 package de.thm.machine.framework.machines;
 
-import java.util.List;
-
 import de.thm.machine.framework.Util;
 import de.thm.machine.framework.configuration.Configuration;
 import de.thm.machine.framework.configuration.TuringConfiguration;
@@ -9,7 +7,6 @@ import de.thm.machine.framework.tupleElements.Domain;
 import de.thm.machine.framework.tupleElements.Image;
 import de.thm.machine.framework.tupleElements.ReadDirection;
 import de.thm.machine.framework.tupleElements.State;
-import de.thm.machine.framework.tupleElements.Transition;
 import de.thm.machine.framework.tupleElements.TransitionFunction;
 import de.thm.machine.framework.tupleElements.TuringImage;
 

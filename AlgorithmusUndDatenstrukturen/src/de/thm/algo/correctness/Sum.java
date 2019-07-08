@@ -1,8 +1,6 @@
 package de.thm.algo.correctness;
 
-public class Main {
-	
-	enum Tag { MONTAG, DIENSTAG }
+public class Sum {
 	
 	public static void main(String[] args) {
 		System.out.println(sum(-4));
