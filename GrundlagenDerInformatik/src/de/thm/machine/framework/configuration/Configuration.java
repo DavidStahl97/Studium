@@ -51,4 +51,8 @@ public class Configuration {
 	public static void intitialStepCount() {
 		STEP = 1;
 	}
+	
+	public static int getStepCount() {
+		return STEP;
+	}
 }
