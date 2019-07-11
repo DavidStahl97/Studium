@@ -57,11 +57,14 @@ public class LogicParser extends Parser {
 	
 	private void indivSet() {
 		match(TokenType.OPEN_CURLY_BRACKET.name());
-		match(TokenType.INDIV.name());
 		
-		while(lookahead.getType() == TokenType.COMMA.name()) {
-			match(TokenType.COMMA.name());
+		if(lookahead.getType() == TokenType.INDIV.name()) {
 			match(TokenType.INDIV.name());
+			
+			while(lookahead.getType() == TokenType.COMMA.name()) {
+				match(TokenType.COMMA.name());
+				match(TokenType.INDIV.name());
+			}
 		}
 		
 		match(TokenType.CLOSE_CURLY_BRACKET.name());

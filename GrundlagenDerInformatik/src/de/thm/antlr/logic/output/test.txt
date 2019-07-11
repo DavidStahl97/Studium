@@ -1,0 +1,5 @@
+a = False || False
+b = a -> False
+c = True
+d = False
+((!a) && b) -> (!(c || d))
