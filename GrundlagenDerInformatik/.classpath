@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="lib/antlrworks-1.5.2-complete.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="GrundlagenDerInformatik/src"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.ide/src-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.ide/xtend-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.tests/src-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.tests/xtend-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.ui.tests/src-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.ui/src-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities.ui/xtend-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities/src-gen"/>
+	<classpathentry kind="src" path="XTend/inf.thm.de.entities/xtend-gen"/>
+	<classpathentry kind="output" path="GrundlagenDerInformatik/bin"/>
 </classpath>
