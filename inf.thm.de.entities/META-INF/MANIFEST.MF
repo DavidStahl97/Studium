@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: inf.thm.de.entities
+Bundle-ManifestVersion: 2
+Bundle-Name: inf.thm.de.entities
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: inf.thm.de.entities; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.14.0",
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: inf.thm.de.entities.generator,
+ inf.thm.de.entities.serializer,
+ inf.thm.de.entities.validation,
+ inf.thm.de.entities.entities.util,
+ inf.thm.de.entities.parser.antlr.internal,
+ inf.thm.de.entities.parser.antlr,
+ inf.thm.de.entities.scoping,
+ inf.thm.de.entities,
+ inf.thm.de.entities.entities,
+ inf.thm.de.entities.entities.impl,
+ inf.thm.de.entities.services
+Import-Package: org.apache.log4j
