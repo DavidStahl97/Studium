@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTParser.java" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="317283e9-bb9e-4070-a2f1-704d8671534a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EinfuehrungInDieProgrammierung/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../EinfuehrungInDieProgrammierung/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/JsonGeneratorAST.g" beforeDir="false" afterPath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/JsonGeneratorAST.g" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorAST.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorAST.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test__.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test___input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/GrundlagenDerInformatik/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,56 +40,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java">
+        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="19" selection-start-line="18" selection-end-line="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/LogicGrammatic.g">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-93" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/test.txt">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/LogicGrammaticTree.g">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-433" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTLexer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="323">
+              <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,44 +54,77 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="544">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="18" column="161" selection-start-line="18" selection-start-column="161" selection-end-line="18" selection-end-column="161" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorTree.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="175" column="31" lean-forward="true" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#816#817#0" expanded="true" />
-                <element signature="e#845#846#0" expanded="true" />
-                <element signature="e#915#916#0" expanded="true" />
-                <element signature="e#962#963#0" expanded="true" />
-                <element signature="e#1043#1044#0" expanded="true" />
-                <element signature="e#1069#1070#0" expanded="true" />
-                <element signature="e#1180#1181#0" expanded="true" />
-                <element signature="e#1209#1210#0" expanded="true" />
-                <element signature="e#1248#1249#0" expanded="true" />
-                <element signature="e#1269#1270#0" expanded="true" />
+                <element signature="e#349#373#0" expanded="true" />
+                <element signature="e#1129#1130#0" expanded="true" />
+                <element signature="e#1162#1163#0" expanded="true" />
+                <element signature="e#1230#1231#0" expanded="true" />
+                <element signature="e#1277#1278#0" expanded="true" />
+                <element signature="e#1356#1357#0" expanded="true" />
+                <element signature="e#1382#1383#0" expanded="true" />
+                <element signature="e#2004#2005#0" expanded="true" />
+                <element signature="e#2035#2036#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/CommonTokenStream.class">
+        <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/tree/CommonTree.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="561">
+              <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/BaseRecognizer.class">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
-              <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+            <state relative-caret-position="1394">
+              <caret line="124" column="19" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -137,14 +132,19 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/Main.java" />
         <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java" />
+        <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test___input.txt" />
+        <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/JsonGeneratorTree.g" />
         <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt" />
+        <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Main.java" />
+        <option value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorTree.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="174" />
-    <option name="y" value="-12" />
+    <option name="x" value="-1752" />
+    <option name="y" value="-8" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -221,35 +221,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
-              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
-              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
-              <item name="de.thm" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
-              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
-              <item name="de.thm" type="1f31426a:PackageElementNode" />
-              <item name="antlr" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
-              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
-              <item name="de.thm" type="1f31426a:PackageElementNode" />
-              <item name="antlr" type="1f31426a:PackageElementNode" />
-              <item name="json" type="1f31426a:PackageElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,6 +252,23 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="thm" type="462c0819:PsiDirectoryNode" />
               <item name="antlr" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GrundlagenDerInformatik" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="thm" type="462c0819:PsiDirectoryNode" />
+              <item name="antlr" type="462c0819:PsiDirectoryNode" />
+              <item name="json" type="462c0819:PsiDirectoryNode" />
+              <item name="output" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GrundlagenDerInformatik" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="thm" type="462c0819:PsiDirectoryNode" />
+              <item name="antlr" type="462c0819:PsiDirectoryNode" />
               <item name="logic" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -296,12 +284,41 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
+              <item name="de.thm" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
+              <item name="de.thm" type="1f31426a:PackageElementNode" />
+              <item name="antlr" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="GrundlagenDerInformatik" type="58d84e3e:PackageViewProjectNode" />
+              <item name="GrundlagenDerInformatik" type="616d4139:PackageViewModuleNode" />
+              <item name="de.thm" type="1f31426a:PackageElementNode" />
+              <item name="antlr" type="1f31426a:PackageElementNode" />
+              <item name="json" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563616375529" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1563646277909" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -322,7 +339,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.thm.antlr.json.Main" />
+      <module name="GrundlagenDerInformatik" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.thm.antlr.json.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.thm.antlr.logic.Main" />
       <module name="GrundlagenDerInformatik" />
@@ -351,8 +381,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -367,12 +398,15 @@
       <option name="presentableId" value="Default" />
       <updated>1563612562379</updated>
       <workItem from="1563612573607" duration="2536000" />
-      <workItem from="1563615137206" duration="1054000" />
+      <workItem from="1563615137206" duration="1376000" />
+      <workItem from="1563616536660" duration="4290000" />
+      <workItem from="1563636945494" duration="8038000" />
+      <workItem from="1563646558861" duration="243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3590000" />
+    <option name="totallyTimeSpent" value="16483000" />
   </component>
   <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
@@ -384,10 +418,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.25266525" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49819493" visible="true" weight="0.26066098" />
       <window_info id="Structure" order="1" sideWeight="0.50180507" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -397,7 +431,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -426,15 +460,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java</url>
-          <line>29</line>
+          <line>27</line>
           <properties />
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/Main.java</url>
-          <line>18</line>
-          <properties />
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -468,16 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test___input.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test__.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/debug/DebugParser.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -495,6 +513,13 @@
     <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/GrundlagenDerInformatik.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/CommonTokenStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/BaseRecognizer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -502,71 +527,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/CommonTokenStream.class">
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java" />
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test__.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="102">
+          <caret line="10" selection-start-line="10" selection-end-line="18" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTLexer.java">
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/debug/DebugTokenStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/debug/DebugEventSocketProxy.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="133" selection-start-line="133" selection-end-line="133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/BitSet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#441#442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/RecognizerSharedState.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/LogicGrammaticParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/test.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/parsen/list/TokenType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/parsen/list/ListLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/parsen/logic/LogicLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/LogicGrammaticLexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt">
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTLexer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
+        <state relative-caret-position="7378">
+          <caret line="443" column="13" selection-start-line="443" selection-start-column="13" selection-end-line="443" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTParser.java">
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/JsonGeneratorAST.g">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#816#817#0" expanded="true" />
-            <element signature="e#845#846#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#962#963#0" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1209#1210#0" expanded="true" />
-            <element signature="e#1248#1249#0" expanded="true" />
-            <element signature="e#1269#1270#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="18" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Test.java">
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/LogicGrammatic.g">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="578">
+          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/LogicGrammaticTree.g">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-433" />
+        <state relative-caret-position="514">
+          <caret line="34" column="39" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="39" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/test.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/LogicGrammatic.g">
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/JsonGeneratorTree.g">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-93" />
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/__Test___input.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/output/LogicGrammaticTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorASTParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/logic/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" selection-start-line="18" selection-end-line="19" />
+        <state relative-caret-position="170">
+          <caret line="18" column="161" selection-start-line="18" selection-start-column="161" selection-end-line="18" selection-end-column="161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/GrundlagenDerInformatik/lib/antlrworks-1.5.2-complete.jar!/org/antlr/runtime/tree/CommonTree.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="124" column="19" selection-start-line="124" selection-start-column="19" selection-end-line="124" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GrundlagenDerInformatik/src/de/thm/antlr/json/output/JsonGeneratorTree.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="175" column="31" lean-forward="true" selection-start-line="175" selection-start-column="31" selection-end-line="175" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#349#373#0" expanded="true" />
+            <element signature="e#1129#1130#0" expanded="true" />
+            <element signature="e#1162#1163#0" expanded="true" />
+            <element signature="e#1230#1231#0" expanded="true" />
+            <element signature="e#1277#1278#0" expanded="true" />
+            <element signature="e#1356#1357#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#2004#2005#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

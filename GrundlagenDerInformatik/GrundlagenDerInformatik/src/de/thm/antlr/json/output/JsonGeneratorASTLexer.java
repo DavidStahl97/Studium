@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g 2019-07-20 11:17:02
+// $ANTLR 3.5.1 C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g 2019-07-20 20:05:30
  package de.thm.antlr.json.output; 
 
 import org.antlr.runtime.*;
@@ -9,11 +9,18 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class JsonGeneratorASTLexer extends Lexer {
 	public static final int EOF=-1;
-	public static final int T__7=7;
-	public static final int T__8=8;
-	public static final int ID=4;
-	public static final int NEWLINE=5;
-	public static final int WS=6;
+	public static final int T__9=9;
+	public static final int T__10=10;
+	public static final int T__11=11;
+	public static final int T__12=12;
+	public static final int T__13=13;
+	public static final int T__14=14;
+	public static final int T__15=15;
+	public static final int DEFINE=4;
+	public static final int ID=5;
+	public static final int NEWLINE=6;
+	public static final int VALUE=7;
+	public static final int WS=8;
 
 	// delegates
 	// delegators
@@ -30,15 +37,15 @@ public class JsonGeneratorASTLexer extends Lexer {
 	}
 	@Override public String getGrammarFileName() { return "C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g"; }
 
-	// $ANTLR start "T__7"
-	public final void mT__7() throws RecognitionException {
+	// $ANTLR start "T__9"
+	public final void mT__9() throws RecognitionException {
 		try {
-			int _type = T__7;
+			int _type = T__9;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:4:6: ( ';' )
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:4:8: ';'
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:4:6: ( '\"' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:4:8: '\"'
 			{
-			match(';'); 
+			match('\"'); 
 			}
 
 			state.type = _type;
@@ -48,17 +55,77 @@ public class JsonGeneratorASTLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__7"
+	// $ANTLR end "T__9"
 
-	// $ANTLR start "T__8"
-	public final void mT__8() throws RecognitionException {
+	// $ANTLR start "T__10"
+	public final void mT__10() throws RecognitionException {
 		try {
-			int _type = T__8;
+			int _type = T__10;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:5:6: ( 'TEST' )
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:5:8: 'TEST'
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:5:7: ( '(' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:5:9: '('
 			{
-			match("TEST"); 
+			match('('); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__10"
+
+	// $ANTLR start "T__11"
+	public final void mT__11() throws RecognitionException {
+		try {
+			int _type = T__11;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:6:7: ( ')' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:6:9: ')'
+			{
+			match(')'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__11"
+
+	// $ANTLR start "T__12"
+	public final void mT__12() throws RecognitionException {
+		try {
+			int _type = T__12;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:7:7: ( ',' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:7:9: ','
+			{
+			match(','); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__12"
+
+	// $ANTLR start "T__13"
+	public final void mT__13() throws RecognitionException {
+		try {
+			int _type = T__13;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:8:7: ( 'ATTR' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:8:9: 'ATTR'
+			{
+			match("ATTR"); 
 
 			}
 
@@ -69,23 +136,65 @@ public class JsonGeneratorASTLexer extends Lexer {
 			// do for sure before leaving
 		}
 	}
-	// $ANTLR end "T__8"
+	// $ANTLR end "T__13"
+
+	// $ANTLR start "T__14"
+	public final void mT__14() throws RecognitionException {
+		try {
+			int _type = T__14;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:9:7: ( 'LIST' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:9:9: 'LIST'
+			{
+			match("LIST"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__14"
+
+	// $ANTLR start "T__15"
+	public final void mT__15() throws RecognitionException {
+		try {
+			int _type = T__15;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:10:7: ( 'OBJECT' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:10:9: 'OBJECT'
+			{
+			match("OBJECT"); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__15"
 
 	// $ANTLR start "ID"
 	public final void mID() throws RecognitionException {
 		try {
 			int _type = ID;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:13:4: ( ( 'A' .. 'Z' )+ )
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:13:6: ( 'A' .. 'Z' )+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:21:4: ( ( 'a' .. 'z' )+ )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:21:6: ( 'a' .. 'z' )+
 			{
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:13:6: ( 'A' .. 'Z' )+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:21:6: ( 'a' .. 'z' )+
 			int cnt1=0;
 			loop1:
 			while (true) {
 				int alt1=2;
 				int LA1_0 = input.LA(1);
-				if ( ((LA1_0 >= 'A' && LA1_0 <= 'Z')) ) {
+				if ( ((LA1_0 >= 'a' && LA1_0 <= 'z')) ) {
 					alt1=1;
 				}
 
@@ -93,7 +202,7 @@ public class JsonGeneratorASTLexer extends Lexer {
 				case 1 :
 					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:
 					{
-					if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
+					if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
 						input.consume();
 					}
 					else {
@@ -123,23 +232,95 @@ public class JsonGeneratorASTLexer extends Lexer {
 	}
 	// $ANTLR end "ID"
 
+	// $ANTLR start "VALUE"
+	public final void mVALUE() throws RecognitionException {
+		try {
+			int _type = VALUE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:22:7: ( ( '0' .. '9' )+ )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:22:9: ( '0' .. '9' )+
+			{
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:22:9: ( '0' .. '9' )+
+			int cnt2=0;
+			loop2:
+			while (true) {
+				int alt2=2;
+				int LA2_0 = input.LA(1);
+				if ( ((LA2_0 >= '0' && LA2_0 <= '9')) ) {
+					alt2=1;
+				}
+
+				switch (alt2) {
+				case 1 :
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:
+					{
+					if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
+						input.consume();
+					}
+					else {
+						MismatchedSetException mse = new MismatchedSetException(null,input);
+						recover(mse);
+						throw mse;
+					}
+					}
+					break;
+
+				default :
+					if ( cnt2 >= 1 ) break loop2;
+					EarlyExitException eee = new EarlyExitException(2, input);
+					throw eee;
+				}
+				cnt2++;
+			}
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "VALUE"
+
+	// $ANTLR start "DEFINE"
+	public final void mDEFINE() throws RecognitionException {
+		try {
+			int _type = DEFINE;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:24:8: ( '=' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:24:10: '='
+			{
+			match('='); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "DEFINE"
+
 	// $ANTLR start "NEWLINE"
 	public final void mNEWLINE() throws RecognitionException {
 		try {
 			int _type = NEWLINE;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:15:9: ( ( '\\r' )? '\\n' )
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:15:11: ( '\\r' )? '\\n'
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:26:9: ( ( '\\r' )? '\\n' )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:26:11: ( '\\r' )? '\\n'
 			{
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:15:11: ( '\\r' )?
-			int alt2=2;
-			int LA2_0 = input.LA(1);
-			if ( (LA2_0=='\r') ) {
-				alt2=1;
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:26:11: ( '\\r' )?
+			int alt3=2;
+			int LA3_0 = input.LA(1);
+			if ( (LA3_0=='\r') ) {
+				alt3=1;
 			}
-			switch (alt2) {
+			switch (alt3) {
 				case 1 :
-					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:15:11: '\\r'
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:26:11: '\\r'
 					{
 					match('\r'); 
 					}
@@ -148,6 +329,7 @@ public class JsonGeneratorASTLexer extends Lexer {
 			}
 
 			match('\n'); 
+			skip();
 			}
 
 			state.type = _type;
@@ -164,20 +346,20 @@ public class JsonGeneratorASTLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:16:4: ( ( ' ' | '\\t' )+ )
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:16:6: ( ' ' | '\\t' )+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:27:4: ( ( ' ' | '\\t' )+ )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:27:6: ( ' ' | '\\t' )+
 			{
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:16:6: ( ' ' | '\\t' )+
-			int cnt3=0;
-			loop3:
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:27:6: ( ' ' | '\\t' )+
+			int cnt4=0;
+			loop4:
 			while (true) {
-				int alt3=2;
-				int LA3_0 = input.LA(1);
-				if ( (LA3_0=='\t'||LA3_0==' ') ) {
-					alt3=1;
+				int alt4=2;
+				int LA4_0 = input.LA(1);
+				if ( (LA4_0=='\t'||LA4_0==' ') ) {
+					alt4=1;
 				}
 
-				switch (alt3) {
+				switch (alt4) {
 				case 1 :
 					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:
 					{
@@ -193,13 +375,14 @@ public class JsonGeneratorASTLexer extends Lexer {
 					break;
 
 				default :
-					if ( cnt3 >= 1 ) break loop3;
-					EarlyExitException eee = new EarlyExitException(3, input);
+					if ( cnt4 >= 1 ) break loop4;
+					EarlyExitException eee = new EarlyExitException(4, input);
 					throw eee;
 				}
-				cnt3++;
+				cnt4++;
 			}
 
+			skip();
 			}
 
 			state.type = _type;
@@ -213,128 +396,190 @@ public class JsonGeneratorASTLexer extends Lexer {
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:8: ( T__7 | T__8 | ID | NEWLINE | WS )
-		int alt4=5;
+		// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:8: ( T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | ID | VALUE | DEFINE | NEWLINE | WS )
+		int alt5=12;
 		switch ( input.LA(1) ) {
-		case ';':
+		case '\"':
 			{
-			alt4=1;
+			alt5=1;
 			}
 			break;
-		case 'T':
+		case '(':
 			{
-			int LA4_2 = input.LA(2);
-			if ( (LA4_2=='E') ) {
-				int LA4_6 = input.LA(3);
-				if ( (LA4_6=='S') ) {
-					int LA4_7 = input.LA(4);
-					if ( (LA4_7=='T') ) {
-						int LA4_8 = input.LA(5);
-						if ( ((LA4_8 >= 'A' && LA4_8 <= 'Z')) ) {
-							alt4=3;
-						}
-
-						else {
-							alt4=2;
-						}
-
-					}
-
-					else {
-						alt4=3;
-					}
-
-				}
-
-				else {
-					alt4=3;
-				}
-
+			alt5=2;
 			}
-
-			else {
-				alt4=3;
+			break;
+		case ')':
+			{
+			alt5=3;
 			}
-
+			break;
+		case ',':
+			{
+			alt5=4;
 			}
 			break;
 		case 'A':
-		case 'B':
-		case 'C':
-		case 'D':
-		case 'E':
-		case 'F':
-		case 'G':
-		case 'H':
-		case 'I':
-		case 'J':
-		case 'K':
-		case 'L':
-		case 'M':
-		case 'N':
-		case 'O':
-		case 'P':
-		case 'Q':
-		case 'R':
-		case 'S':
-		case 'U':
-		case 'V':
-		case 'W':
-		case 'X':
-		case 'Y':
-		case 'Z':
 			{
-			alt4=3;
+			alt5=5;
+			}
+			break;
+		case 'L':
+			{
+			alt5=6;
+			}
+			break;
+		case 'O':
+			{
+			alt5=7;
+			}
+			break;
+		case 'a':
+		case 'b':
+		case 'c':
+		case 'd':
+		case 'e':
+		case 'f':
+		case 'g':
+		case 'h':
+		case 'i':
+		case 'j':
+		case 'k':
+		case 'l':
+		case 'm':
+		case 'n':
+		case 'o':
+		case 'p':
+		case 'q':
+		case 'r':
+		case 's':
+		case 't':
+		case 'u':
+		case 'v':
+		case 'w':
+		case 'x':
+		case 'y':
+		case 'z':
+			{
+			alt5=8;
+			}
+			break;
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			{
+			alt5=9;
+			}
+			break;
+		case '=':
+			{
+			alt5=10;
 			}
 			break;
 		case '\n':
 		case '\r':
 			{
-			alt4=4;
+			alt5=11;
 			}
 			break;
 		case '\t':
 		case ' ':
 			{
-			alt4=5;
+			alt5=12;
 			}
 			break;
 		default:
 			NoViableAltException nvae =
-				new NoViableAltException("", 4, 0, input);
+				new NoViableAltException("", 5, 0, input);
 			throw nvae;
 		}
-		switch (alt4) {
+		switch (alt5) {
 			case 1 :
-				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:10: T__7
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:10: T__9
 				{
-				mT__7(); 
+				mT__9(); 
 
 				}
 				break;
 			case 2 :
-				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:15: T__8
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:15: T__10
 				{
-				mT__8(); 
+				mT__10(); 
 
 				}
 				break;
 			case 3 :
-				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:20: ID
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:21: T__11
+				{
+				mT__11(); 
+
+				}
+				break;
+			case 4 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:27: T__12
+				{
+				mT__12(); 
+
+				}
+				break;
+			case 5 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:33: T__13
+				{
+				mT__13(); 
+
+				}
+				break;
+			case 6 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:39: T__14
+				{
+				mT__14(); 
+
+				}
+				break;
+			case 7 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:45: T__15
+				{
+				mT__15(); 
+
+				}
+				break;
+			case 8 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:51: ID
 				{
 				mID(); 
 
 				}
 				break;
-			case 4 :
-				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:23: NEWLINE
+			case 9 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:54: VALUE
+				{
+				mVALUE(); 
+
+				}
+				break;
+			case 10 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:60: DEFINE
+				{
+				mDEFINE(); 
+
+				}
+				break;
+			case 11 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:67: NEWLINE
 				{
 				mNEWLINE(); 
 
 				}
 				break;
-			case 5 :
-				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:31: WS
+			case 12 :
+				// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\json\\JsonGeneratorAST.g:1:75: WS
 				{
 				mWS(); 
 

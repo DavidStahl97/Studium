@@ -13,7 +13,7 @@ public class __Test__ {
 
         JsonGeneratorASTParser g = new JsonGeneratorASTParser(tokens, 49100, null);
         try {
-            g.prog();
+            g.list();
         } catch (RecognitionException e) {
             e.printStackTrace();
         }

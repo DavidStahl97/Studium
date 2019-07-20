@@ -8,9 +8,20 @@ options {
 @parser::header{ package de.thm.antlr.json.output; } 
 @lexer::header{ package de.thm.antlr.json.output; }
 
-prog	:	'TEST' WS (ID WS)+ ';';
+list	:	'LIST'! '('! (object (','! object)*)? ')'!;
 
-ID	:	('A'..'Z')+;
+object	:	'OBJECT'! '('! '"'! ID^ '"'!  attributs ')'!;
 
-NEWLINE	:	'\r'? '\n';
-WS	:	(' ' | '\t')+;
+attributs:	'ATTR'! '('! (attribut (','! attribut )*)? ')'!;
+
+attribut:	ID DEFINE^ VALUE;
+
+
+
+ID	:	('a'..'z')+;
+VALUE	:	('0'..'9')+;
+
+DEFINE	:	'=';
+
+NEWLINE	:	'\r'? '\n' {skip();};
+WS	:	(' ' | '\t')+ {skip();};
