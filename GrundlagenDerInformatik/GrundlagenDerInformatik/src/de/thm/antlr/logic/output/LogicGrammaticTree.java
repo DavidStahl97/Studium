@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g 2019-07-11 20:55:44
+// $ANTLR 3.5.1 C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g 2019-07-14 17:14:37
  
 	package de.thm.antlr.logic.output;
 	import java.util.HashMap;
@@ -10,8 +10,10 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.antlr.runtime.debug.*;
+import java.io.IOException;
 @SuppressWarnings("all")
-public class LogicGrammaticTree extends TreeParser {
+public class LogicGrammaticTree extends DebugTreeParser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "AND", "EQ", "FALSE", "ID", "IMPL", 
 		"NEWLINE", "NOT", "OR", "TRUE", "WS", "'('", "')'", "'='"
@@ -39,15 +41,48 @@ public class LogicGrammaticTree extends TreeParser {
 	// delegators
 
 
+	public static final String[] ruleNames = new String[] {
+		"invalidRule", "prog", "expr", "stat"
+	};
+
+	public static final boolean[] decisionCanBacktrack = new boolean[] {
+		false, // invalid decision
+		false, false, false
+	};
+
+ 
+	public int ruleLevel = 0;
+	public int getRuleLevel() { return ruleLevel; }
+	public void incRuleLevel() { ruleLevel++; }
+	public void decRuleLevel() { ruleLevel--; }
 	public LogicGrammaticTree(TreeNodeStream input) {
-		this(input, new RecognizerSharedState());
+		this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
 	}
-	public LogicGrammaticTree(TreeNodeStream input, RecognizerSharedState state) {
+	public LogicGrammaticTree(TreeNodeStream input, int port, RecognizerSharedState state) {
 		super(input, state);
+		DebugEventSocketProxy proxy =
+			new DebugEventSocketProxy(this, port, input.getTreeAdaptor());
+
+		setDebugListener(proxy);
+		try {
+			proxy.handshake();
+		}
+		catch (IOException ioe) {
+			reportError(ioe);
+		}
+	}
+
+	public LogicGrammaticTree(TreeNodeStream input, DebugEventListener dbg) {
+		super(input, dbg, new RecognizerSharedState());
+	}
+
+	protected boolean evalPredicate(boolean result, String predicate) {
+		dbg.semanticPredicate(result, predicate);
+		return result;
 	}
 
 	@Override public String[] getTokenNames() { return LogicGrammaticTree.tokenNames; }
-	@Override public String getGrammarFileName() { return "C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g"; }
+	@Override public String getGrammarFileName() { return "C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g"; }
 
 
 		HashMap<String, Boolean> memory = new HashMap<String, Boolean>();
@@ -69,27 +104,44 @@ public class LogicGrammaticTree extends TreeParser {
 
 
 	// $ANTLR start "prog"
-	// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:31:1: prog : ( stat )+ ;
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:32:1: prog : ( stat )+ ;
 	public final void prog() throws RecognitionException {
+		try { dbg.enterRule(getGrammarFileName(), "prog");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(32, 0);
+
 		try {
-			// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:31:6: ( ( stat )+ )
-			// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:31:8: ( stat )+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:32:6: ( ( stat )+ )
+			dbg.enterAlt(1);
+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:32:8: ( stat )+
 			{
-			// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:31:8: ( stat )+
+			dbg.location(32,8);
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:32:8: ( stat )+
 			int cnt1=0;
+			try { dbg.enterSubRule(1);
+
 			loop1:
 			while (true) {
 				int alt1=2;
+				try { dbg.enterDecision(1, decisionCanBacktrack[1]);
+
 				int LA1_0 = input.LA(1);
 				if ( ((LA1_0 >= AND && LA1_0 <= IMPL)||(LA1_0 >= NOT && LA1_0 <= TRUE)||LA1_0==16) ) {
 					alt1=1;
 				}
 
+				} finally {dbg.exitDecision(1);}
+
 				switch (alt1) {
 				case 1 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:31:9: stat
+					dbg.enterAlt(1);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:32:9: stat
 					{
-					pushFollow(FOLLOW_stat_in_prog45);
+					dbg.location(32,9);
+					pushFollow(FOLLOW_stat_in_prog46);
 					stat();
 					state._fsp--;
 
@@ -99,10 +151,13 @@ public class LogicGrammaticTree extends TreeParser {
 				default :
 					if ( cnt1 >= 1 ) break loop1;
 					EarlyExitException eee = new EarlyExitException(1, input);
+					dbg.recognitionException(eee);
+
 					throw eee;
 				}
 				cnt1++;
 			}
+			} finally {dbg.exitSubRule(1);}
 
 			}
 
@@ -114,21 +169,37 @@ public class LogicGrammaticTree extends TreeParser {
 		finally {
 			// do for sure before leaving
 		}
+		dbg.location(32, 14);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "prog");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
 	}
 	// $ANTLR end "prog"
 
 
 
 	// $ANTLR start "stat"
-	// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:33:1: stat : ( expr | ^( '=' ID expr ) );
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:34:1: stat : ( expr | ^( '=' ID expr ) );
 	public final void stat() throws RecognitionException {
 		CommonTree ID2=null;
 		boolean expr1 =false;
 		boolean expr3 =false;
 
+		try { dbg.enterRule(getGrammarFileName(), "stat");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(34, 0);
+
 		try {
-			// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:33:6: ( expr | ^( '=' ID expr ) )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:34:6: ( expr | ^( '=' ID expr ) )
 			int alt2=2;
+			try { dbg.enterDecision(2, decisionCanBacktrack[2]);
+
 			int LA2_0 = input.LA(1);
 			if ( ((LA2_0 >= AND && LA2_0 <= IMPL)||(LA2_0 >= NOT && LA2_0 <= TRUE)) ) {
 				alt2=1;
@@ -140,32 +211,43 @@ public class LogicGrammaticTree extends TreeParser {
 			else {
 				NoViableAltException nvae =
 					new NoViableAltException("", 2, 0, input);
+				dbg.recognitionException(nvae);
 				throw nvae;
 			}
 
+			} finally {dbg.exitDecision(2);}
+
 			switch (alt2) {
 				case 1 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:33:8: expr
+					dbg.enterAlt(1);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:34:8: expr
 					{
-					pushFollow(FOLLOW_expr_in_stat55);
+					dbg.location(34,8);
+					pushFollow(FOLLOW_expr_in_stat56);
 					expr1=expr();
 					state._fsp--;
-
+					dbg.location(34,13);
 					System.out.println(expr1);
 					}
 					break;
 				case 2 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:34:5: ^( '=' ID expr )
+					dbg.enterAlt(2);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:35:5: ^( '=' ID expr )
 					{
-					match(input,16,FOLLOW_16_in_stat66); 
+					dbg.location(35,5);
+					dbg.location(35,7);
+					match(input,16,FOLLOW_16_in_stat67); 
 					match(input, Token.DOWN, null); 
-					ID2=(CommonTree)match(input,ID,FOLLOW_ID_in_stat68); 
-					pushFollow(FOLLOW_expr_in_stat70);
+					dbg.location(35,11);
+					ID2=(CommonTree)match(input,ID,FOLLOW_ID_in_stat69); dbg.location(35,14);
+					pushFollow(FOLLOW_expr_in_stat71);
 					expr3=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(35,20);
 					 cache((ID2!=null?ID2.getText():null), expr3); System.out.println((ID2!=null?ID2.getText():null) + " = " + expr3); 
 					}
 					break;
@@ -179,13 +261,22 @@ public class LogicGrammaticTree extends TreeParser {
 		finally {
 			// do for sure before leaving
 		}
+		dbg.location(35, 104);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "stat");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
 	}
 	// $ANTLR end "stat"
 
 
 
 	// $ANTLR start "expr"
-	// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:37:1: expr returns [boolean value] : ( ^( NOT a= expr ) | ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( IMPL a= expr b= expr ) | ^( EQ a= expr b= expr ) | ID | TRUE | FALSE );
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:38:1: expr returns [boolean value] : ( ^( NOT a= expr ) | ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( IMPL a= expr b= expr ) | ^( EQ a= expr b= expr ) | ID | TRUE | FALSE );
 	public final boolean expr() throws RecognitionException {
 		boolean value = false;
 
@@ -194,9 +285,16 @@ public class LogicGrammaticTree extends TreeParser {
 		boolean a =false;
 		boolean b =false;
 
+		try { dbg.enterRule(getGrammarFileName(), "expr");
+		if ( getRuleLevel()==0 ) {dbg.commence();}
+		incRuleLevel();
+		dbg.location(38, 0);
+
 		try {
-			// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:37:29: ( ^( NOT a= expr ) | ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( IMPL a= expr b= expr ) | ^( EQ a= expr b= expr ) | ID | TRUE | FALSE )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:38:29: ( ^( NOT a= expr ) | ^( AND a= expr b= expr ) | ^( OR a= expr b= expr ) | ^( IMPL a= expr b= expr ) | ^( EQ a= expr b= expr ) | ID | TRUE | FALSE )
 			int alt3=8;
+			try { dbg.enterDecision(3, decisionCanBacktrack[3]);
+
 			switch ( input.LA(1) ) {
 			case NOT:
 				{
@@ -241,113 +339,150 @@ public class LogicGrammaticTree extends TreeParser {
 			default:
 				NoViableAltException nvae =
 					new NoViableAltException("", 3, 0, input);
+				dbg.recognitionException(nvae);
 				throw nvae;
 			}
+			} finally {dbg.exitDecision(3);}
+
 			switch (alt3) {
 				case 1 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:39:2: ^( NOT a= expr )
+					dbg.enterAlt(1);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:40:2: ^( NOT a= expr )
 					{
-					match(input,NOT,FOLLOW_NOT_in_expr92); 
+					dbg.location(40,2);
+					dbg.location(40,4);
+					match(input,NOT,FOLLOW_NOT_in_expr93); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr96);
+					dbg.location(40,9);
+					pushFollow(FOLLOW_expr_in_expr97);
 					a=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(40,16);
 					 value = !a; 
 					}
 					break;
 				case 2 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:40:2: ^( AND a= expr b= expr )
+					dbg.enterAlt(2);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:41:2: ^( AND a= expr b= expr )
 					{
-					match(input,AND,FOLLOW_AND_in_expr105); 
+					dbg.location(41,2);
+					dbg.location(41,4);
+					match(input,AND,FOLLOW_AND_in_expr106); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr109);
+					dbg.location(41,9);
+					pushFollow(FOLLOW_expr_in_expr110);
 					a=expr();
 					state._fsp--;
-
-					pushFollow(FOLLOW_expr_in_expr113);
+					dbg.location(41,16);
+					pushFollow(FOLLOW_expr_in_expr114);
 					b=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(41,23);
 					 value = a && b; 
 					}
 					break;
 				case 3 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:41:2: ^( OR a= expr b= expr )
+					dbg.enterAlt(3);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:42:2: ^( OR a= expr b= expr )
 					{
-					match(input,OR,FOLLOW_OR_in_expr122); 
+					dbg.location(42,2);
+					dbg.location(42,4);
+					match(input,OR,FOLLOW_OR_in_expr123); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr126);
+					dbg.location(42,8);
+					pushFollow(FOLLOW_expr_in_expr127);
 					a=expr();
 					state._fsp--;
-
-					pushFollow(FOLLOW_expr_in_expr130);
+					dbg.location(42,15);
+					pushFollow(FOLLOW_expr_in_expr131);
 					b=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(42,22);
 					 value = a || b; 
 					}
 					break;
 				case 4 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:42:2: ^( IMPL a= expr b= expr )
+					dbg.enterAlt(4);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:43:2: ^( IMPL a= expr b= expr )
 					{
-					match(input,IMPL,FOLLOW_IMPL_in_expr139); 
+					dbg.location(43,2);
+					dbg.location(43,4);
+					match(input,IMPL,FOLLOW_IMPL_in_expr140); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr143);
+					dbg.location(43,10);
+					pushFollow(FOLLOW_expr_in_expr144);
 					a=expr();
 					state._fsp--;
-
-					pushFollow(FOLLOW_expr_in_expr147);
+					dbg.location(43,17);
+					pushFollow(FOLLOW_expr_in_expr148);
 					b=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(43,24);
 					 value = !a || (a && b); 
 					}
 					break;
 				case 5 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:43:2: ^( EQ a= expr b= expr )
+					dbg.enterAlt(5);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:44:2: ^( EQ a= expr b= expr )
 					{
-					match(input,EQ,FOLLOW_EQ_in_expr156); 
+					dbg.location(44,2);
+					dbg.location(44,4);
+					match(input,EQ,FOLLOW_EQ_in_expr157); 
 					match(input, Token.DOWN, null); 
-					pushFollow(FOLLOW_expr_in_expr160);
+					dbg.location(44,8);
+					pushFollow(FOLLOW_expr_in_expr161);
 					a=expr();
 					state._fsp--;
-
-					pushFollow(FOLLOW_expr_in_expr164);
+					dbg.location(44,15);
+					pushFollow(FOLLOW_expr_in_expr165);
 					b=expr();
 					state._fsp--;
 
 					match(input, Token.UP, null); 
-
+					dbg.location(44,22);
 					 value = a == b; 
 					}
 					break;
 				case 6 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:45:2: ID
+					dbg.enterAlt(6);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:46:2: ID
 					{
-					ID4=(CommonTree)match(input,ID,FOLLOW_ID_in_expr174); 
+					dbg.location(46,2);
+					ID4=(CommonTree)match(input,ID,FOLLOW_ID_in_expr175); dbg.location(46,5);
 					 value = load((ID4!=null?ID4.getText():null)); 
 					}
 					break;
 				case 7 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:47:2: TRUE
+					dbg.enterAlt(7);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:48:2: TRUE
 					{
-					match(input,TRUE,FOLLOW_TRUE_in_expr183); 
+					dbg.location(48,2);
+					match(input,TRUE,FOLLOW_TRUE_in_expr184); dbg.location(48,7);
 					 value = true; 
 					}
 					break;
 				case 8 :
-					// C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:48:2: FALSE
+					dbg.enterAlt(8);
+
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammaticTree.g:49:2: FALSE
 					{
-					match(input,FALSE,FOLLOW_FALSE_in_expr190); 
+					dbg.location(49,2);
+					match(input,FALSE,FOLLOW_FALSE_in_expr191); dbg.location(49,8);
 					 value = false; 
 					}
 					break;
@@ -361,6 +496,15 @@ public class LogicGrammaticTree extends TreeParser {
 		finally {
 			// do for sure before leaving
 		}
+		dbg.location(49, 26);
+
+		}
+		finally {
+			dbg.exitRule(getGrammarFileName(), "expr");
+			decRuleLevel();
+			if ( getRuleLevel()==0 ) {dbg.terminate();}
+		}
+
 		return value;
 	}
 	// $ANTLR end "expr"
@@ -369,26 +513,26 @@ public class LogicGrammaticTree extends TreeParser {
 
 
 
-	public static final BitSet FOLLOW_stat_in_prog45 = new BitSet(new long[]{0x0000000000011DF2L});
-	public static final BitSet FOLLOW_expr_in_stat55 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_16_in_stat66 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_ID_in_stat68 = new BitSet(new long[]{0x0000000000001DF0L});
-	public static final BitSet FOLLOW_expr_in_stat70 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_NOT_in_expr92 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr96 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_AND_in_expr105 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr109 = new BitSet(new long[]{0x0000000000001DF0L});
-	public static final BitSet FOLLOW_expr_in_expr113 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_OR_in_expr122 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr126 = new BitSet(new long[]{0x0000000000001DF0L});
-	public static final BitSet FOLLOW_expr_in_expr130 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_IMPL_in_expr139 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr143 = new BitSet(new long[]{0x0000000000001DF0L});
-	public static final BitSet FOLLOW_expr_in_expr147 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_EQ_in_expr156 = new BitSet(new long[]{0x0000000000000004L});
-	public static final BitSet FOLLOW_expr_in_expr160 = new BitSet(new long[]{0x0000000000001DF0L});
-	public static final BitSet FOLLOW_expr_in_expr164 = new BitSet(new long[]{0x0000000000000008L});
-	public static final BitSet FOLLOW_ID_in_expr174 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_TRUE_in_expr183 = new BitSet(new long[]{0x0000000000000002L});
-	public static final BitSet FOLLOW_FALSE_in_expr190 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_stat_in_prog46 = new BitSet(new long[]{0x0000000000011DF2L});
+	public static final BitSet FOLLOW_expr_in_stat56 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_16_in_stat67 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_ID_in_stat69 = new BitSet(new long[]{0x0000000000001DF0L});
+	public static final BitSet FOLLOW_expr_in_stat71 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_NOT_in_expr93 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr97 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_AND_in_expr106 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr110 = new BitSet(new long[]{0x0000000000001DF0L});
+	public static final BitSet FOLLOW_expr_in_expr114 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_OR_in_expr123 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr127 = new BitSet(new long[]{0x0000000000001DF0L});
+	public static final BitSet FOLLOW_expr_in_expr131 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_IMPL_in_expr140 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr144 = new BitSet(new long[]{0x0000000000001DF0L});
+	public static final BitSet FOLLOW_expr_in_expr148 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_EQ_in_expr157 = new BitSet(new long[]{0x0000000000000004L});
+	public static final BitSet FOLLOW_expr_in_expr161 = new BitSet(new long[]{0x0000000000001DF0L});
+	public static final BitSet FOLLOW_expr_in_expr165 = new BitSet(new long[]{0x0000000000000008L});
+	public static final BitSet FOLLOW_ID_in_expr175 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_TRUE_in_expr184 = new BitSet(new long[]{0x0000000000000002L});
+	public static final BitSet FOLLOW_FALSE_in_expr191 = new BitSet(new long[]{0x0000000000000002L});
 }

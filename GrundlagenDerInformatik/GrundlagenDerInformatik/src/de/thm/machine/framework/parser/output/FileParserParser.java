@@ -1,5 +1,5 @@
-// $ANTLR 3.5.1 C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g 2019-07-13 19:40:16
- package de.thm.machine.framework.parser; 
+// $ANTLR 3.5.1 C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g 2019-07-14 17:11:29
+ package de.thm.machine.framework.parser.output; 
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -12,7 +12,7 @@ import org.antlr.runtime.tree.*;
 
 
 @SuppressWarnings("all")
-public class FiniteStateMachineParserParser extends DebugParser {
+public class FileParserParser extends DebugParser {
 	public static final String[] tokenNames = new String[] {
 		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "BLANK", "ID", "NEWLINE", "WS"
 	};
@@ -31,7 +31,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 
 
 	public static final String[] ruleNames = new String[] {
-		"invalidRule", "lines", "line", "newline"
+		"invalidRule", "newline", "lines", "line"
 	};
 
 	public static final boolean[] decisionCanBacktrack = new boolean[] {
@@ -44,10 +44,10 @@ public class FiniteStateMachineParserParser extends DebugParser {
 	public int getRuleLevel() { return ruleLevel; }
 	public void incRuleLevel() { ruleLevel++; }
 	public void decRuleLevel() { ruleLevel--; }
-	public FiniteStateMachineParserParser(TokenStream input) {
+	public FileParserParser(TokenStream input) {
 		this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT, new RecognizerSharedState());
 	}
-	public FiniteStateMachineParserParser(TokenStream input, int port, RecognizerSharedState state) {
+	public FileParserParser(TokenStream input, int port, RecognizerSharedState state) {
 		super(input, state);
 		DebugEventSocketProxy proxy =
 			new DebugEventSocketProxy(this,port,adaptor);
@@ -64,7 +64,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 		proxy.setTreeAdaptor(adap);
 	}
 
-	public FiniteStateMachineParserParser(TokenStream input, DebugEventListener dbg) {
+	public FileParserParser(TokenStream input, DebugEventListener dbg) {
 		super(input, dbg);
 		 
 		TreeAdaptor adap = new CommonTreeAdaptor();
@@ -84,8 +84,8 @@ public class FiniteStateMachineParserParser extends DebugParser {
 		public TreeAdaptor getTreeAdaptor() {
 			return adaptor;
 		}
-	@Override public String[] getTokenNames() { return FiniteStateMachineParserParser.tokenNames; }
-	@Override public String getGrammarFileName() { return "C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g"; }
+	@Override public String[] getTokenNames() { return FileParserParser.tokenNames; }
+	@Override public String getGrammarFileName() { return "C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g"; }
 
 
 	public static class lines_return extends ParserRuleReturnScope {
@@ -96,9 +96,9 @@ public class FiniteStateMachineParserParser extends DebugParser {
 
 
 	// $ANTLR start "lines"
-	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:1: lines : ( line | NEWLINE !)+ ;
-	public final FiniteStateMachineParserParser.lines_return lines() throws RecognitionException {
-		FiniteStateMachineParserParser.lines_return retval = new FiniteStateMachineParserParser.lines_return();
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:1: lines : ( line | NEWLINE !)+ ;
+	public final FileParserParser.lines_return lines() throws RecognitionException {
+		FileParserParser.lines_return retval = new FileParserParser.lines_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -114,16 +114,16 @@ public class FiniteStateMachineParserParser extends DebugParser {
 		dbg.location(11, 0);
 
 		try {
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:7: ( ( line | NEWLINE !)+ )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:7: ( ( line | NEWLINE !)+ )
 			dbg.enterAlt(1);
 
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:9: ( line | NEWLINE !)+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:9: ( line | NEWLINE !)+
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			dbg.location(11,9);
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:9: ( line | NEWLINE !)+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:9: ( line | NEWLINE !)+
 			int cnt1=0;
 			try { dbg.enterSubRule(1);
 
@@ -146,7 +146,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:10: line
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:10: line
 					{
 					dbg.location(11,10);
 					pushFollow(FOLLOW_line_in_lines49);
@@ -160,7 +160,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 				case 2 :
 					dbg.enterAlt(2);
 
-					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:11:17: NEWLINE !
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:11:17: NEWLINE !
 					{
 					dbg.location(11,24);
 					NEWLINE2=(Token)match(input,NEWLINE,FOLLOW_NEWLINE_in_lines53); 
@@ -216,9 +216,9 @@ public class FiniteStateMachineParserParser extends DebugParser {
 
 
 	// $ANTLR start "line"
-	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:1: line : ( ( ID | BLANK ) ( WS !)? )+ newline ^;
-	public final FiniteStateMachineParserParser.line_return line() throws RecognitionException {
-		FiniteStateMachineParserParser.line_return retval = new FiniteStateMachineParserParser.line_return();
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:1: line : ( ( ID | BLANK ) ( WS !)? )+ newline ^;
+	public final FileParserParser.line_return line() throws RecognitionException {
+		FileParserParser.line_return retval = new FileParserParser.line_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -236,16 +236,16 @@ public class FiniteStateMachineParserParser extends DebugParser {
 		dbg.location(13, 0);
 
 		try {
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:6: ( ( ( ID | BLANK ) ( WS !)? )+ newline ^)
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:6: ( ( ( ID | BLANK ) ( WS !)? )+ newline ^)
 			dbg.enterAlt(1);
 
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:8: ( ( ID | BLANK ) ( WS !)? )+ newline ^
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:8: ( ( ID | BLANK ) ( WS !)? )+ newline ^
 			{
 			root_0 = (CommonTree)adaptor.nil();
 
 
 			dbg.location(13,8);
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:8: ( ( ID | BLANK ) ( WS !)? )+
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:8: ( ( ID | BLANK ) ( WS !)? )+
 			int cnt3=0;
 			try { dbg.enterSubRule(3);
 
@@ -265,7 +265,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 				case 1 :
 					dbg.enterAlt(1);
 
-					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:9: ( ID | BLANK ) ( WS !)?
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:9: ( ID | BLANK ) ( WS !)?
 					{
 					dbg.location(13,9);
 					set3=input.LT(1);
@@ -279,7 +279,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 						dbg.recognitionException(mse);
 						throw mse;
 					}dbg.location(13,22);
-					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:22: ( WS !)?
+					// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:22: ( WS !)?
 					int alt2=2;
 					try { dbg.enterSubRule(2);
 					try { dbg.enterDecision(2, decisionCanBacktrack[2]);
@@ -294,7 +294,7 @@ public class FiniteStateMachineParserParser extends DebugParser {
 						case 1 :
 							dbg.enterAlt(1);
 
-							// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:13:23: WS !
+							// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:13:23: WS !
 							{
 							dbg.location(13,25);
 							WS4=(Token)match(input,WS,FOLLOW_WS_in_line74); 
@@ -361,9 +361,9 @@ public class FiniteStateMachineParserParser extends DebugParser {
 
 
 	// $ANTLR start "newline"
-	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:15:1: newline : ( NEWLINE | EOF );
-	public final FiniteStateMachineParserParser.newline_return newline() throws RecognitionException {
-		FiniteStateMachineParserParser.newline_return retval = new FiniteStateMachineParserParser.newline_return();
+	// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:15:1: newline : ( NEWLINE | EOF );
+	public final FileParserParser.newline_return newline() throws RecognitionException {
+		FileParserParser.newline_return retval = new FileParserParser.newline_return();
 		retval.start = input.LT(1);
 
 		CommonTree root_0 = null;
@@ -378,10 +378,10 @@ public class FiniteStateMachineParserParser extends DebugParser {
 		dbg.location(15, 0);
 
 		try {
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:15:9: ( NEWLINE | EOF )
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:15:9: ( NEWLINE | EOF )
 			dbg.enterAlt(1);
 
-			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FiniteStateMachineParser.g:
+			// C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\machine\\framework\\parser\\FileParser.g:
 			{
 			root_0 = (CommonTree)adaptor.nil();
 

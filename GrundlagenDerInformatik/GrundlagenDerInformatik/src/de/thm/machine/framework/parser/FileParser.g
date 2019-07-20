@@ -1,12 +1,12 @@
-grammar FiniteStateMachineParser;
+grammar FileParser;
 
 options {
 	output = AST;
 	ASTLabelType = CommonTree;
 }
 
-@parser::header { package de.thm.machine.framework.parser; }
-@lexer::header { package de.thm.machine.framework.parser; }
+@parser::header { package de.thm.machine.framework.parser.output; }
+@lexer::header { package de.thm.machine.framework.parser.output; }
 
 lines	:	(line | NEWLINE!)+;
 
