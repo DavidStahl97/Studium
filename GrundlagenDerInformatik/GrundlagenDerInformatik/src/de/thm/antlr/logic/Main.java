@@ -15,8 +15,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		try {
-			
-			var input = new ANTLRFileStream("C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\output\\test.txt", "UTF8");
+
+			var input = new ANTLRFileStream("C:\\Users\\dstah\\Programming\\Studium\\GrundlagenDerInformatik\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\output\\test.txt", "UTF8");
 
 			var lexer = new LogicGrammaticLexer(input); 
 			var tokens = new CommonTokenStream(lexer); 
@@ -34,7 +34,7 @@ public class Main {
 			
 		}
 		catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 
 	}

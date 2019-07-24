@@ -1,0 +1,1 @@
+LIST(OBJECT("eins" ATTR(eins=5,y=6,z=3)),OBJECT("zwei" ATTR(a=15,b=7,c=5)),OBJECT("drei" ATTR(i=9,j=8,k=15)))
