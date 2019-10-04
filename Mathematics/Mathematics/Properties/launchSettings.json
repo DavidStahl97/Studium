@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Mathematics": {
+      "commandName": "Project",
+      "commandLineArgs": "Excercise_2_7"
+    }
+  }
+}
