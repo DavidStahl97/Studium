@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammatic.g 2019-07-11 20:33:59
+// $ANTLR 3.5.1 C:\\Users\\de18702\\Projekte\\Studium\\GrundlagenDerInformatik\\src\\de\\thm\\antlr\\logic\\LogicGrammatic.g 2019-07-21 13:41:51
  package de.thm.antlr.logic.output; 
 
 import org.antlr.runtime.*;

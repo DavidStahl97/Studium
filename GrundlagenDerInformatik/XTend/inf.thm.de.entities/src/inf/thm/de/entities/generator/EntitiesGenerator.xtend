@@ -15,32 +15,12 @@ import inf.thm.de.entities.entities.Entity
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class EntitiesGenerator extends AbstractGenerator {
-
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-		for(e : resource.allContents. toIterable.filter (Entity)) { 
-			fsa.generateFile( "entities/" + e.name + ".java", e.compile ) 
-		}
+	
+	override doGenerate(Resource input, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
-	def CharSequence compile(Entity entity)
-	''' 
-		package entities;
-		
-		public class «entity.name» 
-		«IF entity.superType != null»extends «entity.superType.name»«ENDIF»{
-		
-		«FOR attribute : entity.attributes» 
-		private «attribute.type.compile» «attribute.name»; 
-		«ENDFOR»
-		
-		«FOR attribute : entity.attributes» 
-		public «attribute.type.compile» 
-		get«attribute.name.toFirstUpper»(){ return «attribute.name»; } 
-		«ENDFOR» ... } 
-	'''
-	
-	def compile(AttributeType attributeType){ attributeType.elementType.typeToString + if (attributeType.array) "[]" else "" }
-	def dispatch typeToString(BasicType type){ if (type.typeName == "string") "String" else type.typeName }
-	def dispatch typeToString(EntityType type){ type.entity.name }
+
+
+
 	
 }
