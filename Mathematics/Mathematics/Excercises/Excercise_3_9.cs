@@ -15,32 +15,32 @@ namespace Mathematics.Excercises
             for(int i = 2; i < 16; i++)
             {
                 Console.WriteLine($"{ _base }^{ i }");
-                var exponent = BigInteger.Pow(_base, i);
-                Calculate(exponent, _base);
+                var potenz = BigInteger.Pow(_base, i);
+                Calculate(potenz, _base);
                 Console.WriteLine();
 
                 Console.WriteLine($"{ _base }^{ i } - 1");
-                exponent -= - 1;
-                Calculate(exponent, _base);
+                potenz -= 1;
+                Calculate(potenz, _base);
                 Console.WriteLine();
             }
         }
 
-        private void Calculate(BigInteger exponent, BigInteger baseValue)
+        private void Calculate(BigInteger potenz, BigInteger baseValue)
         {
-            var result = IterativeFunction(exponent, baseValue);
+            var result = IterativeFunction(potenz, baseValue);
             Console.WriteLine($"Iterative Variant: \n Count: { _counter }, Result: { Convert(result) }");
 
             _counter = 0;
-            result = DivideAndConquer(exponent, baseValue);
+            result = DivideAndConquer(potenz, baseValue);
             Console.WriteLine($"Divide and Conquer: \n Count: { _counter }, Result: { Convert(result) }");
         }
 
-        private BigInteger IterativeFunction(BigInteger exponent, BigInteger baseValue)
+        private BigInteger IterativeFunction(BigInteger potenz, BigInteger baseValue)
         {
             BigInteger value = 1;
 
-            for(int i = 0; i < exponent; i++)
+            for(int i = 0; i < potenz; i++)
             {
                 _counter++;
                 value *= baseValue;
@@ -49,22 +49,22 @@ namespace Mathematics.Excercises
             return value;
         }
 
-        private BigInteger DivideAndConquer(BigInteger exponent, BigInteger value)
+        private BigInteger DivideAndConquer(BigInteger potenz, BigInteger value)
         {
             _counter++;
 
-            if(exponent.IsZero)
+            if(potenz.IsZero)
             {
                 return 1;
             }
-            else if(exponent.IsEven)
+            else if(potenz.IsEven)
             {
-                var result = DivideAndConquer(exponent / 2, value);
+                var result = DivideAndConquer(potenz / 2, value);
                 return result * result;
             }
             else
             {
-                var result = DivideAndConquer(exponent - 1, value);
+                var result = DivideAndConquer(potenz - 1, value);
                 return value * result;
             }
         }
