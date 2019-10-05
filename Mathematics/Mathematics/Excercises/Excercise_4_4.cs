@@ -6,18 +6,18 @@ namespace Mathematics.Excercises
 {
     class Excercise_4_4 : IExcercise
     {
-        public void Start()
+        public virtual void Start()
         {
-            int n = 10;
-            int k = 5;
+            int n = 5;
+            int k = 2;
 
             Console.WriteLine($"n = {n}, k = {k}");
 
-            var result = CalculateBinomialkoeffizient(10, 5);
+            var result = CalculateBinomialkoeffizient(n, k);
             Console.WriteLine($"Ergebnis: {result}");
         }
 
-        private int CalculateBinomialkoeffizient(int n, int k)
+        protected virtual int CalculateBinomialkoeffizient(int n, int k)
         {
             if(k == 0 || k == n)
             {
