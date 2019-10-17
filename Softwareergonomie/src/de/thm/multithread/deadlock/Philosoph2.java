@@ -1,11 +1,11 @@
-package de.thm.Multithreading.deadlock;
+package de.thm.multithread.deadlock;
 
-public class Philosoph1 extends Thread {
+public class Philosoph2 extends Thread {
 
     private String gabel;
     private String messer;
 
-    public Philosoph1(String gabel, String messer)
+    public Philosoph2(String gabel, String messer)
     {
         this.gabel = gabel;
         this.messer = messer;
@@ -13,7 +13,7 @@ public class Philosoph1 extends Thread {
 
     @Override
     public void run() {
-        synchronized (gabel) {
+        synchronized (messer) {
             try
             {
                 Thread.sleep(1000);
@@ -23,7 +23,7 @@ public class Philosoph1 extends Thread {
 
             }
 
-            synchronized (messer) {
+            synchronized (gabel) {
 
             }
         }

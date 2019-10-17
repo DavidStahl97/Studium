@@ -1,4 +1,4 @@
-package de.thm.Multithreading.deadlock;
+package de.thm.multithread.deadlock;
 
 public class Deadlock {
 
