@@ -1,9 +1,10 @@
 package de.thm.creationPatterns.Models;
 
-import java.util.ArrayList;
-import java.util.List;
+import de.thm.creationPatterns.Factory.ProductionFactory;
 
-public class Haendler {
+import java.util.*;
+
+public class Haendler implements Observer {
 
     private Bestandslaeger laeger;
     private List<Product> products = new ArrayList<>();
@@ -11,6 +12,8 @@ public class Haendler {
     public Haendler(Bestandslaeger lager)
     {
         this.laeger = lager;
+
+        laeger.addObserver(this);
     }
 
     public void einlagern()
@@ -23,10 +26,30 @@ public class Haendler {
         products.clear();
     }
 
-    public void einkaufenBei(Produzent production, String id)
+    public void einkaufenBei(Produzent production, String name)
     {
-        var p = production.kaufen(id);
+        var p = production.kaufen(name);
         products.add(p);
     }
 
+    public void einkaufenBei(Produzent produzent, String name, int count)
+    {
+        for(int i = 0; i < count; i++)
+        {
+            einkaufenBei(produzent, name);
+        }
+    }
+
+    public void update(Observable o, Object arg)
+    {
+        var schreibwaren = ProductionFactory.createProduzent("Schreibwaren");
+        einkaufenBei(schreibwaren, "Stift", 10);
+
+        var zeitschriften = ProductionFactory.createProduzent("Zeitschriften");
+        einkaufenBei(zeitschriften, "Zeitung", 10);
+
+        einlagern();
+
+        System.out.println("Neue Produkte im Lager");
+    }
 }

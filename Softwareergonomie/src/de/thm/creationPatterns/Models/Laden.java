@@ -15,4 +15,10 @@ public class Laden {
     {
         return lager.getProduct(name);
     }
+
+    public Product angebot()
+    {
+        var products = lager.getProducts();
+        return products.get(0);
+    }
 }
