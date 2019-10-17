@@ -8,8 +8,8 @@ public class Main {
         var polizei = new Polizei(verhandlung);
         var verbrecher = new Verbrecher(verhandlung);
 
-        polizei.run();
-        verbrecher.run();
+        polizei.start();
+        verbrecher.start();
 
         polizei.join();
         verbrecher.join();
