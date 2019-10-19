@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -56,6 +58,7 @@ public class Main extends Application {
 	{
 		List<Node> layouts = new ArrayList<Node>();
 		layouts.add(createVBoxLayout(buttons));
+		layouts.add(createHBoxLayout(buttons));
 		
 		return layouts;
 	}
@@ -63,6 +66,20 @@ public class Main extends Application {
 	private static Node createVBoxLayout(List<Button> buttons)
 	{
 		VBox box = new VBox();
+		box.getChildren().addAll(buttons);
+		return box;
+	}
+	
+	private static Node createHBoxLayout(List<Button> buttons)
+	{
+		HBox box = new HBox();
+		box.getChildren().addAll(buttons);
+		return box;
+	}
+	
+	private static Node flowPanalNode(List<Button> buttons)
+	{
+		FlowPane box = new FlowPane();
 		box.getChildren().addAll(buttons);
 		return box;
 	}
