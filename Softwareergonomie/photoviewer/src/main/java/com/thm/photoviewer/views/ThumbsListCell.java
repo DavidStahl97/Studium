@@ -16,8 +16,10 @@ public class ThumbsListCell extends ListCell<Photo> {
     protected void updateItem(Photo item, boolean empty) {
         super.updateItem(item, empty);
 
-        if(empty)
+        if(empty) {
+            super.setGraphic(null);
             return;
+        }
 
         pane = new Pane();
         text = new Text();
