@@ -11,6 +11,7 @@ public class ShellController extends ControllerBase<ShellView> {
         super(ShellView.class);
 
         thumbListController = new ThumbListController();
+        // ToDo: view should do it
         view.setLeft(thumbListController.getParentPane());
     }
 
