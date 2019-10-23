@@ -8,7 +8,6 @@ public class EventAggregator implements IEventAggregator {
 
     private Hashtable<String, PubSubEvent> eventTable = new Hashtable<>();
 
-    @SuppressWarnings("unchecked")
     public <T extends PubSubEvent<E>, E> T getEvent(Class<T> clazz) {
         var pubsubEvent = eventTable.get(clazz.getName());
 

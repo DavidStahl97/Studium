@@ -14,6 +14,11 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
     }
 
     private void selectPhotoEvent(Photo p) {
+        if(p == null) {
+            view.getImageView().setImage(null);
+            return;
+        }
 
+        view.getImageView().setImage(p.getImage());
     }
 }
