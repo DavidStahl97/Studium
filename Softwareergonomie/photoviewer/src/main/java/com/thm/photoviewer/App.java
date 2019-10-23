@@ -25,6 +25,8 @@ public class App extends Application {
 
         var scene = new Scene(shellController.getParentPane(), 640, 480);
         stage.setScene(scene);
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.show();
     }
 

@@ -6,14 +6,8 @@ import com.thm.photoviewer.ImageChooser;
 import com.thm.photoviewer.events.SelectThumbEvent;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.views.ThumbListView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.FileChooser;
-import javafx.stage.Window;
 
 import java.io.FileNotFoundException;
 

@@ -9,6 +9,8 @@ public class PhotoView extends Pane {
 
     public PhotoView() {
         imageView = new ImageView();
+        imageView.fitWidthProperty().bind(super.widthProperty());
+        imageView.fitHeightProperty().bind(super.heightProperty());
         super.getChildren().add(imageView);
     }
 
