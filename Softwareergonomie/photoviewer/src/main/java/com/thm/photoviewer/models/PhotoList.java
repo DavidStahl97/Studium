@@ -3,8 +3,6 @@ package com.thm.photoviewer.models;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 
 public class PhotoList extends SimpleListProperty<Photo> {
@@ -28,13 +26,13 @@ public class PhotoList extends SimpleListProperty<Photo> {
     }
 
     public void nextPhoto(Direction direction) {
-        var currentIndex = super.indexOf(selectedPhoto);
+        var currentIndex = indexOf(getPhoto());
         var size = size();
         var newIndex = direction == Direction.RIGHT ?
                 (currentIndex + 1) % size :
                 (size + currentIndex - 1) % size;
 
-        var currentPhoto = super.get(newIndex);
+        var currentPhoto = get(newIndex);
         setPhoto(currentPhoto);
     }
 }

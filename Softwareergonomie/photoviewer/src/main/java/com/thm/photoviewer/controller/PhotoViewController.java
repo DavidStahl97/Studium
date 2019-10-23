@@ -1,8 +1,7 @@
 package com.thm.photoviewer.controller;
 
-import com.thm.eventbus.IEventAggregator;
 import com.thm.photoviewer.ControllerBase;
-import com.thm.photoviewer.events.SelectThumbEvent;
+import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.views.PhotoView;
@@ -19,7 +18,7 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
         this.photoList = photoList;
 
-        photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> selectPhotoEvent(newValue));
+        photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
 
         view.getImageView().setOnMousePressed(e -> clickSceneX = e.getSceneX());
         view.getImageView().setOnMouseReleased(e -> onMouseReleased(e));
@@ -27,10 +26,11 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
     private void onMouseReleased(MouseEvent e) {
         double releasedMouseX = e.getSceneX();
-
+        var direction = clickSceneX > releasedMouseX ? Direction.RIGHT : Direction.LEFT;
+        photoList.nextPhoto(direction);
     }
 
-    private void selectPhotoEvent(Photo p) {
+    private void onSelectedPhoto(Photo p) {
         if(p == null) {
             view.getImageView().setImage(null);
             return;
