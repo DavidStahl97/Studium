@@ -1,8 +1,9 @@
 package com.thm.photoviewer;
 
+import com.thm.GenericCreateFactory;
 import javafx.scene.layout.Pane;
 
-public class ControllerBase<T extends Pane> {
+public abstract class ControllerBase<T extends Pane> {
 
     protected T view;
 

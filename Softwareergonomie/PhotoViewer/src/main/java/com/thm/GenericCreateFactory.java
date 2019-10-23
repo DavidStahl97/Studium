@@ -1,4 +1,4 @@
-package com.thm.photoviewer;
+package com.thm;
 
 import java.lang.reflect.InvocationTargetException;
 

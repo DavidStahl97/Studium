@@ -1,7 +1,9 @@
 package com.thm.photoviewer.controller;
 
+import com.thm.eventbus.IEventAggregator;
 import com.thm.photoviewer.ControllerBase;
 import com.thm.photoviewer.ImageChooser;
+import com.thm.photoviewer.events.SelectThumbEvent;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.views.ThumbListView;
 import javafx.beans.value.ChangeListener;
@@ -17,24 +19,30 @@ import java.io.FileNotFoundException;
 
 public class ThumbListController extends ControllerBase<ThumbListView> {
 
+    private IEventAggregator eventAggregator;
     private ImageChooser imageChooser;
 
     private ObservableList<Photo> thumbs;
     private Photo selectedPhoto;
 
-    public ThumbListController() {
+    public ThumbListController(IEventAggregator eventAggregator) {
         super(ThumbListView.class);
-
+        this.eventAggregator = eventAggregator;
         imageChooser = new ImageChooser();
 
         thumbs = FXCollections.observableArrayList();
         view.getThumbsListView().setItems(thumbs);
         view.getThumbsListView().getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> selectedPhoto = newValue
+            (observable, oldValue, newValue) -> selectThumbEvent(newValue)
         );
 
         view.getAddButton().setOnAction(e -> addEvent());
         view.getDeleteButton().setOnAction(e -> deleteEvent());
+    }
+
+    private void selectThumbEvent(Photo newValue) {
+        selectedPhoto = newValue;
+        eventAggregator.getEvent(SelectThumbEvent.class).publish(selectedPhoto);
     }
 
     private void deleteEvent() {
