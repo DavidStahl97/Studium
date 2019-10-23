@@ -1,31 +1,109 @@
 package com.thm.javafxmvc;
 
-import com.thm.javafxmvc.eingabe.EingabeVC;
-import com.thm.javafxmvc.model.DataBean;
+import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-
-/**
- * @author Alexander Gr.
- * @see http://blog.axxg.de
- *
- */
 public class App extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+    private List<String> list = new ArrayList<String>();
+    int j = 0;
+    double orgCliskSceneX, orgReleaseSceneX;
+    Button lbutton, rButton;
+    ImageView imageView;
 
     @Override
     public void start(Stage primaryStage) {
+        // images in src folder.
 
-        // Sessionscope /Applikationscope Beans inizitalisieren!
-        // muessen von Controllern weitergegeben werden
-        DataBean dataBean = new DataBean(primaryStage);
+        try {
+            list.add("C:\\Users\\dstah\\Pictures\\lara-croft-tomb-raider.jpg");
+            list.add("C:\\Users\\dstah\\Pictures\\tomb_raider_lara_croft_4k-wide.jpg");
 
+            GridPane root = new GridPane();
+            root.setAlignment(Pos.CENTER);
 
-        // Ersten Controller aufrufen
-        EingabeVC eingabeVC = new EingabeVC(dataBean);
-        eingabeVC.show();
+            lbutton = new Button("<");
+            rButton = new Button(">");
+
+            Image images[] = new Image[list.size()];
+            for (int i = 0; i < list.size(); i++) {
+                var inputStream = new FileInputStream(list.get(i));
+                images[i] = new Image(inputStream);
+            }
+
+            imageView = new ImageView(images[j]);
+            imageView.setCursor(Cursor.CLOSED_HAND);
+
+            imageView.setOnMousePressed(circleOnMousePressedEventHandler);
+
+            imageView.setOnMouseReleased(e -> {
+                orgReleaseSceneX = e.getSceneX();
+                if (orgCliskSceneX > orgReleaseSceneX) {
+                    lbutton.fire();
+                } else {
+                    rButton.fire();
+                }
+            });
+
+            rButton.setOnAction(e -> {
+                j = j + 1;
+                if (j == list.size()) {
+                    j = 0;
+                }
+                imageView.setImage(images[j]);
+
+            });
+            lbutton.setOnAction(e -> {
+                j = j - 1;
+                if (j == 0 || j > list.size() + 1 || j == -1) {
+                    j = list.size() - 1;
+                }
+                imageView.setImage(images[j]);
+
+            });
+
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(300);
+
+            HBox hBox = new HBox();
+            hBox.setSpacing(15);
+            hBox.setAlignment(Pos.CENTER);
+            // hBox.getChildren().addAll(lbutton, imageView, rButton);
+            hBox.getChildren().addAll(lbutton, imageView, rButton);
+
+            root.add(hBox, 1, 1);
+            Scene scene = new Scene(root, 800, 300);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    EventHandler<MouseEvent> circleOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
+
+        @Override
+        public void handle(MouseEvent t) {
+            orgCliskSceneX = t.getSceneX();
+        }
+    };
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

@@ -1,6 +1,7 @@
 package com.thm.photoviewer;
 
 import com.thm.GenericCreateFactory;
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 public abstract class ControllerBase<T extends Pane> {
@@ -14,6 +15,10 @@ public abstract class ControllerBase<T extends Pane> {
 
     public Pane getParentPane() {
         return view;
+    }
+
+    public Scene getScene() {
+        return view.getScene();
     }
 
 }

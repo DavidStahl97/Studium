@@ -1,53 +1,49 @@
 package com.thm.photoviewer.controller;
 
-import com.thm.eventbus.IEventAggregator;
 import com.thm.photoviewer.ControllerBase;
 import com.thm.photoviewer.ImageChooser;
-import com.thm.photoviewer.events.SelectThumbEvent;
 import com.thm.photoviewer.models.Photo;
+import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.views.ThumbListView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.io.FileNotFoundException;
 
 public class ThumbListController extends ControllerBase<ThumbListView> {
 
-    private IEventAggregator eventAggregator;
     private ImageChooser imageChooser;
 
-    private ObservableList<Photo> thumbs;
+    private PhotoList photoList;
     private Photo selectedPhoto;
 
-    public ThumbListController(IEventAggregator eventAggregator) {
+    public ThumbListController(PhotoList photoList) {
         super(ThumbListView.class);
-        this.eventAggregator = eventAggregator;
+
+        this.photoList = photoList;
+
         imageChooser = new ImageChooser();
 
-        thumbs = FXCollections.observableArrayList();
-        view.getThumbsListView().setItems(thumbs);
-        view.getThumbsListView().getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> selectThumbEvent(newValue)
+        photoList.selectedPhotoProperty().addListener(
+                (observable, oldValue, newValue) -> view.getThumbsListView().getSelectionModel().select(newValue)
         );
 
-        view.getAddButton().setOnAction(e -> addEvent());
-        view.getDeleteButton().setOnAction(e -> deleteEvent());
+        view.getThumbsListView().setItems(photoList);
+        view.getThumbsListView().getSelectionModel().selectedItemProperty().addListener(
+            (observable, oldValue, newValue) -> photoList.setPhoto(newValue)
+        );
+
+        view.getAddButton().setOnAction(e -> onAddPhoto());
+        view.getDeleteButton().setOnAction(e -> onDeletePhoto());
     }
 
-    private void selectThumbEvent(Photo newValue) {
-        selectedPhoto = newValue;
-        eventAggregator.getEvent(SelectThumbEvent.class).publish(selectedPhoto);
+    private void onDeletePhoto() {
+        photoList.remove(selectedPhoto);
     }
 
-    private void deleteEvent() {
-        thumbs.remove(selectedPhoto);
-    }
-
-    private void addEvent() {
+    private void onAddPhoto() {
         var window = view.getScene().getWindow();
         try {
             var photo = imageChooser.show(window);
-            thumbs.addAll(photo);
+            photoList.addAll(photo);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

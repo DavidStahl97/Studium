@@ -7,8 +7,10 @@ public class ShellController extends ControllerBase<ShellView> {
 
     private ThumbListController thumbListController;
     private PhotoViewController photoViewController;
+    private FunctionalityController functionalityController;
 
-    public ShellController(ThumbListController thumbListController, PhotoViewController photoViewController) {
+    public ShellController(ThumbListController thumbListController, PhotoViewController photoViewController,
+        FunctionalityController functionalityController) {
         super(ShellView.class);
 
         // ToDo: view should do it
@@ -17,6 +19,9 @@ public class ShellController extends ControllerBase<ShellView> {
 
         this.photoViewController = photoViewController;
         view.setCenter(photoViewController.getParentPane());
+
+        this.functionalityController = functionalityController;
+        view.setBottom(functionalityController.getParentPane());
     }
 
 }

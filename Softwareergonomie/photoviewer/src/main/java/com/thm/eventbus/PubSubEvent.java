@@ -7,7 +7,7 @@ public abstract class PubSubEvent<T> {
 
     private List<ISubscription<T>> subscriptions = new ArrayList<>();
 
-    public void subscripe(ISubscription<T> subscription) {
+    public void subscribe(ISubscription<T> subscription) {
         subscriptions.add(subscription);
     }
 
