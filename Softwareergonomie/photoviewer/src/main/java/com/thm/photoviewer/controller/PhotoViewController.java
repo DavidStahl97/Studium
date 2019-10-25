@@ -81,6 +81,19 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
             imageViewList.moveXPositions(offsetX);
         });
+
+        imageView.addEventFilter(MouseEvent.MOUSE_RELEASED, t -> {
+            var center = imageViewList.getCenterImageView();
+            var centerPosition = center.getTranslateX();
+            var paneWidth = view.getWidth();
+
+            if(paneWidth - centerPosition < paneWidth / 2) {
+                System.out.println("");
+            }
+            else if(paneWidth + centerPosition < paneWidth / 2) {
+                System.out.println("");
+            }
+        });
     }
 
     private void clipChildren(Region region, double arc) {
