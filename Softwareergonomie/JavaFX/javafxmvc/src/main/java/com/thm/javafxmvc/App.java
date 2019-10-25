@@ -1,109 +1,72 @@
 package com.thm.javafxmvc;
 
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+/**
+ * @web http://java-buddy.blogspot.com/
+ */
 public class App extends Application {
 
-    private List<String> list = new ArrayList<String>();
-    int j = 0;
-    double orgCliskSceneX, orgReleaseSceneX;
-    Button lbutton, rButton;
-    ImageView imageView;
+    Circle circle_Red;
+    double orgSceneX, orgSceneY;
+    double orgTranslateX, orgTranslateY;
 
     @Override
     public void start(Stage primaryStage) {
-        // images in src folder.
 
-        try {
-            list.add("C:\\Users\\dstah\\Pictures\\lara-croft-tomb-raider.jpg");
-            list.add("C:\\Users\\dstah\\Pictures\\tomb_raider_lara_croft_4k-wide.jpg");
+        //Create Circles
+        circle_Red = new Circle(50.0f, Color.RED);
+        circle_Red.setCursor(Cursor.HAND);
+        circle_Red.setOnMousePressed(circleOnMousePressedEventHandler);
+        circle_Red.setOnMouseDragged(circleOnMouseDraggedEventHandler);
 
-            GridPane root = new GridPane();
-            root.setAlignment(Pos.CENTER);
+        Group root = new Group();
+        root.getChildren().addAll(circle_Red);
 
-            lbutton = new Button("<");
-            rButton = new Button(">");
+        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(root, 400,350));
 
-            Image images[] = new Image[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                var inputStream = new FileInputStream(list.get(i));
-                images[i] = new Image(inputStream);
-            }
-
-            imageView = new ImageView(images[j]);
-            imageView.setCursor(Cursor.CLOSED_HAND);
-
-            imageView.setOnMousePressed(circleOnMousePressedEventHandler);
-
-            imageView.setOnMouseReleased(e -> {
-                orgReleaseSceneX = e.getSceneX();
-                if (orgCliskSceneX > orgReleaseSceneX) {
-                    lbutton.fire();
-                } else {
-                    rButton.fire();
-                }
-            });
-
-            rButton.setOnAction(e -> {
-                j = j + 1;
-                if (j == list.size()) {
-                    j = 0;
-                }
-                imageView.setImage(images[j]);
-
-            });
-            lbutton.setOnAction(e -> {
-                j = j - 1;
-                if (j == 0 || j > list.size() + 1 || j == -1) {
-                    j = list.size() - 1;
-                }
-                imageView.setImage(images[j]);
-
-            });
-
-            imageView.setFitHeight(100);
-            imageView.setFitWidth(300);
-
-            HBox hBox = new HBox();
-            hBox.setSpacing(15);
-            hBox.setAlignment(Pos.CENTER);
-            // hBox.getChildren().addAll(lbutton, imageView, rButton);
-            hBox.getChildren().addAll(lbutton, imageView, rButton);
-
-            root.add(hBox, 1, 1);
-            Scene scene = new Scene(root, 800, 300);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        primaryStage.setTitle("java-buddy");
+        primaryStage.show();
     }
-
-    EventHandler<MouseEvent> circleOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
-
-        @Override
-        public void handle(MouseEvent t) {
-            orgCliskSceneX = t.getSceneX();
-        }
-    };
 
     public static void main(String[] args) {
         launch(args);
     }
+
+    EventHandler<MouseEvent> circleOnMousePressedEventHandler =
+            new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+                    orgSceneX = t.getSceneX();
+                    orgSceneY = t.getSceneY();
+                    orgTranslateX = ((Circle)(t.getSource())).getTranslateX();
+                    orgTranslateY = ((Circle)(t.getSource())).getTranslateY();
+                }
+            };
+
+    EventHandler<MouseEvent> circleOnMouseDraggedEventHandler =
+            new EventHandler<MouseEvent>() {
+
+                @Override
+                public void handle(MouseEvent t) {
+                    double offsetX = t.getSceneX() - orgSceneX;
+                    double offsetY = t.getSceneY() - orgSceneY;
+                    double newTranslateX = orgTranslateX + offsetX;
+                    double newTranslateY = orgTranslateY + offsetY;
+
+                    ((Circle)(t.getSource())).setTranslateX(newTranslateX);
+                    ((Circle)(t.getSource())).setTranslateY(newTranslateY);
+                }
+            };
 }
+

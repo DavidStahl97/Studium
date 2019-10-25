@@ -147,7 +147,7 @@ public class SlideZ extends Application {
     class ScannerLoader extends Thread implements FileVisitor<Path> {
 
         // Directory to start scanning for pics
-        String root = "/home/notzed/Pictures";
+        String root = "C:/Users/dstah/Pictures";
         boolean complete;
 
         @Override

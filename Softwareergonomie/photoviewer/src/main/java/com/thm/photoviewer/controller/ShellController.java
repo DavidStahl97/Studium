@@ -21,7 +21,7 @@ public class ShellController extends ControllerBase<ShellView> {
         view.setCenter(photoViewController.getParentPane());
 
         this.functionalityController = functionalityController;
-        view.setBottom(functionalityController.getParentPane());
+        //view.setBottom(functionalityController.getParentPane());
     }
 
 }

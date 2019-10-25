@@ -20,22 +20,34 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
 
-        view.getImageView().setOnMousePressed(e -> clickSceneX = e.getSceneX());
-        view.getImageView().setOnMouseReleased(e -> onMouseReleased(e));
+        view.getFirstImageView().setOnMousePressed(e -> clickSceneX = e.getSceneX());
+        view.getFirstImageView().setOnMouseReleased(e -> onMouseReleased(e));
+
+
+
     }
 
     private void onMouseReleased(MouseEvent e) {
         double releasedMouseX = e.getSceneX();
-        var direction = clickSceneX > releasedMouseX ? Direction.RIGHT : Direction.LEFT;
-        photoList.nextPhoto(direction);
+        //var direction = clickSceneX > releasedMouseX ? Direction.RIGHT : Direction.LEFT;
+        //photoList.nextPhoto(direction);
     }
 
     private void onSelectedPhoto(Photo p) {
         if(p == null) {
-            view.getImageView().setImage(null);
+            view.getFirstImageView().setImage(null);
             return;
         }
 
-        view.getImageView().setImage(p.getImage());
+        var first = view.getFirstImageView();
+        var second = view.getSecondImageView();
+        var third = view.getThirdImageView();
+
+        second.setTranslateX(- view.getWidth() - 10);
+        third.setTranslateX(view.getWidth() + 10);
+
+        first.setImage(p.getImage());
+        second.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
+        third.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
     }
 }

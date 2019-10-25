@@ -25,14 +25,14 @@ public class PhotoList extends SimpleListProperty<Photo> {
         return selectedPhoto;
     }
 
-    public void nextPhoto(Direction direction) {
+    public Photo getNextPhoto(Direction direction) {
         var currentIndex = indexOf(getPhoto());
         var size = size();
         var newIndex = direction == Direction.RIGHT ?
                 (currentIndex + 1) % size :
                 (size + currentIndex - 1) % size;
 
-        var currentPhoto = get(newIndex);
-        setPhoto(currentPhoto);
+        var nextPhoto = get(newIndex);
+        return nextPhoto;
     }
 }
