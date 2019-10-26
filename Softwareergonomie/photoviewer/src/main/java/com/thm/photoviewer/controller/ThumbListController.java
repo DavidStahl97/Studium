@@ -28,7 +28,7 @@ public class ThumbListController extends ControllerBase<ThumbListView> {
 
         view.getThumbsListView().setItems(photoList);
         view.getThumbsListView().getSelectionModel().selectedItemProperty().addListener(
-            (observable, oldValue, newValue) -> photoList.setPhoto(newValue)
+            (observable, oldValue, newValue) -> photoList.setSelectedPhoto(newValue)
         );
 
         view.getAddButton().setOnAction(e -> onAddPhoto());
@@ -36,7 +36,7 @@ public class ThumbListController extends ControllerBase<ThumbListView> {
     }
 
     private void onDeletePhoto() {
-        photoList.remove(selectedPhoto);
+        photoList.removeSelectedPhoto();
     }
 
     private void onAddPhoto() {

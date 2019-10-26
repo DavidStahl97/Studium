@@ -13,11 +13,11 @@ public class PhotoList extends SimpleListProperty<Photo> {
         super(FXCollections.observableArrayList());
     }
 
-    public Photo getPhoto() {
+    public Photo getSelectedPhoto() {
         return selectedPhoto.get();
     }
 
-    public void setPhoto(Photo photo) {
+    public void setSelectedPhoto(Photo photo) {
         selectedPhoto.set(photo);
     }
 
@@ -25,8 +25,16 @@ public class PhotoList extends SimpleListProperty<Photo> {
         return selectedPhoto;
     }
 
+    public void removeSelectedPhoto() {
+        var left = getNextPhoto(Direction.LEFT);
+        super.remove(getSelectedPhoto());
+        if(super.size() > 1) {
+            setSelectedPhoto(left);
+        }
+    }
+
     public Photo getNextPhoto(Direction direction) {
-        var currentIndex = indexOf(getPhoto());
+        var currentIndex = indexOf(getSelectedPhoto());
         var size = size();
         var newIndex = direction == Direction.RIGHT ?
                 (currentIndex + 1) % size :

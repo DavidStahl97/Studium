@@ -8,8 +8,8 @@ import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.views.ShowPhotosView;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
+import javafx.collections.ListChangeListener;
 import javafx.scene.Cursor;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
@@ -17,7 +17,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class ShowPhotosController extends ControllerBase<ShowPhotosView> {
-    private static final double TRANSITION_DURATION = 0.4;
+    private static final double TRANSITION_DURATION = 0.2;
     private static final int GAP = 10;
     private static final double TRANSITION_THRESHOLD = 100.0;
     private static final int PHOTO_VIEW_COUNT = 3;
@@ -45,6 +45,32 @@ public class ShowPhotosController extends ControllerBase<ShowPhotosView> {
 
         this.photoList = photoList;
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
+        photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged());
+    }
+
+    private void photoListChanged() {
+        var centerPhoto = photoViewControllers.get(centerIndex).getPhoto();
+        if(centerPhoto == null) {
+            return;
+        }
+
+        var controller = new PhotoViewController[] {
+            photoViewControllers.getLeft(centerIndex),
+            photoViewControllers.getRight(centerIndex)
+        };
+
+        var newPhotos = new Photo[] {
+            photoList.getNextPhoto(Direction.LEFT),
+            photoList.getNextPhoto(Direction.RIGHT)
+        };
+
+        for(int i = 0; i < controller.length; i++) {
+            var newPhoto = newPhotos[i];
+            var oldPhoto = controller[i].getPhoto();
+            if(oldPhoto.equals(newPhoto) == false) {
+                controller[i].setPhoto(newPhoto);
+            }
+        }
     }
 
     private void createPhotoViews() {
@@ -72,7 +98,7 @@ public class ShowPhotosController extends ControllerBase<ShowPhotosView> {
 
     private void onSelectedPhoto(Photo p) {
         if(p == null) {
-            photoViewControllers.stream().forEach(imageView -> imageView.setImage(null));
+            photoViewControllers.stream().forEach(imageView -> imageView.setPhoto(new Photo(null, null)));
             return;
         }
 
@@ -87,9 +113,9 @@ public class ShowPhotosController extends ControllerBase<ShowPhotosView> {
         leftController.getParentPane().setTranslateX(calculateLeftXPosition());
         rightController.getParentPane().setTranslateX(calculateRightXPosition());
 
-        centerController.setImage(p.getImage());
-        leftController.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
-        rightController.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
+        centerController.setPhoto(p);
+        leftController.setPhoto(photoList.getNextPhoto(Direction.LEFT));
+        rightController.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
     }
 
     private void configurePhotoView(Pane photoPane) {
@@ -137,13 +163,23 @@ public class ShowPhotosController extends ControllerBase<ShowPhotosView> {
             var left = photoViewControllers.getLeft(centerIndex).getParentPane();
             if(centerPosition > TRANSITION_THRESHOLD) {
                 right.setTranslateX(left.getTranslateX() + calculateLeftXPosition());
+                // new centerIndex is the old left index
                 leftTransition();
-                photoList.setPhoto(photoList.getNextPhoto(Direction.LEFT));
+                photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT));
+
+                // the old left image is now the center image, so a new left image must be loaded
+                var leftController = photoViewControllers.getLeft(centerIndex);
+                leftController.setPhoto(photoList.getNextPhoto(Direction.LEFT));
             }
             else if(centerPosition < -TRANSITION_THRESHOLD) {
                 left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
+                // new centerIndex is the old right index
                 rightTransition();
-                photoList.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+                photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT));
+
+                // the old right image is now the center image, so a new right image must be loaded
+                var rightController = photoViewControllers.getRight(centerIndex);
+                rightController.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
             }
             else {
                 centerTransition();
