@@ -18,8 +18,9 @@ import javafx.util.Duration;
 import java.util.Arrays;
 
 public class PhotoViewController extends ControllerBase<PhotoView> {
-    private static final double OFFSET_PER_SECONDS = 900.0;
+    private static final double TRANSITION_DURATION = 0.4;
     private static final int GAP = 10;
+    private static final double TRANSITION_THRESHOLD = 100.0;
 
     private PhotoList photoList;
 
@@ -28,6 +29,8 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
     private int centerIndex = 0;
 
     private double orgSceneX;
+    private boolean inTransitionMode = false;
+    private boolean startDragging = false;
 
     public PhotoViewController(PhotoList photoList) {
         super(PhotoView.class);
@@ -40,9 +43,20 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         for(var imageView : imageViews) {
             configureImageView(imageView);
         }
+        configureXPositionResizingUpdates();
 
         this.photoList = photoList;
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
+    }
+
+    private void configureXPositionResizingUpdates() {
+        view.widthProperty().addListener((observable, oldValue, newValue) -> {
+            var left = imageViews.getLeft(centerIndex);
+            left.setTranslateX(calculateLeftXPosition());
+
+            var right = imageViews.getRight(centerIndex);
+            right.setTranslateX(calculateRightXPosition());
+        });
     }
 
     private void onSelectedPhoto(Photo p) {
@@ -51,12 +65,16 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
             return;
         }
 
+        if(p.getImage().equals(imageViews.get(centerIndex).getImage())) {
+            return;
+        }
+
         var center = imageViews.get(centerIndex);
         var left = imageViews.getLeft(centerIndex);
         var right = imageViews.getRight(centerIndex);
 
-        left.setTranslateX(- view.getWidth() - GAP);
-        right.setTranslateX(view.getWidth() + GAP);
+        left.setTranslateX(calculateLeftXPosition());
+        right.setTranslateX(calculateRightXPosition());
 
         center.setImage(p.getImage());
         left.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
@@ -85,11 +103,22 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         imageView.setCursor(Cursor.HAND);
 
         imageView.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> {
+            if(inTransitionMode) {
+                startDragging = false;
+                return;
+            }
+
+            startDragging = true;
+
             orgSceneX = t.getSceneX();
             snapshottingXPosition();
         });
 
         imageView.setOnMouseDragged(t -> {
+            if(startDragging == false) {
+                return;
+            }
+
             double offsetX = t.getSceneX() - orgSceneX;
             orgSceneX = t.getSceneX();
 
@@ -104,19 +133,23 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         });
 
         imageView.addEventFilter(MouseEvent.MOUSE_RELEASED, t -> {
+            if(startDragging == false) {
+                return;
+            }
+
             var center = imageViews.get(centerIndex);
             var centerPosition = center.getTranslateX();
             var paneWidth = view.getWidth();
 
             var right = imageViews.getRight(centerIndex);
             var left = imageViews.getLeft(centerIndex);
-            if(paneWidth - centerPosition < paneWidth / 2) {
-                right.setTranslateX(left.getTranslateX() - view.getWidth() - GAP);
+            if(centerPosition > TRANSITION_THRESHOLD) {
+                right.setTranslateX(left.getTranslateX() + calculateLeftXPosition());
                 leftTransition();
                 photoList.setPhoto(photoList.getNextPhoto(Direction.LEFT));
             }
-            else if(paneWidth + centerPosition < paneWidth / 2) {
-                left.setTranslateX(right.getTranslateX() + view.getWidth() + GAP);
+            else if(centerPosition < -TRANSITION_THRESHOLD) {
+                left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
                 rightTransition();
                 photoList.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
             }
@@ -155,23 +188,25 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
     private void centerTransition() {
         var offset = imageViews.get(centerIndex).getTranslateX();
-        var duration = Math.abs(offset / OFFSET_PER_SECONDS);
 
-        var centerTransition = new TranslateTransition(Duration.seconds(duration), imageViews.get(centerIndex));
+        var centerTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), imageViews.get(centerIndex));
         centerTransition.setFromX(offset);
         centerTransition.setToX(0);
 
         var left = imageViews.getLeft(centerIndex);
-        var leftTransition = new TranslateTransition(Duration.seconds(duration), left);
+        var leftTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), left);
         leftTransition.setFromX(left.getTranslateX());
         leftTransition.setToX(left.getTranslateX() - offset);
 
         var right = imageViews.getRight(centerIndex);
-        var rightTransition = new TranslateTransition(Duration.seconds(duration), right);
+        var rightTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), right);
         rightTransition.setFromX(right.getTranslateX());
         rightTransition.setToX(right.getTranslateX() - offset);
 
         var parallelTransition = new ParallelTransition(centerTransition, leftTransition, rightTransition);
+        parallelTransition.setOnFinished(event -> inTransitionMode = false);
+
+        inTransitionMode = true;
         parallelTransition.play();
     }
 
@@ -185,5 +220,13 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         var right = imageViews.getRight(centerIndex);
         centerIndex = imageViews.indexOf(right);
         centerTransition();
+    }
+
+    private double calculateLeftXPosition() {
+        return - view.getWidth() - GAP;
+    }
+
+    private double calculateRightXPosition() {
+        return view.getWidth() + GAP;
     }
 }
