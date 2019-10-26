@@ -6,22 +6,17 @@ import com.thm.photoviewer.views.ShellView;
 public class ShellController extends ControllerBase<ShellView> {
 
     private ThumbListController thumbListController;
-    private PhotoViewController photoViewController;
-    private FunctionalityController functionalityController;
+    private ShowPhotosController showPhotosController;
 
-    public ShellController(ThumbListController thumbListController, PhotoViewController photoViewController,
-        FunctionalityController functionalityController) {
+    public ShellController(ThumbListController thumbListController, ShowPhotosController showPhotosController) {
         super(ShellView.class);
 
-        // ToDo: view should do it
         this.thumbListController = thumbListController;
         view.setLeft(thumbListController.getParentPane());
 
-        this.photoViewController = photoViewController;
-        view.setCenter(photoViewController.getParentPane());
+        this.showPhotosController = showPhotosController;
+        view.setCenter(showPhotosController.getParentPane());
 
-        this.functionalityController = functionalityController;
-        //view.setBottom(functionalityController.getParentPane());
     }
 
 }

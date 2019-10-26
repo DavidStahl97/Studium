@@ -1,22 +1,19 @@
 package com.thm.photoviewer.views;
 
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Pane;
 
 public class PhotoView extends Pane {
 
-    private ImageView[] imageViews = new ImageView[3];
+    private ImageView imageView;
 
     public PhotoView() {
-        for(int i = 0; i < imageViews.length; i++) {
-            imageViews[i] = new ImageView();
-        }
-
-        this.getChildren().addAll(imageViews);
+        imageView = new ImageView();
+        super.getChildren().add(imageView);
     }
 
-    public ImageView[] getImageViews() {
-        return imageViews;
+    public ImageView getImageView() {
+        return imageView;
     }
 
 }

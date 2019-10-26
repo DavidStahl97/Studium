@@ -13,7 +13,7 @@ public abstract class ControllerBase<T extends Pane> {
         view = factory.createInstance();
     }
 
-    public Pane getParentPane() {
+    public T getParentPane() {
         return view;
     }
 
