@@ -1,0 +1,7 @@
+.bulb {
+    -fx-fill: lightslategray;
+}
+
+.bulb:on {
+    -fx-fill: gold;
+}

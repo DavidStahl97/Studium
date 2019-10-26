@@ -12,7 +12,7 @@ public class ShellController extends ControllerBase<ShellView> {
         super(ShellView.class);
 
         this.thumbListController = thumbListController;
-        view.setLeft(thumbListController.getParentPane());
+        view.setBottom(thumbListController.getParentPane());
 
         this.showPhotosController = showPhotosController;
         view.setCenter(showPhotosController.getParentPane());
