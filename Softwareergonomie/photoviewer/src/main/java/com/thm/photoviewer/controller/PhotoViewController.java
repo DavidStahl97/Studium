@@ -14,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 
 public class PhotoViewController extends ControllerBase<PhotoView> {
 
+    private static final int GAP = 10;
+
     private ImageViewList imageViewList;
     private PhotoList photoList;
 
@@ -33,12 +35,6 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
     }
 
-    private void onMouseReleased(MouseEvent e) {
-        double releasedMouseX = e.getSceneX();
-        //var direction = clickSceneX > releasedMouseX ? Direction.RIGHT : Direction.LEFT;
-        //photoList.nextPhoto(direction);
-    }
-
     private void onSelectedPhoto(Photo p) {
         if(p == null) {
             imageViewList.deleteImages();
@@ -49,8 +45,8 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
         var left = imageViewList.getLeftImageView();
         var right = imageViewList.getRightImageView();
 
-        left.setTranslateX(- view.getWidth() - 10);
-        right.setTranslateX(view.getWidth() + 10);
+        left.setTranslateX(- view.getWidth() - GAP);
+        right.setTranslateX(view.getWidth() + GAP);
 
         center.setImage(p.getImage());
         left.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
@@ -65,7 +61,7 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
 
         imageView.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> {
             orgSceneX = t.getSceneX();
-            imageViewList.snapshotingXPosition();
+            imageViewList.snapshottingXPosition();
         });
 
         imageView.setOnMouseDragged(t -> {
@@ -87,11 +83,18 @@ public class PhotoViewController extends ControllerBase<PhotoView> {
             var centerPosition = center.getTranslateX();
             var paneWidth = view.getWidth();
 
+            var right = imageViewList.getRightImageView();
+            var left = imageViewList.getLeftImageView();
             if(paneWidth - centerPosition < paneWidth / 2) {
-                System.out.println("");
+                right.setTranslateX(left.getTranslateX() - view.getWidth() - GAP);
+                imageViewList.leftTransition();
             }
             else if(paneWidth + centerPosition < paneWidth / 2) {
-                System.out.println("");
+                left.setTranslateX(right.getTranslateX() + view.getWidth() + GAP);
+                imageViewList.rightTransition();
+            }
+            else {
+                imageViewList.centerTransition();
             }
         });
     }
