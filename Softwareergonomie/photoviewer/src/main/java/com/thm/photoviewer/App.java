@@ -1,8 +1,8 @@
 package com.thm.photoviewer;
 
+import com.thm.photoviewer.controller.BottomController;
 import com.thm.photoviewer.controller.ShowPhotosController;
 import com.thm.photoviewer.controller.ShellController;
-import com.thm.photoviewer.controller.ThumbListController;
 import com.thm.photoviewer.models.PhotoList;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,9 +17,10 @@ public class App extends Application {
     public void start(Stage stage) {
         var photoList = new PhotoList();
 
-        var thumbListController = new ThumbListController(photoList);
+        //var thumbListController = new ThumbListController(photoList);
+        var bottomController = new BottomController(photoList);
         var photoViewController = new ShowPhotosController(photoList);
-        var shellController = new ShellController(thumbListController, photoViewController);
+        var shellController = new ShellController(bottomController, photoViewController);
 
         var scene = new Scene(shellController.getParentPane(), 640, 480);
         stage.setScene(scene);
