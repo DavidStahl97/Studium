@@ -27,8 +27,12 @@ public class BottomBarController implements Initializable {
     private void onAddPhoto() {
         var window = addButton.getScene().getWindow();
         try {
-            var photo = imageChooser.show(window);
-            photoList.addAll(photo);
+            var photos = imageChooser.show(window);
+            photoList.addAll(photos);
+
+            if(photos.size() > 0 && photoList.getSelectedPhoto() == null) {
+                photoList.setSelectedPhoto(photos.get(0));
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

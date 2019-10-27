@@ -18,6 +18,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("Shell"));
+
+        stage.setTitle("Photo Viewer");
+        stage.setMinHeight(400);
+        stage.setMinWidth(600);
         stage.setScene(scene);
         stage.show();
     }

@@ -8,8 +8,9 @@
 
 <?import javafx.geometry.Insets?>
 <Pane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.thm.photoviewer.controller.PhotoViewController"
-      fx:id="pane">
-
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.thm.photoviewer.controller.ThumbsListController">
+    <padding><Insets top="5" bottom="5" left="5" right="5"/></padding>
+    <HBox fx:id="thumbsBox"
+          spacing="10"/>
 </Pane>
