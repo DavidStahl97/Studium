@@ -6,10 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.thm.photoviewer.controller.PhotoCell?>
+<?import javafx.geometry.Insets?>
 
 <fx:root type="javafx.scene.layout.AnchorPane"
          xmlns:fx="http://javafx.com/fxml">
+
     <PhotoCell fx:id="photoCell"
                maxHeight="100"
                prefHeight="100"/>
+
 </fx:root>

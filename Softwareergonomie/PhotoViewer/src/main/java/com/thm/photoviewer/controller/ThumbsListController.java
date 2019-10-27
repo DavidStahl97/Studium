@@ -14,6 +14,8 @@ import java.util.ResourceBundle;
 
 public class ThumbsListController implements Initializable {
 
+    private static final double OPACITY = 0.5;
+
     private PhotoList photoList;
 
     @FXML
@@ -26,9 +28,30 @@ public class ThumbsListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
         photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged(c));
+        photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhotoChanged(newValue));
 
         pane.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(newValue.doubleValue()));
         thumbsBox.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(pane.getWidth()));
+    }
+
+    private void onSelectedPhotoChanged(Photo selectedPhoto) {
+        if(selectedPhoto == null) {
+            return;
+        }
+
+        var photoCell = thumbsBox.getChildren().stream()
+                .filter(p -> ((Thumb) p).getPhoto().equals(selectedPhoto))
+                .findAny()
+                .get();
+
+        var oldOptional = thumbsBox.getChildren().stream()
+                .filter(p -> p.getOpacity() == OPACITY)
+                .findAny();
+        if(oldOptional.isPresent()) {
+            oldOptional.get().setOpacity(1);
+        }
+
+        photoCell.setOpacity(OPACITY);
     }
 
     private void alignThumbBox(double newWidth) {

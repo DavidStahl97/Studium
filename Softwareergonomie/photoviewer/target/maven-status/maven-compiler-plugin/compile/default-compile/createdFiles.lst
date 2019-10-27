@@ -1,11 +1,1 @@
-com\thm\photoviewer\controller\PhotoViewController.class
-com\thm\photoviewer\controller\PhotoCell.class
-com\thm\photoviewer\App.class
-com\thm\photoviewer\controller\BottomBarController.class
-com\thm\common\ModuloArray.class
-com\thm\photoviewer\controller\ShellController.class
-com\thm\common\ImageChooser.class
-com\thm\photoviewer\models\Photo.class
 module-info.class
-com\thm\photoviewer\models\PhotoList.class
-com\thm\photoviewer\models\Direction.class
