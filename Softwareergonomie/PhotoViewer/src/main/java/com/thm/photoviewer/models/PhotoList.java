@@ -7,9 +7,18 @@ import javafx.collections.FXCollections;
 
 public class PhotoList extends SimpleListProperty<Photo> {
 
+    private static PhotoList photoList;
+    public static PhotoList getPhotoList() {
+        if(photoList == null) {
+            photoList = new PhotoList();
+        }
+
+        return photoList;
+    }
+
     private ObjectProperty<Photo> selectedPhoto = new SimpleObjectProperty<>();
 
-    public PhotoList() {
+    private PhotoList() {
         super(FXCollections.observableArrayList());
     }
 

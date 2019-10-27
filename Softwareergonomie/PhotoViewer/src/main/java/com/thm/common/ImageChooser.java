@@ -1,4 +1,4 @@
-package com.thm.photoviewer;
+package com.thm.common;
 
 import com.thm.photoviewer.models.Photo;
 import javafx.scene.image.Image;

@@ -1,4 +1,4 @@
-package com.thm;
+package com.thm.common;
 
 import java.util.ArrayList;
 
