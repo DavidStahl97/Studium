@@ -7,9 +7,27 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<Pane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.thm.photoviewer.controller.PhotoViewController"
-      fx:id="pane">
+<?import com.thm.photoviewer.controller.NextButton?>
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.thm.photoviewer.controller.PhotoViewController"
+          fx:id="pane">
 
-</Pane>
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="NEVER"/>
+    </columnConstraints>
+
+    <NextButton fx:id="leftButton"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="0"
+                direction="LEFT"
+                alignment="CENTER_LEFT"/>
+
+    <NextButton fx:id="rightButton"
+                GridPane.columnIndex="2"
+                GridPane.rowIndex="0"
+                direction="RIGHT"
+                alignment="CENTER_RIGHT"/>
+</GridPane>

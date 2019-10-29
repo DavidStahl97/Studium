@@ -12,12 +12,22 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.thm.photoviewer.controller.ShellController"
             prefHeight="400.0" prefWidth="600.0">
-    <padding><Insets left="5" right="5" bottom="5" top="5"/></padding>
-    <center>
-        <fx:include source="PhotoViewer.fxml"/>
-    </center>
 
-    <bottom>
-         <fx:include source="BottomBar.fxml"/>
-    </bottom>
+    <top>
+        <fx:include source="TopBar.fxml"/>
+    </top>
+
+    <center>
+        <BorderPane>
+            <padding><Insets left="5" right="5" bottom="5" top="10"/></padding>
+
+            <center>
+                <fx:include source="PhotoViewer.fxml"/>
+            </center>
+
+            <bottom>
+                <fx:include source="ThumbsList.fxml"/>
+            </bottom>
+        </BorderPane>
+    </center>
 </BorderPane>

@@ -10,9 +10,12 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -36,7 +39,13 @@ public class PhotoViewController implements Initializable {
     private boolean startDragging = false;
 
     @FXML
-    private Pane pane;
+    private GridPane pane;
+
+    @FXML
+    private Button leftButton;
+
+    @FXML
+    private Button rightButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,6 +59,9 @@ public class PhotoViewController implements Initializable {
 
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
         photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged());
+
+        leftButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT)));
+        rightButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
     }
 
     private void onSelectedPhoto(Photo p) {
@@ -111,7 +123,8 @@ public class PhotoViewController implements Initializable {
             configurePhotoView(photoCell);
             photoCells.add(photoCell);
 
-            pane.getChildren().add(photoCell);
+            pane.add(photoCell, 0,0, 3,1);
+            photoCell.toBack();
             photoCell.prefWidthProperty().bind(pane.widthProperty());
             photoCell.prefHeightProperty().bind(pane.heightProperty());
         }

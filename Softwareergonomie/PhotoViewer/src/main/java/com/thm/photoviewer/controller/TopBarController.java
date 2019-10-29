@@ -3,7 +3,6 @@ package com.thm.photoviewer.controller;
 import com.thm.common.ImageChooser;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BottomBarController implements Initializable {
+public class TopBarController implements Initializable {
 
     private ImageChooser imageChooser = new ImageChooser();
     private PhotoList photoList;
@@ -57,4 +56,5 @@ public class BottomBarController implements Initializable {
             photoList.setSelectedPhoto(null);
         }
     }
+
 }
