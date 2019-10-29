@@ -52,4 +52,8 @@ public class PhotoList extends SimpleListProperty<Photo> {
         var nextPhoto = get(newIndex);
         return nextPhoto;
     }
+
+    public Photo getPhoto(int index) {
+        return get(index % size());
+    }
 }

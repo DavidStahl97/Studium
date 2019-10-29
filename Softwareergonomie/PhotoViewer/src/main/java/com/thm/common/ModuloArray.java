@@ -22,4 +22,9 @@ public class ModuloArray<T> extends ArrayList<T> {
         return getRight(super.indexOf(element));
     }
 
+    @Override
+    public T get(int index) {
+        var i = index % size();
+        return super.get(i);
+    }
 }

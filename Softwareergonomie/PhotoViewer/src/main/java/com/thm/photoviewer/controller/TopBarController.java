@@ -1,8 +1,10 @@
 package com.thm.photoviewer.controller;
 
 import com.thm.common.ImageChooser;
+import com.thm.photoviewer.Diashow;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -57,4 +59,8 @@ public class TopBarController implements Initializable {
         }
     }
 
+    public void onStartDiashow() {
+        var diashow = new Diashow(photoList);
+        diashow.startDiashow();
+    }
 }

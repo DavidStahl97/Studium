@@ -1,4 +1,4 @@
 module com.thm.javafxmvc {
     requires javafx.controls;
-    exports com.thm.javafxmvc.selection;
+    exports com.thm.javafxmvc;
 }

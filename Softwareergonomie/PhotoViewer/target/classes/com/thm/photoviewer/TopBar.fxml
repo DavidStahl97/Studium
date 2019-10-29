@@ -5,26 +5,44 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<HBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.thm.photoviewer.controller.TopBarController"
-      style="-fx-background-color: #BCBEC0"
-      prefHeight="30">
-    <children>
+<?import javafx.geometry.Insets?>
 
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="com.thm.photoviewer.controller.TopBarController"
+          style="-fx-background-color: #BCBEC0">
+
+    <padding><Insets topRightBottomLeft="5"/></padding>
+
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="NEVER"/>
+    </columnConstraints>
+
+    <children>
         <Button fx:id="addButton"
-                onAction="#onAddPhoto">
+                onAction="#onAddPhoto"
+                GridPane.columnIndex="0">
             <graphic>
                 <FontIcon iconLiteral="dashicons-plus"/>
             </graphic>
         </Button>
 
-        <Button onAction="#onRemovePhoto">
+        <Button onAction="#onRemovePhoto"
+                GridPane.columnIndex="1">
             <graphic>
                 <FontIcon iconLiteral="dashicons-minus"/>
             </graphic>
         </Button>
+
+        <Button GridPane.columnIndex="3"
+                onAction="#onStartDiashow">
+            <graphic>
+                <FontIcon iconLiteral="dashicons-controls-play"/>
+            </graphic>
+        </Button>
     </children>
-</HBox>
+</GridPane>
