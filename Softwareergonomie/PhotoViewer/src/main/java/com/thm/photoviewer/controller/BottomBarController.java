@@ -1,7 +1,9 @@
 package com.thm.photoviewer.controller;
 
 import com.thm.common.ImageChooser;
+import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,6 +37,24 @@ public class BottomBarController implements Initializable {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void onRemovePhoto() {
+        var left = photoList.getNextPhoto(Direction.LEFT);
+        var right = photoList.getNextPhoto(Direction.RIGHT);
+        var centerIndex = photoList.indexOf(photoList.getSelectedPhoto());
+        photoList.removeSelectedPhoto();
+        if(photoList.size() > 0) {
+            if(Math.abs(centerIndex - photoList.indexOf(left)) < Math.abs(centerIndex - photoList.indexOf(right))) {
+                photoList.setSelectedPhoto(left);
+            }
+            else {
+                photoList.setSelectedPhoto(right);
+            }
+        }
+        else {
+            photoList.setSelectedPhoto(null);
         }
     }
 }

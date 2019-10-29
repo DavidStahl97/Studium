@@ -150,6 +150,15 @@ public class ThumbsListController implements Initializable {
                 thumb.setPhoto(photo);
                 thumbsBox.getChildren().add(thumb);
             }
+
+            for(var photo : c.getRemoved()) {
+                var thumb = thumbsBox.getChildren().stream()
+                        .filter(t -> ((Thumb) t).getPhoto().equals(photo))
+                        .findAny()
+                        .get();
+
+                thumbsBox.getChildren().remove(thumb);
+            }
         }
     }
 

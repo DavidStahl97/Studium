@@ -75,6 +75,10 @@ public class PhotoViewController implements Initializable {
     }
 
     private void photoListChanged() {
+        if(photoList.size() == 0) {
+            return;
+        }
+
         var centerPhoto = photoCells.get(centerIndex).getPhoto();
         if(centerPhoto == null) {
             return;

@@ -23,6 +23,7 @@
                         onAction="#onAddPhoto"
                         prefWidth="75"/>
                 <Button text="Remove"
+                        onAction="#onRemovePhoto"
                         prefWidth="75"/>
             </children>
         </VBox>
