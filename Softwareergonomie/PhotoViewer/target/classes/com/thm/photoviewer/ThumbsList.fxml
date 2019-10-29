@@ -5,13 +5,31 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<Pane xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.thm.photoviewer.controller.ThumbsListController"
-      fx:id="pane">
+<?import com.thm.photoviewer.controller.NextButton?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.thm.photoviewer.controller.ThumbsListController"
+           fx:id="pane">
+           <!--style="-fx-border-color: #000; -fx-border-radius: 5;"-->
     <padding><Insets top="5" bottom="5" left="5" right="5"/></padding>
-    <HBox fx:id="thumbsBox"
-          spacing="10"/>
-</Pane>
+
+    <Pane>
+        <HBox fx:id="thumbsBox"
+              spacing="10"/>
+    </Pane>
+
+    <NextButton fx:id="leftButton"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="0"
+                direction="LEFT"
+                opacity="0"/>
+
+    <NextButton fx:id="rightButton"
+                GridPane.columnIndex="2"
+                GridPane.rowIndex="0"
+                direction="RIGHT"
+                opacity="0"/>
+
+</GridPane>

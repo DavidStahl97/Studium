@@ -10,7 +10,8 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.thm.photoviewer.controller.BottomBarController"
-            minHeight="100">
+            minHeight="120"
+            maxHeight="120">
     <padding><Insets top="10"/></padding>
     <left>
         <VBox minWidth="100"
