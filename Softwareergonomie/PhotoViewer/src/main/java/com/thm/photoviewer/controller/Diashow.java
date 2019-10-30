@@ -9,6 +9,7 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -19,7 +20,10 @@ import java.util.ResourceBundle;
 public class Diashow extends StackPane implements Initializable {
 
     private PhotoList photoList;
+
+    private static final double SLIDER_RATIO = 10;
     private double duration = 2;
+
     private boolean isShowing = false;
 
     @FXML
@@ -27,6 +31,9 @@ public class Diashow extends StackPane implements Initializable {
 
     @FXML
     private PhotoCell photoCellTwo;
+
+    @FXML
+    private Slider slider;
 
     public Diashow() {
         var url = App.class.getResource("diashow" + ".fxml");
@@ -44,6 +51,9 @@ public class Diashow extends StackPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            duration = (newValue.doubleValue() + 1) / SLIDER_RATIO;
+        });
     }
 
     public void start() {

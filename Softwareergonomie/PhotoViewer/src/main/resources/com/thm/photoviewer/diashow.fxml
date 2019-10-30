@@ -5,17 +5,47 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.ImageView?>
 <?import com.thm.photoviewer.controller.PhotoCell?>
+
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 <fx:root type="javafx.scene.layout.StackPane"
          xmlns:fx="http://javafx.com/fxml"
-         style="-fx-background-color: #000;">
+         style="-fx-background-color: #000;"
+         minWidth="500" minHeight="400">
 
     <children>
         <PhotoCell fx:id="photoCellOne"
                    opacity="1"/>
         <PhotoCell fx:id="photoCellTwo"
                    opacity="0"/>
+
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="NEVER"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="ALWAYS"/>
+                <RowConstraints vgrow="NEVER"/>
+            </rowConstraints>
+
+            <Button GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <graphic>
+                    <FontIcon iconLiteral="dashicons-editor-expand"/>
+                </graphic>
+            </Button>
+
+            <GridPane GridPane.columnIndex="1"
+                      GridPane.rowIndex="2"
+                      alignment="CENTER">
+                <Slider fx:id="slider"
+                        orientation="HORIZONTAL"
+                        maxWidth="100"/>
+            </GridPane>
+        </GridPane>
     </children>
+
  </fx:root>
