@@ -51,6 +51,7 @@ public class Diashow extends StackPane implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
+        slider.setValue(duration * SLIDER_RATIO - 1);
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             duration = (newValue.doubleValue() + 1) / SLIDER_RATIO;
         });
