@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 
+// TO-DO: use ModuloArray
 public class PhotoList extends SimpleListProperty<Photo> {
 
     private static PhotoList photoList;
@@ -54,6 +55,6 @@ public class PhotoList extends SimpleListProperty<Photo> {
     }
 
     public Photo getPhoto(int index) {
-        return get(index % size());
+        return super.get(index % size());
     }
 }

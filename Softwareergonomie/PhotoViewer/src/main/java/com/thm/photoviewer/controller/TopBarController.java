@@ -7,7 +7,9 @@ import com.thm.photoviewer.models.PhotoList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -61,6 +63,11 @@ public class TopBarController implements Initializable {
 
     public void onStartDiashow() {
         var diashow = new Diashow(photoList);
+
+        var stage = new Stage();
+        stage.setScene(new Scene(diashow));
+
+        stage.show();
         diashow.startDiashow();
     }
 }
