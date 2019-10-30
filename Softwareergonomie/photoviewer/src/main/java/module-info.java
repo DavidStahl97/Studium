@@ -8,6 +8,7 @@ module com.thm.photoviewer {
     requires org.kordamp.ikonli.dashicons;
 
     requires flatter;
+    requires java.prefs;
 
     opens com.thm.photoviewer to javafx.fxml;
     opens com.thm.photoviewer.controller to javafx.fxml;
