@@ -9,8 +9,11 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -26,6 +29,8 @@ public class Diashow extends StackPane implements Initializable {
 
     private boolean isShowing = false;
 
+    private Stage stage;
+
     @FXML
     private PhotoCell photoCellOne;
 
@@ -33,9 +38,14 @@ public class Diashow extends StackPane implements Initializable {
     private PhotoCell photoCellTwo;
 
     @FXML
+    private Button expandButton;
+
+    @FXML
     private Slider slider;
 
-    public Diashow() {
+    public Diashow(Stage stage) {
+        this.stage = stage;
+
         var url = App.class.getResource("diashow" + ".fxml");
         var fxmlLoader = new FXMLLoader(url);
         fxmlLoader.setRoot(this);
@@ -55,6 +65,19 @@ public class Diashow extends StackPane implements Initializable {
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             duration = (newValue.doubleValue() + 1) / SLIDER_RATIO;
         });
+
+        stage.fullScreenProperty().addListener((observable1, oldFullscreen, newFullscreen) -> {
+            if(newFullscreen == false) {
+                expandButton.setVisible(true);
+            }
+        });
+    }
+
+    @FXML
+    private void onFullscreen() {
+        var stage = (Stage) photoCellOne.getScene().getWindow();
+        stage.setFullScreen(true);
+        expandButton.setVisible(false);
     }
 
     public void start() {

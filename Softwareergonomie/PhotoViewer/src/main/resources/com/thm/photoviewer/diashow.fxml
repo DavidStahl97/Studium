@@ -12,7 +12,8 @@
 <fx:root type="javafx.scene.layout.StackPane"
          xmlns:fx="http://javafx.com/fxml"
          style="-fx-background-color: #000;"
-         minWidth="500" minHeight="400">
+         minWidth="500" minHeight="400"
+         fx:id="pane">
 
     <children>
         <PhotoCell fx:id="photoCellOne"
@@ -32,7 +33,10 @@
                 <RowConstraints vgrow="NEVER"/>
             </rowConstraints>
 
-            <Button GridPane.columnIndex="2" GridPane.rowIndex="0">
+            <Button fx:id="expandButton"
+                    GridPane.columnIndex="2"
+                    GridPane.rowIndex="0"
+                    onAction="#onFullscreen">
                 <graphic>
                     <FontIcon iconLiteral="dashicons-editor-expand"/>
                 </graphic>
@@ -43,7 +47,7 @@
                       alignment="CENTER">
                 <Slider fx:id="slider"
                         orientation="HORIZONTAL"
-                        maxWidth="100"/>
+                        maxWidth="150"/>
             </GridPane>
         </GridPane>
     </children>

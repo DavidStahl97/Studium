@@ -43,6 +43,7 @@ public class ImageChooser {
         return photos;
     }
 
+    // To-Do: Handling exiting fileChooser
     private FileChooser createFileChooser(String lastFolder) {
         var fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File(lastFolder));

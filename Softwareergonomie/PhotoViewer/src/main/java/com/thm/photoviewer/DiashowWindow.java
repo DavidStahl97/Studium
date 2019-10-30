@@ -13,12 +13,12 @@ public class DiashowWindow {
     private Diashow diashow;
 
     public DiashowWindow() {
-        diashow = new Diashow();
-        scene = new Scene(diashow);
         stage = new Stage();
+
+        diashow = new Diashow(stage);
+        scene = new Scene(diashow);
         stage.setScene(scene);
 
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> onKeyPressed(event));
         stage.showingProperty().addListener((observable, oldValue, newValue) -> showingChanged(newValue));
     }
 
@@ -32,12 +32,6 @@ public class DiashowWindow {
         }
         else {
             diashow.stop();
-        }
-    }
-
-    private void onKeyPressed(KeyEvent event) {
-        if(event.getCode() == KeyCode.ESCAPE) {
-            stage.close();
         }
     }
 
