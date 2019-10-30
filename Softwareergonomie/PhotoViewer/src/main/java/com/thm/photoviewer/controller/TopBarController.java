@@ -63,11 +63,6 @@ public class TopBarController implements Initializable {
 
     public void onStartDiashow() {
         var diashow = new Diashow(photoList);
-
-        var stage = new Stage();
-        stage.setScene(new Scene(diashow));
-
-        stage.show();
-        diashow.startDiashow();
+        diashow.show();
     }
 }

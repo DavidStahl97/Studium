@@ -52,7 +52,6 @@ public class ThumbsListController implements Initializable {
 
     private void onLeftButtonClicked() {
         var paneWidth = pane.getWidth();
-        var thumbsBoxWidth = thumbsBox.getWidth();
         var thumbsBoxX = thumbsBox.getTranslateX();
 
         if(Math.abs(thumbsBoxX) < paneWidth) {
@@ -81,8 +80,8 @@ public class ThumbsListController implements Initializable {
         var thumbsBoxX = thumbsBox.getTranslateX();
 
         var difference = thumbsBoxWidth - (Math.abs(thumbsBoxX) + paneWidth);
+        var transition = new TranslateTransition(Duration.seconds(0.3), thumbsBox);
         if(difference < paneWidth) {
-            var transition = new TranslateTransition(Duration.seconds(0.3), thumbsBox);
             transition.setFromX(thumbsBox.getTranslateX());
             transition.setToX(thumbsBox.getTranslateX() - difference);
             transition.playFromStart();
@@ -91,7 +90,6 @@ public class ThumbsListController implements Initializable {
             rightButton.setOpacity(0.0);
         }
         else {
-            var transition = new TranslateTransition(Duration.seconds(0.3), thumbsBox);
             transition.setFromX(thumbsBox.getTranslateX());
             transition.setToX(thumbsBox.getTranslateX() - pane.getWidth());
             transition.playFromStart();
