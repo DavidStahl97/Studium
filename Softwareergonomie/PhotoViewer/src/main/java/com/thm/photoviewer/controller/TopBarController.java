@@ -4,9 +4,15 @@ import com.thm.common.ImageChooser;
 import com.thm.photoviewer.DiashowWindow;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
+import com.thm.photoviewer.models.Zooming;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
@@ -20,9 +26,25 @@ public class TopBarController implements Initializable {
     @FXML
     private Button addButton;
 
+    @FXML
+    private Slider slider;
+
+    @FXML
+    private Label zoomLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
+
+        slider.valueProperty().addListener((observableValue, number, value) -> {
+            double d = value.doubleValue();
+            var s = String.format("%.2f", d);
+            zoomLabel.setText(s);
+        });
+        zoomLabel.setText("1.00");
+
+        var zooming = Zooming.getInstance();
+        slider.valueProperty().bindBidirectional(zooming.zoomValueProperty());
     }
 
     @FXML

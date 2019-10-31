@@ -4,13 +4,16 @@ import com.thm.common.ModuloArray;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
+import com.thm.photoviewer.models.Zooming;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -29,6 +32,7 @@ public class PhotoViewController implements Initializable {
     private static final int PHOTO_VIEW_COUNT = 3;
 
     private PhotoList photoList;
+    private Zooming zooming;
 
     private ModuloArray<PhotoCell> photoCells;
     private double[] xSnapshots;
@@ -62,9 +66,37 @@ public class PhotoViewController implements Initializable {
 
         leftButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT)));
         rightButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
+
+        zooming = Zooming.getInstance();
+        zooming.zoomValueProperty().addListener((observableValue, oldValue, newValue) -> zoomChanged(newValue.doubleValue()));
+    }
+
+    private void zoomChanged(double zoom) {
+        var photoCell = photoCells.get(centerIndex);
+        var imageView = photoCell.getImageView();
+        var image = imageView.getImage();
+
+        if(zoom == 1.00) {
+            for(var pc : photoCells) {
+                var iv = pc.getImageView();
+                iv.setViewport(null);
+            }
+            return;
+        }
+
+        var width = image.getWidth() / zoom;
+        var height = image.getHeight() / zoom;
+
+        var x = (image.getWidth() - width) / 2;
+        var y = (image.getHeight() - height) / 2;
+
+        var rectangle = new Rectangle2D(0, 0, width, height);
+        imageView.setViewport(rectangle);
     }
 
     private void onSelectedPhoto(Photo p) {
+        zooming.setZoomValue(1);
+
         if(p == null) {
             photoCells.stream().forEach(imageView -> imageView.setPhoto(new Photo(null, null)));
             return;

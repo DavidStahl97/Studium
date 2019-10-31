@@ -77,6 +77,10 @@ public class PhotoCell extends Pane implements Initializable {
         return imageView.getImage();
     }
 
+    public ImageView getImageView() {
+        return imageView;
+    }
+
     public void setPhoto(Photo photo) {
         this.photo = photo;
         imageView.setImage(photo.getImage());
