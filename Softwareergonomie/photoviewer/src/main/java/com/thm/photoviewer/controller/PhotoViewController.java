@@ -87,10 +87,10 @@ public class PhotoViewController implements Initializable {
         var width = image.getWidth() / zoom;
         var height = image.getHeight() / zoom;
 
-        var x = (image.getWidth() - width) / 2;
-        var y = (image.getHeight() - height) / 2;
+        var x = (image.getWidth() - width) / 2.0;
+        var y = (image.getHeight() - height) / 2.0;
 
-        var rectangle = new Rectangle2D(0, 0, width, height);
+        var rectangle = new Rectangle2D(x, y, width, height);
         imageView.setViewport(rectangle);
     }
 
@@ -171,28 +171,11 @@ public class PhotoViewController implements Initializable {
                 return;
             }
 
-            startDragging = true;
-
-            orgSceneX = t.getSceneX();
-            snapshottingXPosition();
+            transitionStarted(t);
         });
 
         photoPane.setOnMouseDragged(t -> {
-            if(startDragging == false) {
-                return;
-            }
-
-            double offsetX = t.getSceneX() - orgSceneX;
-            orgSceneX = t.getSceneX();
-
-            var left = photoCells.getLeft(centerIndex);
-            var right = photoCells.getRight(centerIndex);
-            if((left.getTranslateX() > -10 && offsetX > 0)
-                    || (right.getTranslateX() < 10 && offsetX < 0)) {
-                return;
-            }
-
-            moveXPositions(offsetX);
+            transitionDraggedMouse(t);
         });
 
         photoPane.addEventFilter(MouseEvent.MOUSE_RELEASED, t -> {
@@ -229,6 +212,31 @@ public class PhotoViewController implements Initializable {
                 centerTransition();
             }
         });
+    }
+
+    private void transitionStarted(MouseEvent t) {
+        startDragging = true;
+
+        orgSceneX = t.getSceneX();
+        snapshottingXPosition();
+    }
+
+    private void transitionDraggedMouse(MouseEvent t) {
+        if(startDragging == false) {
+            return;
+        }
+
+        double offsetX = t.getSceneX() - orgSceneX;
+        orgSceneX = t.getSceneX();
+
+        var left = photoCells.getLeft(centerIndex);
+        var right = photoCells.getRight(centerIndex);
+        if((left.getTranslateX() > -10 && offsetX > 0)
+                || (right.getTranslateX() < 10 && offsetX < 0)) {
+            return;
+        }
+
+        moveXPositions(offsetX);
     }
 
     private void snapshottingXPosition() {
