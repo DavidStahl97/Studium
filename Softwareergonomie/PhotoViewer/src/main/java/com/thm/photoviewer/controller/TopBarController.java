@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
 
@@ -30,16 +31,27 @@ public class TopBarController implements Initializable {
     private Button removeButton;
 
     @FXML
+    private Button dialogButton;
+
+    @FXML
     private Slider slider;
 
     @FXML
     private Label zoomLabel;
 
+    @FXML
+    private HBox zoomBox;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
 
-        photoList.addListener((observableValue, photos, t1) -> removeButton.setDisable(photoList.size() <= 0));
+        photoList.sizeProperty().addListener((observableValue, oldSize, newSize) -> {
+            boolean noPhotos = photoList.size() == 0;
+            removeButton.setDisable(noPhotos);
+            dialogButton.setDisable(noPhotos);
+            zoomBox.setVisible(!noPhotos);
+        });
 
         slider.valueProperty().addListener((observableValue, number, value) -> {
             double d = value.doubleValue();
