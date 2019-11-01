@@ -28,6 +28,10 @@ public class Zooming {
         zoomValue.set(value);
     }
 
+    public boolean zoomed() {
+        return getZoomValue() > 1;
+    }
+
     public ObjectProperty<Number> zoomValueProperty() {
         return zoomValue;
     }

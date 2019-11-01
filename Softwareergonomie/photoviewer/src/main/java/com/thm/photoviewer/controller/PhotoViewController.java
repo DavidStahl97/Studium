@@ -13,12 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -38,7 +36,8 @@ public class PhotoViewController implements Initializable {
     private double[] xSnapshots;
     private int centerIndex = 0;
 
-    private double orgSceneX;
+    private double mouseX;
+    private double mouseY;
     private boolean inTransitionMode = false;
     private boolean startDragging = false;
 
@@ -72,10 +71,6 @@ public class PhotoViewController implements Initializable {
     }
 
     private void zoomChanged(double zoom) {
-        var photoCell = photoCells.get(centerIndex);
-        var imageView = photoCell.getImageView();
-        var image = imageView.getImage();
-
         if(zoom == 1.00) {
             for(var pc : photoCells) {
                 var iv = pc.getImageView();
@@ -84,11 +79,27 @@ public class PhotoViewController implements Initializable {
             return;
         }
 
+        var photoCell = photoCells.get(centerIndex);
+        var imageView = photoCell.getImageView();
+        var image = imageView.getImage();
+
         var width = image.getWidth() / zoom;
         var height = image.getHeight() / zoom;
 
-        var x = (image.getWidth() - width) / 2.0;
-        var y = (image.getHeight() - height) / 2.0;
+        double centerX;
+        double centerY;
+        if(imageView.getViewport() == null) {
+            centerX = image.getWidth() / 2;
+            centerY = image.getHeight() / 2;
+        }
+        else {
+            var oldRectangle = imageView.getViewport();
+            centerX = oldRectangle.getMinX() + oldRectangle.getWidth() / 2;
+            centerY = oldRectangle.getMinY() + oldRectangle.getHeight() / 2;
+        }
+
+        var x = clamp(centerX - width / 2, 0, image.getWidth() - width);
+        var y = clamp(centerY - height / 2, 0, image.getHeight() - height);
 
         var rectangle = new Rectangle2D(x, y, width, height);
         imageView.setViewport(rectangle);
@@ -171,63 +182,62 @@ public class PhotoViewController implements Initializable {
                 return;
             }
 
-            transitionStarted(t);
+            mouseX = t.getSceneX();
+            mouseY = t.getSceneY();
+
+            if(zooming.zoomed() == false) {
+                transitionStarted();
+            }
         });
 
         photoPane.setOnMouseDragged(t -> {
-            transitionDraggedMouse(t);
+            double offsetX = t.getSceneX() - mouseX;
+            mouseX = t.getSceneX();
+
+            double offsetY = t.getSceneY() - mouseY;
+            mouseY = t.getSceneY();
+
+            if(zooming.zoomed() == false) {
+                transitionDraggedMouse(offsetX);
+            }
+            else {
+                zoomMove(offsetX, offsetY);
+            }
         });
 
         photoPane.addEventFilter(MouseEvent.MOUSE_RELEASED, t -> {
-            if(startDragging == false) {
-                return;
-            }
-
-            var center = photoCells.get(centerIndex);
-            var centerPosition = center.getTranslateX();
-
-            var right = photoCells.getRight(centerIndex);
-            var left = photoCells.getLeft(centerIndex);
-            if(centerPosition > TRANSITION_THRESHOLD) {
-                right.setTranslateX(left.getTranslateX() + calculateLeftXPosition());
-                // new centerIndex is the old left index
-                leftTransition();
-                photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT));
-
-                // the old left image is now the center image, so a new left image must be loaded
-                var leftController = photoCells.getLeft(centerIndex);
-                leftController.setPhoto(photoList.getNextPhoto(Direction.LEFT));
-            }
-            else if(centerPosition < -TRANSITION_THRESHOLD) {
-                left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
-                // new centerIndex is the old right index
-                rightTransition();
-                photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT));
-
-                // the old right image is now the center image, so a new right image must be loaded
-                var rightController = photoCells.getRight(centerIndex);
-                rightController.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
-            }
-            else {
-                centerTransition();
+            if(zooming.zoomed() == false) {
+                transitionMouseReleased();
             }
         });
     }
 
-    private void transitionStarted(MouseEvent t) {
-        startDragging = true;
+    private void zoomMove(double offsetX, double offsetY) {
+        var imageView = photoCells.get(centerIndex).getImageView();
+        var image = imageView.getImage();
+        var rectangle = imageView.getViewport();
 
-        orgSceneX = t.getSceneX();
+        double newX = clamp(rectangle.getMinX() - offsetX, 0, image.getWidth() - rectangle.getWidth());
+        double newY = clamp(rectangle.getMinY() - offsetY, 0, image.getHeight() - rectangle.getHeight());
+
+        var newRectangle = new Rectangle2D(newX, newY, rectangle.getWidth(), rectangle.getHeight());
+        imageView.setViewport(newRectangle);
+    }
+
+    public static double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
+    }
+
+    private void transitionStarted() {
+        startDragging = true;
         snapshottingXPosition();
     }
 
-    private void transitionDraggedMouse(MouseEvent t) {
+    private void transitionDraggedMouse(double offsetX) {
         if(startDragging == false) {
             return;
         }
 
-        double offsetX = t.getSceneX() - orgSceneX;
-        orgSceneX = t.getSceneX();
 
         var left = photoCells.getLeft(centerIndex);
         var right = photoCells.getRight(centerIndex);
@@ -237,6 +247,41 @@ public class PhotoViewController implements Initializable {
         }
 
         moveXPositions(offsetX);
+    }
+
+    private void transitionMouseReleased() {
+        if(startDragging == false) {
+            return;
+        }
+
+        var center = photoCells.get(centerIndex);
+        var centerPosition = center.getTranslateX();
+
+        var right = photoCells.getRight(centerIndex);
+        var left = photoCells.getLeft(centerIndex);
+        if(centerPosition > TRANSITION_THRESHOLD) {
+            right.setTranslateX(left.getTranslateX() + calculateLeftXPosition());
+            // new centerIndex is the old left index
+            leftTransition();
+            photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT));
+
+            // the old left image is now the center image, so a new left image must be loaded
+            var leftController = photoCells.getLeft(centerIndex);
+            leftController.setPhoto(photoList.getNextPhoto(Direction.LEFT));
+        }
+        else if(centerPosition < -TRANSITION_THRESHOLD) {
+            left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
+            // new centerIndex is the old right index
+            rightTransition();
+            photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT));
+
+            // the old right image is now the center image, so a new right image must be loaded
+            var rightController = photoCells.getRight(centerIndex);
+            rightController.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+        }
+        else {
+            centerTransition();
+        }
     }
 
     private void snapshottingXPosition() {
