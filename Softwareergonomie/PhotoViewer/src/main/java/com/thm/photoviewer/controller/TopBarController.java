@@ -27,6 +27,9 @@ public class TopBarController implements Initializable {
     private Button addButton;
 
     @FXML
+    private Button removeButton;
+
+    @FXML
     private Slider slider;
 
     @FXML
@@ -35,6 +38,8 @@ public class TopBarController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
+
+        photoList.addListener((observableValue, photos, t1) -> removeButton.setDisable(photoList.size() <= 0));
 
         slider.valueProperty().addListener((observableValue, number, value) -> {
             double d = value.doubleValue();

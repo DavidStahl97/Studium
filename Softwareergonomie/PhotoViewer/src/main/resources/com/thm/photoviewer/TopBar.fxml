@@ -31,8 +31,10 @@
             </graphic>
         </Button>
 
-        <Button onAction="#onRemovePhoto"
-                GridPane.columnIndex="1">
+        <Button fx:id="removeButton"
+                onAction="#onRemovePhoto"
+                GridPane.columnIndex="1"
+                disable="true">
             <graphic>
                 <FontIcon iconLiteral="dashicons-minus"/>
             </graphic>
