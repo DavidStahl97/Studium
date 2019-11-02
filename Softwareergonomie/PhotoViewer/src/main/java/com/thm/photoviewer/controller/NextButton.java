@@ -4,6 +4,7 @@ import com.thm.photoviewer.App;
 import com.thm.photoviewer.NextDirection;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -34,7 +35,7 @@ public class NextButton extends Button implements Initializable {
         super.setCursor(Cursor.HAND);
     }
 
-    private ObjectProperty<NextDirection> direction;
+    private ObjectProperty<NextDirection> direction = new SimpleObjectProperty<>();
 
     public final void setDirection(NextDirection nextDirection) {
         directionProperty().set(nextDirection);
@@ -51,20 +52,6 @@ public class NextButton extends Button implements Initializable {
     }
 
     public final ObjectProperty<NextDirection> directionProperty() {
-        if(direction == null) {
-            direction = new ObjectPropertyBase<NextDirection>() {
-                @Override
-                public Object getBean() {
-                    return NextButton.this;
-                }
-
-                @Override
-                public String getName() {
-                    return "direction";
-                }
-            };
-        }
-
         return direction;
     }
 
