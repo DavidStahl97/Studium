@@ -1,6 +1,7 @@
-package com.thm.photoviewer.controller;
+package com.thm.photoviewer.photoview;
 
 import com.thm.common.ModuloArray;
+import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
@@ -8,26 +9,18 @@ import com.thm.photoviewer.models.Zooming;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ListChangeListener;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class PhotoViewController implements Initializable {
+public class PhotoViewController extends BaseController<PhotoViewer> {
     private static final double TRANSITION_DURATION = 0.2;
     private static final int GAP = 10;
     private static final double TRANSITION_THRESHOLD = 100.0;
-    private static final int PHOTO_VIEW_COUNT = 3;
 
     private PhotoList photoList;
     private Zooming zooming;
@@ -41,30 +34,23 @@ public class PhotoViewController implements Initializable {
     private boolean inTransitionMode = false;
     private boolean startDragging = false;
 
-    @FXML
-    private GridPane pane;
+    public PhotoViewController(PhotoViewer view) {
+        super(view);
 
-    @FXML
-    private Button leftButton;
-
-    @FXML
-    private Button rightButton;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
 
-        createPhotoCells();
+        photoCells = view.getPhotoCells();
+        photoCells.forEach(photoCell -> configurePhotoCell(photoCell));
         xSnapshots = new double[photoCells.size()];
 
-        clipChildren(pane, 12);
+        clipChildren(view, 12);
         configureXPositionResizingUpdates();
 
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhoto(newValue));
         photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged());
 
-        leftButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT)));
-        rightButton.setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
+        view.getLeftButton().setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT)));
+        view.getRightButton().setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
 
         zooming = Zooming.getInstance();
         zooming.zoomValueProperty().addListener((observableValue, oldValue, newValue) -> zoomChanged(newValue.doubleValue()));
@@ -158,22 +144,7 @@ public class PhotoViewController implements Initializable {
         }
     }
 
-    private void createPhotoCells() {
-        photoCells = new ModuloArray<>();
-
-        for(int i = 0; i < PHOTO_VIEW_COUNT; i++) {
-            var photoCell = new PhotoCell();
-            configurePhotoView(photoCell);
-            photoCells.add(photoCell);
-
-            pane.add(photoCell, 0,0, 3,1);
-            photoCell.toBack();
-            photoCell.prefWidthProperty().bind(pane.widthProperty());
-            photoCell.prefHeightProperty().bind(pane.heightProperty());
-        }
-    }
-
-    private void configurePhotoView(Pane photoPane) {
+    private void configurePhotoCell(Pane photoPane) {
         photoPane.setCursor(Cursor.HAND);
 
         photoPane.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> {
@@ -300,11 +271,11 @@ public class PhotoViewController implements Initializable {
     }
 
     private double calculateLeftXPosition() {
-        return - pane.getWidth() - GAP;
+        return - view.getWidth() - GAP;
     }
 
     private double calculateRightXPosition() {
-        return pane.getWidth() + GAP;
+        return view.getWidth() + GAP;
     }
 
     private void centerTransition() {
@@ -345,7 +316,7 @@ public class PhotoViewController implements Initializable {
     }
 
     private void configureXPositionResizingUpdates() {
-        pane.widthProperty().addListener((observable, oldValue, newValue) -> {
+        view.widthProperty().addListener((observable, oldValue, newValue) -> {
             var left = photoCells.getLeft(centerIndex);
             left.setTranslateX(calculateLeftXPosition());
 

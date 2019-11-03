@@ -1,72 +1,48 @@
-package com.thm.photoviewer.controller;
+package com.thm.photoviewer.topbar;
 
 import com.thm.common.ImageChooser;
-import com.thm.photoviewer.DiashowWindow;
+import com.thm.photoviewer.BaseController;
+import com.thm.photoviewer.slideshow.SlideshowWindow;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.models.Zooming;
-import javafx.beans.binding.Bindings;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.HBox;
-import javafx.util.StringConverter;
-import javafx.util.converter.NumberStringConverter;
 
 import java.io.FileNotFoundException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class TopBarController implements Initializable {
+public class TopBarController extends BaseController<TopBar> {
 
     private ImageChooser imageChooser = new ImageChooser();
     private PhotoList photoList;
 
-    @FXML
-    private Button addButton;
+    public TopBarController(TopBar view) {
+        super(view);
 
-    @FXML
-    private Button removeButton;
-
-    @FXML
-    private Button dialogButton;
-
-    @FXML
-    private Slider slider;
-
-    @FXML
-    private Label zoomLabel;
-
-    @FXML
-    private HBox zoomBox;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
 
         photoList.sizeProperty().addListener((observableValue, oldSize, newSize) -> {
             boolean noPhotos = photoList.size() == 0;
-            removeButton.setDisable(noPhotos);
-            dialogButton.setDisable(noPhotos);
-            zoomBox.setVisible(!noPhotos);
+            view.getRemoveButton().setDisable(noPhotos);
+            view.getDialogButton().setDisable(noPhotos);
+            view.getZoomBox().setVisible(!noPhotos);
         });
 
-        slider.valueProperty().addListener((observableValue, number, value) -> {
+        view.getZoomSlider().valueProperty().addListener((observableValue, number, value) -> {
             double d = value.doubleValue();
             var s = String.format("%.2f", d);
-            zoomLabel.setText(s);
+            view.getZoomLabel().setText(s);
         });
-        zoomLabel.setText("1.00");
+        view.getZoomLabel().setText("1.00");
 
         var zooming = Zooming.getInstance();
-        slider.valueProperty().bindBidirectional(zooming.zoomValueProperty());
+        view.getZoomSlider().valueProperty().bindBidirectional(zooming.zoomValueProperty());
+
+        view.getAddButton().setOnAction(event -> onAddPhoto());
+        view.getRemoveButton().setOnAction(event -> onRemovePhoto());
+        view.getDialogButton().setOnAction(event -> onStartDiashow());
     }
 
-    @FXML
     private void onAddPhoto() {
-        var window = addButton.getScene().getWindow();
+        var window = super.getStage();
         try {
             var photos = imageChooser.show(window);
             photoList.addAll(photos);
@@ -79,7 +55,7 @@ public class TopBarController implements Initializable {
         }
     }
 
-    public void onRemovePhoto() {
+    private void onRemovePhoto() {
         var left = photoList.getNextPhoto(Direction.LEFT);
         var right = photoList.getNextPhoto(Direction.RIGHT);
         var centerIndex = photoList.indexOf(photoList.getSelectedPhoto());
@@ -97,8 +73,8 @@ public class TopBarController implements Initializable {
         }
     }
 
-    public void onStartDiashow() {
-        var diashow = new DiashowWindow();
+    private void onStartDiashow() {
+        var diashow = new SlideshowWindow();
         diashow.show();
     }
 }

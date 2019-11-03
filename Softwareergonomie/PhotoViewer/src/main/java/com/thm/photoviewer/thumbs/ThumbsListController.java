@@ -1,12 +1,13 @@
-package com.thm.photoviewer.controller;
+package com.thm.photoviewer.thumbs;
 
+import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
+import com.thm.photoviewer.thumbs.Thumb;
 import javafx.animation.TranslateTransition;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -17,41 +18,38 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ThumbsListController implements Initializable {
+public class ThumbsListController extends BaseController<ThumbList> {
 
     private static final double OPACITY = 0.5;
 
     private PhotoList photoList;
 
-    @FXML
     private HBox thumbsBox;
-
-    @FXML
-    private Pane pane;
-
-    @FXML
     private Button leftButton;
-
-    @FXML
     private Button rightButton;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public ThumbsListController(ThumbList view) {
+        super(view);
+
+        thumbsBox = view.getThumbsBox();
+        leftButton = view.getLeftButton();
+        rightButton = view.getRightButton();
+
         photoList = PhotoList.getPhotoList();
         photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged(c));
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhotoChanged(newValue));
 
-        clipChildren(pane, 12);
+        clipChildren(view, 12);
 
-        pane.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(newValue.doubleValue()));
-        thumbsBox.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(pane.getWidth()));
+        view.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(newValue.doubleValue()));
+        thumbsBox.widthProperty().addListener((observable, oldValue, newValue) -> alignThumbBox(view.getWidth()));
 
         rightButton.setOnMouseClicked(event -> onRightButtonClicked());
         leftButton.setOnMouseClicked(event -> onLeftButtonClicked());
     }
 
     private void onLeftButtonClicked() {
-        var paneWidth = pane.getWidth();
+        var paneWidth = view.getWidth();
         var thumbsBoxX = thumbsBox.getTranslateX();
 
         if(Math.abs(thumbsBoxX) < paneWidth) {
@@ -66,7 +64,7 @@ public class ThumbsListController implements Initializable {
         else {
             var transition = new TranslateTransition(Duration.seconds(0.3), thumbsBox);
             transition.setFromX(thumbsBox.getTranslateX());
-            transition.setToX(thumbsBox.getTranslateX() + pane.getWidth());
+            transition.setToX(thumbsBox.getTranslateX() + view.getWidth());
             transition.playFromStart();
 
             leftButton.setOpacity(1.0);
@@ -75,7 +73,7 @@ public class ThumbsListController implements Initializable {
     }
 
     private void onRightButtonClicked() {
-        var paneWidth = pane.getWidth();
+        var paneWidth = view.getWidth();
         var thumbsBoxWidth = thumbsBox.getWidth();
         var thumbsBoxX = thumbsBox.getTranslateX();
 
@@ -91,7 +89,7 @@ public class ThumbsListController implements Initializable {
         }
         else {
             transition.setFromX(thumbsBox.getTranslateX());
-            transition.setToX(thumbsBox.getTranslateX() - pane.getWidth());
+            transition.setToX(thumbsBox.getTranslateX() - view.getWidth());
             transition.playFromStart();
 
             leftButton.setOpacity(1.0);

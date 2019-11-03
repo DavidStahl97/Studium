@@ -1,26 +1,16 @@
-package com.thm.photoviewer.controller;
+package com.thm.photoviewer.slideshow;
 
-import com.thm.photoviewer.App;
+import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.PhotoList;
+import com.thm.photoviewer.photoview.PhotoCell;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class Diashow extends StackPane implements Initializable {
+public class SlideshowController extends BaseController<Slideshow> {
 
     private PhotoList photoList;
 
@@ -29,59 +19,50 @@ public class Diashow extends StackPane implements Initializable {
 
     private boolean isShowing = false;
 
-    private Stage stage;
+    public SlideshowController(Slideshow view) {
+        super(view);
 
-    @FXML
-    private PhotoCell photoCellOne;
-
-    @FXML
-    private PhotoCell photoCellTwo;
-
-    @FXML
-    private Button expandButton;
-
-    @FXML
-    private Slider slider;
-
-    public Diashow(Stage stage) {
-        this.stage = stage;
-
-        var url = App.class.getResource("diashow" + ".fxml");
-        var fxmlLoader = new FXMLLoader(url);
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
-
-        try {
-            fxmlLoader.load();
-        } catch (IOException exception) {
-            throw new RuntimeException(exception);
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
         photoList = PhotoList.getPhotoList();
-        slider.setValue(duration * SLIDER_RATIO - 1);
-        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+        view.getSlider().setValue(duration * SLIDER_RATIO - 1);
+        view.getSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
             duration = (newValue.doubleValue() + 1) / SLIDER_RATIO;
         });
 
-        stage.fullScreenProperty().addListener((observable1, oldFullscreen, newFullscreen) -> {
-            if(newFullscreen == false) {
-                expandButton.setVisible(true);
-            }
-        });
+        view.getExpandButton().setOnAction(event -> onFullscreen());
     }
 
-    @FXML
+    @Override
+    protected void initialized() {
+        var stage = super.getStage();
+
+        stage.fullScreenProperty().addListener((observable1, oldFullscreen, newFullscreen) -> {
+            if(newFullscreen == false) {
+                view.getExpandButton().setVisible(true);
+            }
+        });
+
+        stage.showingProperty().addListener((observable, oldValue, newValue) -> showingChanged(newValue));
+    }
+
     private void onFullscreen() {
-        var stage = (Stage) photoCellOne.getScene().getWindow();
-        stage.setFullScreen(true);
-        expandButton.setVisible(false);
+        super.getStage().setFullScreen(true);
+        view.getExpandButton().setVisible(false);
+    }
+
+    private void showingChanged(Boolean showing) {
+        if(showing) {
+            start();
+        }
+        else {
+            stop();
+        }
     }
 
     public void start() {
         isShowing = true;
+
+        var photoCellOne = view.getPhotoCellOne();
+        var photoCellTwo = view.getPhotoCellTwo();
 
         photoCellOne.setPhoto(photoList.getSelectedPhoto());
         photoCellTwo.setPhoto(photoList.getNextPhoto(Direction.RIGHT));

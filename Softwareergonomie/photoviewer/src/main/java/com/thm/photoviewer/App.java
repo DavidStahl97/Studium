@@ -16,27 +16,15 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
-
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("Shell"));
+    public void start(Stage stage) {
+        var scene = new Scene(new Shell());
 
         stage.setTitle("Photo Viewer");
         stage.setMinHeight(400);
         stage.setMinWidth(600);
         stage.setScene(scene);
         stage.show();
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        var url = App.class.getResource(fxml + ".fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(url);
-        return fxmlLoader.load();
     }
 
     public static void main(String[] args) {
