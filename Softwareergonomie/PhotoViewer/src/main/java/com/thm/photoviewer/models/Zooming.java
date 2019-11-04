@@ -7,17 +7,6 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Zooming {
 
-    private static Zooming zooming;
-    public static Zooming getInstance() {
-        if(zooming == null) {
-            zooming = new Zooming();
-        }
-
-        return zooming;
-    }
-
-    private Zooming() {}
-
     private ObjectProperty<Number> zoomValue = new SimpleObjectProperty<>();
 
     public double getZoomValue() {

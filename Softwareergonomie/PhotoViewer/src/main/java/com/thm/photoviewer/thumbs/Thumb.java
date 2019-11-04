@@ -1,5 +1,6 @@
 package com.thm.photoviewer.thumbs;
 
+import com.thm.common.InjectionService;
 import com.thm.photoviewer.photoview.PhotoCell;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
@@ -19,7 +20,8 @@ public class Thumb extends AnchorPane {
         photoCell.setPrefHeight(100);
         super.getChildren().add(photoCell);
 
-        photoList = PhotoList.getPhotoList();
+        // To-Do: shouldn't use photoList
+        photoList = InjectionService.getInstance().getSingleton(PhotoList.class);
 
         super.setCursor(Cursor.HAND);
         super.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> photoList.setSelectedPhoto(getPhoto()));

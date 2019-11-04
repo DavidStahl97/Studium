@@ -1,5 +1,6 @@
 package com.thm.photoviewer.thumbs;
 
+import com.thm.common.InjectionService;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -27,14 +28,16 @@ public class ThumbList extends GridPane {
 
         leftButton = new Button();
         leftButton.setGraphic(new FontIcon("dashicons-arrow-left-alt2"));
+        leftButton.setStyle("-fx-background-color: #ffffff;");
         super.add(leftButton, 0,0);
 
         rightButton = new Button();
         rightButton.setGraphic((new FontIcon("dashicons-arrow-right-alt2")));
+        rightButton.setStyle("-fx-background-color: #ffffff;");
         super.add(rightButton, 2, 0);
 
         // controller
-        controller = new ThumbsListController(this);
+        controller = InjectionService.getInstance().getInstance(ThumbsListController.class, this);
     }
 
     public Button getLeftButton() {

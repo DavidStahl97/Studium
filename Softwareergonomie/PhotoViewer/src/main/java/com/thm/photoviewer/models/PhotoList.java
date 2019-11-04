@@ -8,18 +8,9 @@ import javafx.collections.FXCollections;
 // TO-DO: use ModuloArray
 public class PhotoList extends SimpleListProperty<Photo> {
 
-    private static PhotoList photoList;
-    public static PhotoList getPhotoList() {
-        if(photoList == null) {
-            photoList = new PhotoList();
-        }
-
-        return photoList;
-    }
-
     private ObjectProperty<Photo> selectedPhoto = new SimpleObjectProperty<>();
 
-    private PhotoList() {
+    public PhotoList() {
         super(FXCollections.observableArrayList());
     }
 

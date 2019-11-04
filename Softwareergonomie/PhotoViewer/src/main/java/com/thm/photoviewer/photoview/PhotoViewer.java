@@ -1,5 +1,6 @@
 package com.thm.photoviewer.photoview;
 
+import com.thm.common.InjectionService;
 import com.thm.common.ModuloArray;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -31,16 +32,18 @@ public class PhotoViewer extends GridPane {
         leftButton = new Button();
         leftButton.setGraphic(new FontIcon("dashicons-arrow-left-alt2"));
         leftButton.setAlignment(Pos.CENTER_LEFT);
+        leftButton.setStyle("-fx-background-color: #ffffff;");
         super.add(leftButton, 0,0);
 
         rightButton = new Button();
         rightButton.setGraphic(new FontIcon("dashicons-arrow-right-alt2"));
         rightButton.setAlignment(Pos.CENTER_RIGHT);
+        rightButton.setStyle("-fx-background-color: #ffffff;");
         super.add(rightButton, 2,0);
 
         createPhotoCells();
 
-        controller = new PhotoViewController(this);
+        controller = InjectionService.getInstance().getInstance(PhotoViewController.class, this);
     }
 
     private void createPhotoCells() {

@@ -14,10 +14,9 @@ public class TopBarController extends BaseController<TopBar> {
     private ImageChooser imageChooser = new ImageChooser();
     private PhotoList photoList;
 
-    public TopBarController(TopBar view) {
+    public TopBarController(TopBar view, PhotoList photoList, Zooming zooming) {
         super(view);
-
-        photoList = PhotoList.getPhotoList();
+        this.photoList = photoList;
 
         photoList.sizeProperty().addListener((observableValue, oldSize, newSize) -> {
             boolean noPhotos = photoList.size() == 0;
@@ -33,12 +32,11 @@ public class TopBarController extends BaseController<TopBar> {
         });
         view.getZoomLabel().setText("1.00");
 
-        var zooming = Zooming.getInstance();
         view.getZoomSlider().valueProperty().bindBidirectional(zooming.zoomValueProperty());
 
         view.getAddButton().setOnAction(event -> onAddPhoto());
         view.getRemoveButton().setOnAction(event -> onRemovePhoto());
-        view.getDialogButton().setOnAction(event -> onStartDiashow());
+        view.getDialogButton().setOnAction(event -> onStartSlideshow());
     }
 
     private void onAddPhoto() {
@@ -73,8 +71,8 @@ public class TopBarController extends BaseController<TopBar> {
         }
     }
 
-    private void onStartDiashow() {
-        var diashow = new SlideshowWindow();
-        diashow.show();
+    private void onStartSlideshow() {
+        var slideshow = new SlideshowWindow();
+        slideshow.show();
     }
 }

@@ -1,15 +1,15 @@
 package com.thm.photoviewer;
 
-import com.guigarage.flatterfx.FlatterFX;
+import com.thm.common.InjectionService;
+import com.thm.photoviewer.models.PhotoList;
+import com.thm.photoviewer.models.Zooming;
+import com.thm.photoviewer.thumbs.ThumbList;
+import com.thm.photoviewer.thumbs.ThumbsListController;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * JavaFX App
@@ -18,6 +18,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        register();
+
         var scene = new Scene(new Shell());
 
         stage.setTitle("Photo Viewer");
@@ -27,8 +29,14 @@ public class App extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException {
         launch();
+    }
+
+    private void register() {
+        var injectionService = InjectionService.getInstance();
+        injectionService.registerSingleton(PhotoList.class);
+        injectionService.registerSingleton(Zooming.class);
     }
 
 }

@@ -28,14 +28,14 @@ public class ThumbsListController extends BaseController<ThumbList> {
     private Button leftButton;
     private Button rightButton;
 
-    public ThumbsListController(ThumbList view) {
+    public ThumbsListController(ThumbList view, PhotoList photoList) {
         super(view);
+        this.photoList = photoList;
 
         thumbsBox = view.getThumbsBox();
         leftButton = view.getLeftButton();
         rightButton = view.getRightButton();
 
-        photoList = PhotoList.getPhotoList();
         photoList.addListener((ListChangeListener<? super Photo>) c -> photoListChanged(c));
         photoList.selectedPhotoProperty().addListener((observable, oldValue, newValue) -> onSelectedPhotoChanged(newValue));
 

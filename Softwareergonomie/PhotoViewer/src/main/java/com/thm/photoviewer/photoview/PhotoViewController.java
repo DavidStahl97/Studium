@@ -34,10 +34,10 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
     private boolean inTransitionMode = false;
     private boolean startDragging = false;
 
-    public PhotoViewController(PhotoViewer view) {
+    public PhotoViewController(PhotoViewer view, PhotoList photoList, Zooming zooming) {
         super(view);
-
-        photoList = PhotoList.getPhotoList();
+        this.photoList = photoList;
+        this.zooming = zooming;
 
         photoCells = view.getPhotoCells();
         photoCells.forEach(photoCell -> configurePhotoCell(photoCell));
@@ -52,7 +52,6 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         view.getLeftButton().setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT)));
         view.getRightButton().setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
 
-        zooming = Zooming.getInstance();
         zooming.zoomValueProperty().addListener((observableValue, oldValue, newValue) -> zoomChanged(newValue.doubleValue()));
     }
 
