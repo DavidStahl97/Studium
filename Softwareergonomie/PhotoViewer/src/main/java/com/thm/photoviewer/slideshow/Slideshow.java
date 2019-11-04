@@ -1,5 +1,6 @@
 package com.thm.photoviewer.slideshow;
 
+import com.thm.common.InjectionService;
 import com.thm.photoviewer.photoview.PhotoCell;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -66,7 +67,7 @@ public class Slideshow extends StackPane {
         // add children
         super.getChildren().addAll(photoCellOne, photoCellTwo, functionalityGrid);
 
-        controller = new SlideshowController(this);
+        controller = InjectionService.getInstance().getInstance(SlideshowController.class, this);
     }
 
     public PhotoCell getPhotoCellOne() {

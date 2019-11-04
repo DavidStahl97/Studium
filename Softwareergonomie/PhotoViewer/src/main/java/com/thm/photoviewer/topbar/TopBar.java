@@ -1,5 +1,6 @@
 package com.thm.photoviewer.topbar;
 
+import com.thm.common.InjectionService;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -61,7 +62,7 @@ public class TopBar extends GridPane {
         super.add(dialogButton, 3, 0);
 
         // controller
-        controller = new TopBarController(this);
+        controller = InjectionService.getInstance().getInstance(TopBarController.class, this);
     }
 
     public Button getAddButton() {

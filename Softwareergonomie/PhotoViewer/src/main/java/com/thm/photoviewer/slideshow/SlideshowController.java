@@ -19,10 +19,10 @@ public class SlideshowController extends BaseController<Slideshow> {
 
     private boolean isShowing = false;
 
-    public SlideshowController(Slideshow view) {
+    public SlideshowController(Slideshow view, PhotoList photoList) {
         super(view);
+        this.photoList = photoList;
 
-        photoList = PhotoList.getPhotoList();
         view.getSlider().setValue(duration * SLIDER_RATIO - 1);
         view.getSlider().valueProperty().addListener((observable, oldValue, newValue) -> {
             duration = (newValue.doubleValue() + 1) / SLIDER_RATIO;
