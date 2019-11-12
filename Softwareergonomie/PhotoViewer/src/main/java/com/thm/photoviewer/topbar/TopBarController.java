@@ -50,21 +50,24 @@ public class TopBarController extends BaseController<TopBar> {
             }
 
             var loader = new PhotoLoader();
+
             loader.photoProperty().addListener((observable, oldValue, newValue) -> {
                 photoList.addAll(newValue);
                 if(photoList.getSelectedPhoto() == null) {
                     photoList.setSelectedPhoto(newValue);
                 }
             });
+
             loader.finishedProperty().addListener((observable, oldValue, finished) -> {
                 if(finished) {
                     view.getChildren().remove(view.getProgressIndicator());
                     view.add(view.getDialogButton(), 3,0);
                 }
+                else {
+                    view.getChildren().remove(view.getDialogButton());
+                    view.add(view.getProgressIndicator(), 3, 0);
+                }
             });
-
-            view.getChildren().remove(view.getDialogButton());
-            view.add(view.getProgressIndicator(), 3, 0);
 
             loader.start(files);
         } catch (FileNotFoundException e) {
