@@ -7,7 +7,6 @@ import com.thm.photoviewer.photoview.PhotoCell;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PauseTransition;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SlideshowController extends BaseController<Slideshow> {
@@ -64,8 +63,8 @@ public class SlideshowController extends BaseController<Slideshow> {
         var photoCellOne = view.getPhotoCellOne();
         var photoCellTwo = view.getPhotoCellTwo();
 
-        photoCellOne.setPhoto(photoList.getSelectedPhoto());
-        photoCellTwo.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+        photoCellOne.setImage(photoList.getSelectedPhoto().getImage());
+        photoCellTwo.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
         transition(photoCellOne, photoCellTwo);
     }
 
@@ -89,12 +88,12 @@ public class SlideshowController extends BaseController<Slideshow> {
             }
 
             var currentPhoto = photoList.getNextPhoto(Direction.RIGHT);
-            if(second.getPhoto().equals(currentPhoto) == false) {
-                second.setPhoto(currentPhoto);
+            if(second.getImage().equals(currentPhoto.getImage()) == false) {
+                second.setImage(currentPhoto.getImage());
             }
 
             photoList.setSelectedPhoto(currentPhoto);
-            first.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+            first.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
 
             var delay = new PauseTransition(Duration.seconds(duration));
             delay.setOnFinished(event1 -> transition(second, first));

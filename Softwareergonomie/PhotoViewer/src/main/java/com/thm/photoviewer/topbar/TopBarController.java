@@ -8,6 +8,7 @@ import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.models.Zooming;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TopBarController extends BaseController<TopBar> {
 
@@ -49,6 +50,8 @@ public class TopBarController extends BaseController<TopBar> {
                 photoList.setSelectedPhoto(photos.get(0));
             }
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

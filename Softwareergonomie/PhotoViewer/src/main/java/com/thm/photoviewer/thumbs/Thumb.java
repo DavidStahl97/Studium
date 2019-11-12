@@ -13,6 +13,7 @@ public class Thumb extends AnchorPane {
     private PhotoList photoList;
 
     private PhotoCell photoCell;
+    private Photo photo;
 
     public Thumb() {
         photoCell = new PhotoCell();
@@ -24,14 +25,15 @@ public class Thumb extends AnchorPane {
         photoList = InjectionService.getInstance().getSingleton(PhotoList.class);
 
         super.setCursor(Cursor.HAND);
-        super.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> photoList.setSelectedPhoto(getPhoto()));
+        super.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> photoList.setSelectedPhoto(photo));
     }
 
     public void setPhoto(Photo photo) {
-        photoCell.setPhoto(photo);
+        this.photo = photo;
+        photoCell.setImage(photo.getCompressedImage());
     }
 
     public Photo getPhoto() {
-        return photoCell.getPhoto();
+        return photo;
     }
 }

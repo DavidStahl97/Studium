@@ -94,7 +94,7 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         zooming.setZoomValue(1);
 
         if(p == null) {
-            photoCells.stream().forEach(imageView -> imageView.setPhoto(new Photo(null, null)));
+            photoCells.stream().forEach(imageView -> imageView.setImage(null));
             return;
         }
 
@@ -109,9 +109,9 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         left.setTranslateX(calculateLeftXPosition());
         right.setTranslateX(calculateRightXPosition());
 
-        center.setPhoto(p);
-        left.setPhoto(photoList.getNextPhoto(Direction.LEFT));
-        right.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+        center.setImage(p.getImage());
+        left.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
+        right.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
     }
 
     private void photoListChanged() {
@@ -119,8 +119,8 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             return;
         }
 
-        var centerPhoto = photoCells.get(centerIndex).getPhoto();
-        if(centerPhoto == null) {
+        var centerImage = photoCells.get(centerIndex).getImage();
+        if(centerImage == null) {
             return;
         }
 
@@ -135,10 +135,10 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         };
 
         for(int i = 0; i < controller.length; i++) {
-            var newPhoto = newPhotos[i];
-            var oldPhoto = controller[i].getPhoto();
-            if(oldPhoto.equals(newPhoto) == false) {
-                controller[i].setPhoto(newPhoto);
+            var newPhotoCell = newPhotos[i];
+            var oldImage = controller[i].getImage();
+            if(oldImage.equals(newPhotoCell.getImage()) == false) {
+                controller[i].setImage(newPhotoCell.getImage());
             }
         }
     }
@@ -237,7 +237,7 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
 
             // the old left image is now the center image, so a new left image must be loaded
             var leftController = photoCells.getLeft(centerIndex);
-            leftController.setPhoto(photoList.getNextPhoto(Direction.LEFT));
+            leftController.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
         }
         else if(centerPosition < -TRANSITION_THRESHOLD) {
             left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
@@ -247,7 +247,7 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
 
             // the old right image is now the center image, so a new right image must be loaded
             var rightController = photoCells.getRight(centerIndex);
-            rightController.setPhoto(photoList.getNextPhoto(Direction.RIGHT));
+            rightController.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
         }
         else {
             centerTransition();
