@@ -1,6 +1,7 @@
 package com.thm.photoviewer.topbar;
 
 import com.thm.common.ImageChooser;
+import com.thm.common.PhotoLoader;
 import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.slideshow.SlideshowWindow;
 import com.thm.photoviewer.models.Direction;
@@ -43,12 +44,17 @@ public class TopBarController extends BaseController<TopBar> {
     private void onAddPhoto() {
         var window = super.getStage();
         try {
-            var photos = imageChooser.show(window);
-            photoList.addAll(photos);
+            var files = imageChooser.show(window);
 
-            if(photos.size() > 0 && photoList.getSelectedPhoto() == null) {
-                photoList.setSelectedPhoto(photos.get(0));
-            }
+            var loader = new PhotoLoader();
+            loader.photoProperty().addListener((observable, oldValue, newValue) -> {
+                photoList.addAll(newValue);
+                if(photoList.getSelectedPhoto() == null) {
+                    photoList.setSelectedPhoto(newValue);
+                }
+            });
+
+            loader.start(files);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
