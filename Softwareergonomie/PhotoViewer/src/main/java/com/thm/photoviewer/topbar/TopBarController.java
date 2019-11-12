@@ -45,6 +45,9 @@ public class TopBarController extends BaseController<TopBar> {
         var window = super.getStage();
         try {
             var files = imageChooser.show(window);
+            if(files.size() == 0) {
+                return;
+            }
 
             var loader = new PhotoLoader();
             loader.photoProperty().addListener((observable, oldValue, newValue) -> {
@@ -53,6 +56,15 @@ public class TopBarController extends BaseController<TopBar> {
                     photoList.setSelectedPhoto(newValue);
                 }
             });
+            loader.finishedProperty().addListener((observable, oldValue, finished) -> {
+                if(finished) {
+                    view.getChildren().remove(view.getProgressIndicator());
+                    view.add(view.getDialogButton(), 3,0);
+                }
+            });
+
+            view.getChildren().remove(view.getDialogButton());
+            view.add(view.getProgressIndicator(), 3, 0);
 
             loader.start(files);
         } catch (FileNotFoundException e) {

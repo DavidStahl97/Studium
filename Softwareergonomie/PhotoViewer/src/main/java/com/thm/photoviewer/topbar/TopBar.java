@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -19,6 +20,8 @@ public class TopBar extends GridPane {
     private Button addButton;
     private Button removeButton;
     private Button dialogButton;
+
+    private ProgressIndicator progressIndicator;
 
     private HBox zoomBox;
     private Slider zoomSlider;
@@ -61,6 +64,10 @@ public class TopBar extends GridPane {
         dialogButton.setGraphic(new FontIcon("dashicons-controls-play"));
         super.add(dialogButton, 3, 0);
 
+        progressIndicator = new ProgressIndicator();
+        progressIndicator.setMaxWidth(25);
+        progressIndicator.setMaxHeight(25);
+
         // controller
         controller = InjectionService.getInstance().getInstance(TopBarController.class, this);
     }
@@ -89,4 +96,7 @@ public class TopBar extends GridPane {
         return zoomSlider;
     }
 
+    public ProgressIndicator getProgressIndicator() {
+        return progressIndicator;
+    }
 }
