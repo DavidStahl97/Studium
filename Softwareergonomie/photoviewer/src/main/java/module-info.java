@@ -9,6 +9,7 @@ module com.thm.photoviewer {
 
     requires flatter;
     requires java.prefs;
+    requires java.desktop;
 
     opens com.thm.photoviewer to javafx.fxml;
 

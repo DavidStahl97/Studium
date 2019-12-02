@@ -1,6 +1,5 @@
 package com.thm.photoviewer.photoview;
 
-import com.thm.photoviewer.models.Photo;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -9,7 +8,6 @@ public class PhotoCell extends Pane {
 
     private PhotoCellController controller;
 
-    private Photo photo;
     private ImageView imageView;
 
     public PhotoCell() {
@@ -31,16 +29,11 @@ public class PhotoCell extends Pane {
         return imageView.getImage();
     }
 
+    public void setImage(Image image) {
+        imageView.setImage(image);
+    }
+
     public ImageView getImageView() {
         return imageView;
-    }
-
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
-        imageView.setImage(photo.getImage());
-    }
-
-    public Photo getPhoto() {
-        return photo;
     }
 }

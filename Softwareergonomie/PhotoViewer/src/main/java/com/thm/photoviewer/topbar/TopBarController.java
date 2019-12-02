@@ -1,6 +1,7 @@
 package com.thm.photoviewer.topbar;
 
 import com.thm.common.ImageChooser;
+import com.thm.common.PhotoLoader;
 import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.slideshow.SlideshowWindow;
 import com.thm.photoviewer.models.Direction;
@@ -8,6 +9,7 @@ import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.models.Zooming;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class TopBarController extends BaseController<TopBar> {
 
@@ -42,13 +44,35 @@ public class TopBarController extends BaseController<TopBar> {
     private void onAddPhoto() {
         var window = super.getStage();
         try {
-            var photos = imageChooser.show(window);
-            photoList.addAll(photos);
-
-            if(photos.size() > 0 && photoList.getSelectedPhoto() == null) {
-                photoList.setSelectedPhoto(photos.get(0));
+            var files = imageChooser.show(window);
+            if(files.size() == 0) {
+                return;
             }
+
+            var loader = new PhotoLoader();
+
+            loader.photoProperty().addListener((observable, oldValue, newValue) -> {
+                photoList.addAll(newValue);
+                if(photoList.getSelectedPhoto() == null) {
+                    photoList.setSelectedPhoto(newValue);
+                }
+            });
+
+            loader.finishedProperty().addListener((observable, oldValue, finished) -> {
+                if(finished) {
+                    view.getChildren().remove(view.getProgressIndicator());
+                    view.add(view.getDialogButton(), 3,0);
+                }
+                else {
+                    view.getChildren().remove(view.getDialogButton());
+                    view.add(view.getProgressIndicator(), 3, 0);
+                }
+            });
+
+            loader.start(files);
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

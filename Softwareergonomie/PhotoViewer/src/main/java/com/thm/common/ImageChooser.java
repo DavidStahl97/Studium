@@ -1,16 +1,12 @@
 package com.thm.common;
 
-import com.thm.photoviewer.models.Photo;
-import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
-import java.util.prefs.*;
+import java.util.prefs.Preferences;
 
 public class ImageChooser {
 
@@ -22,7 +18,7 @@ public class ImageChooser {
         preferences = Preferences.userRoot().node(this.getClass().getName());
     }
 
-    public List<Photo> show(Window window) throws FileNotFoundException {
+    public List<File> show(Window window) throws IOException {
         var folder = preferences.get(LAST_FOLDER, new File(".").getAbsolutePath());
         var fileChooser = createFileChooser(folder);
 
@@ -31,16 +27,7 @@ public class ImageChooser {
             preferences.put(LAST_FOLDER, files.get(0).getParent());
         }
 
-        var photos = new ArrayList<Photo>();
-        for (var file : files) {
-            var inputStream = new FileInputStream(file.getAbsoluteFile());
-            var image = new Image(inputStream);
-
-            var photo = new Photo(image, file.getName());
-            photos.add(photo);
-        }
-
-        return photos;
+        return files;
     }
 
     // To-Do: Handling exiting fileChooser
