@@ -1,13 +1,15 @@
 package com.thm.photoviewer.photoview;
 
+import com.thm.common.MathUtil;
 import com.thm.common.ModuloArray;
 import com.thm.photoviewer.BaseController;
 import com.thm.photoviewer.models.Direction;
 import com.thm.photoviewer.models.Photo;
 import com.thm.photoviewer.models.PhotoList;
 import com.thm.photoviewer.models.Zooming;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import com.thm.photoviewer.photoview.states.MouseEventState;
+import com.thm.photoviewer.photoview.states.SlideMouseEventState;
+import com.thm.photoviewer.photoview.states.ZoomedMouseEventState;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Cursor;
@@ -15,24 +17,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
 
 public class PhotoViewController extends BaseController<PhotoViewer> {
-    private static final double TRANSITION_DURATION = 0.2;
     private static final int GAP = 10;
-    private static final double TRANSITION_THRESHOLD = 100.0;
 
     private PhotoList photoList;
     private Zooming zooming;
 
     private ModuloArray<PhotoCell> photoCells;
-    private double[] xSnapshots;
-    private int centerIndex = 0;
 
     private double mouseX;
     private double mouseY;
-    private boolean inTransitionMode = false;
-    private boolean startDragging = false;
+
+    private MouseEventState mouseEventState;
 
     public PhotoViewController(PhotoViewer view, PhotoList photoList, Zooming zooming) {
         super(view);
@@ -40,8 +37,7 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         this.zooming = zooming;
 
         photoCells = view.getPhotoCells();
-        photoCells.forEach(photoCell -> configurePhotoCell(photoCell));
-        xSnapshots = new double[photoCells.size()];
+        photoCells.forEach(photoCell -> configureMouseEvents(photoCell));
 
         clipChildren(view, 12);
         configureXPositionResizingUpdates();
@@ -53,9 +49,15 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         view.getRightButton().setOnMouseClicked(e -> photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT)));
 
         zooming.zoomValueProperty().addListener((observableValue, oldValue, newValue) -> zoomChanged(newValue.doubleValue()));
+
+        mouseEventState = new SlideMouseEventState(photoCells, view, photoList);
     }
 
     private void zoomChanged(double zoom) {
+        mouseEventState = zoom == 1.00 ?
+                new SlideMouseEventState(photoCells, view, photoList) :
+                new ZoomedMouseEventState(photoCells, view);
+
         if(zoom == 1.00) {
             for(var pc : photoCells) {
                 var iv = pc.getImageView();
@@ -64,7 +66,7 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             return;
         }
 
-        var photoCell = photoCells.get(centerIndex);
+        var photoCell = photoCells.getCenter();
         var imageView = photoCell.getImageView();
         var image = imageView.getImage();
 
@@ -83,8 +85,8 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             centerY = oldRectangle.getMinY() + oldRectangle.getHeight() / 2;
         }
 
-        var x = clamp(centerX - width / 2, 0, image.getWidth() - width);
-        var y = clamp(centerY - height / 2, 0, image.getHeight() - height);
+        var x = MathUtil.clamp(centerX - width / 2, 0, image.getWidth() - width);
+        var y = MathUtil.clamp(centerY - height / 2, 0, image.getHeight() - height);
 
         var rectangle = new Rectangle2D(x, y, width, height);
         imageView.setViewport(rectangle);
@@ -98,16 +100,16 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             return;
         }
 
-        if(p.getImage().equals(photoCells.get(centerIndex).getImage())) {
+        if(p.getImage().equals(photoCells.getCenter().getImage())) {
             return;
         }
 
-        var center = photoCells.get(centerIndex);
-        var left = photoCells.getLeft(centerIndex);
-        var right = photoCells.getRight(centerIndex);
+        var center = photoCells.getCenter();
+        var left = photoCells.getLeft();
+        var right = photoCells.getRight();
 
-        left.setTranslateX(calculateLeftXPosition());
-        right.setTranslateX(calculateRightXPosition());
+        left.setTranslateX(calculateLeftXPosition(view));
+        right.setTranslateX(calculateRightXPosition(view));
 
         center.setImage(p.getImage());
         left.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
@@ -119,14 +121,14 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             return;
         }
 
-        var centerImage = photoCells.get(centerIndex).getImage();
+        var centerImage = photoCells.getCenter().getImage();
         if(centerImage == null) {
             return;
         }
 
         var controller = new PhotoCell[] {
-                photoCells.getLeft(centerIndex),
-                photoCells.getRight(centerIndex)
+                photoCells.getLeft(),
+                photoCells.getRight()
         };
 
         var newPhotos = new Photo[] {
@@ -143,21 +145,14 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
         }
     }
 
-    private void configurePhotoCell(Pane photoPane) {
+    private void configureMouseEvents(Pane photoPane) {
         photoPane.setCursor(Cursor.HAND);
 
         photoPane.addEventFilter(MouseEvent.MOUSE_PRESSED, t -> {
-            if(inTransitionMode) {
-                startDragging = false;
-                return;
-            }
-
             mouseX = t.getSceneX();
             mouseY = t.getSceneY();
 
-            if(zooming.zoomed() == false) {
-                transitionStarted();
-            }
+            mouseEventState.OnMousePressed();
         });
 
         photoPane.setOnMouseDragged(t -> {
@@ -167,160 +162,29 @@ public class PhotoViewController extends BaseController<PhotoViewer> {
             double offsetY = t.getSceneY() - mouseY;
             mouseY = t.getSceneY();
 
-            if(zooming.zoomed() == false) {
-                transitionDraggedMouse(offsetX);
-            }
-            else {
-                zoomMove(offsetX, offsetY);
-            }
+            mouseEventState.OnMouseDragged(offsetX, offsetY);
         });
 
         photoPane.addEventFilter(MouseEvent.MOUSE_RELEASED, t -> {
-            if(zooming.zoomed() == false) {
-                transitionMouseReleased();
-            }
+            mouseEventState.OnMouseReleased();
         });
     }
 
-    private void zoomMove(double offsetX, double offsetY) {
-        var imageView = photoCells.get(centerIndex).getImageView();
-        var image = imageView.getImage();
-        var rectangle = imageView.getViewport();
-
-        double newX = clamp(rectangle.getMinX() - offsetX, 0, image.getWidth() - rectangle.getWidth());
-        double newY = clamp(rectangle.getMinY() - offsetY, 0, image.getHeight() - rectangle.getHeight());
-
-        var newRectangle = new Rectangle2D(newX, newY, rectangle.getWidth(), rectangle.getHeight());
-        imageView.setViewport(newRectangle);
-    }
-
-    public static double clamp(double val, double min, double max) {
-        return Math.max(min, Math.min(max, val));
-    }
-
-    private void transitionStarted() {
-        startDragging = true;
-        snapshottingXPosition();
-    }
-
-    private void transitionDraggedMouse(double offsetX) {
-        if(startDragging == false) {
-            return;
-        }
-
-
-        var left = photoCells.getLeft(centerIndex);
-        var right = photoCells.getRight(centerIndex);
-        if((left.getTranslateX() > -10 && offsetX > 0)
-                || (right.getTranslateX() < 10 && offsetX < 0)) {
-            return;
-        }
-
-        moveXPositions(offsetX);
-    }
-
-    private void transitionMouseReleased() {
-        if(startDragging == false) {
-            return;
-        }
-
-        var center = photoCells.get(centerIndex);
-        var centerPosition = center.getTranslateX();
-
-        var right = photoCells.getRight(centerIndex);
-        var left = photoCells.getLeft(centerIndex);
-        if(centerPosition > TRANSITION_THRESHOLD) {
-            right.setTranslateX(left.getTranslateX() + calculateLeftXPosition());
-            // new centerIndex is the old left index
-            leftTransition();
-            photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.LEFT));
-
-            // the old left image is now the center image, so a new left image must be loaded
-            var leftController = photoCells.getLeft(centerIndex);
-            leftController.setImage(photoList.getNextPhoto(Direction.LEFT).getImage());
-        }
-        else if(centerPosition < -TRANSITION_THRESHOLD) {
-            left.setTranslateX(right.getTranslateX() + calculateRightXPosition());
-            // new centerIndex is the old right index
-            rightTransition();
-            photoList.setSelectedPhoto(photoList.getNextPhoto(Direction.RIGHT));
-
-            // the old right image is now the center image, so a new right image must be loaded
-            var rightController = photoCells.getRight(centerIndex);
-            rightController.setImage(photoList.getNextPhoto(Direction.RIGHT).getImage());
-        }
-        else {
-            centerTransition();
-        }
-    }
-
-    private void snapshottingXPosition() {
-        for(int i = 0; i < xSnapshots.length; i++) {
-            xSnapshots[i] = photoCells.get(i).getTranslateX();
-        }
-    }
-
-    private void moveXPositions(double offset) {
-        for(int i = 0; i < xSnapshots.length; i++) {
-            double newX = xSnapshots[i] + offset;
-            photoCells.get(i).setTranslateX(newX);
-
-            xSnapshots[i] = newX;
-        }
-    }
-
-    private double calculateLeftXPosition() {
+    public static double calculateLeftXPosition(PhotoViewer view) {
         return - view.getWidth() - GAP;
     }
 
-    private double calculateRightXPosition() {
+    public static double calculateRightXPosition(PhotoViewer view) {
         return view.getWidth() + GAP;
-    }
-
-    private void centerTransition() {
-        var center = photoCells.get(centerIndex);
-        var offset = center.getTranslateX();
-
-        var centerTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), center);
-        centerTransition.setFromX(offset);
-        centerTransition.setToX(0);
-
-        var left = photoCells.getLeft(centerIndex);
-        var leftTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), left);
-        leftTransition.setFromX(left.getTranslateX());
-        leftTransition.setToX(left.getTranslateX() - offset);
-
-        var right = photoCells.getRight(centerIndex);
-        var rightTransition = new TranslateTransition(Duration.seconds(TRANSITION_DURATION), right);
-        rightTransition.setFromX(right.getTranslateX());
-        rightTransition.setToX(right.getTranslateX() - offset);
-
-        var parallelTransition = new ParallelTransition(centerTransition, leftTransition, rightTransition);
-        parallelTransition.setOnFinished(event -> inTransitionMode = false);
-
-        inTransitionMode = true;
-        parallelTransition.play();
-    }
-
-    private void leftTransition() {
-        var left = photoCells.getLeft(centerIndex);
-        centerIndex = photoCells.indexOf(left);
-        centerTransition();
-    }
-
-    private void rightTransition() {
-        var right = photoCells.getRight(centerIndex);
-        centerIndex = photoCells.indexOf(right);
-        centerTransition();
     }
 
     private void configureXPositionResizingUpdates() {
         view.widthProperty().addListener((observable, oldValue, newValue) -> {
-            var left = photoCells.getLeft(centerIndex);
-            left.setTranslateX(calculateLeftXPosition());
+            var left = photoCells.getLeft();
+            left.setTranslateX(calculateLeftXPosition(view));
 
-            var right = photoCells.getRight(centerIndex);
-            right.setTranslateX(calculateRightXPosition());
+            var right = photoCells.getRight();
+            right.setTranslateX(calculateRightXPosition(view));
         });
     }
 

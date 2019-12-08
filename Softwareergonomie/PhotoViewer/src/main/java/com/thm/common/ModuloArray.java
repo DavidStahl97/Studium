@@ -4,22 +4,24 @@ import java.util.ArrayList;
 
 public class ModuloArray<T> extends ArrayList<T> {
 
-    public T getLeft(int index) {
-        var leftIndex =  (index + super.size() - 1) % super.size();
+    private int centerIndex = 0;
+
+    public void setCenterIndex(int index) {
+        this.centerIndex = index;
+    }
+
+    public T getCenter() {
+        return this.get(centerIndex);
+    }
+
+    public T getLeft() {
+        var leftIndex =  (centerIndex + super.size() - 1) % super.size();
         return super.get(leftIndex);
     }
 
-    public T getLeft(T element) {
-        return getLeft(super.indexOf(element));
-    }
-
-    public T getRight(int index) {
-        var rightIndex = (index + 1) % super.size();
+    public T getRight() {
+        var rightIndex = (centerIndex + 1) % super.size();
         return super.get(rightIndex);
-    }
-
-    public T getRight(T element) {
-        return getRight(super.indexOf(element));
     }
 
     @Override
