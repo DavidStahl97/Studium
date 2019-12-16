@@ -1,6 +1,15 @@
 
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Hallo");
+		stackOverFlow(0);
+	}
+
+	private static void aufgabe1() {
+		while(true) {}
+	}
+
+	private static void stackOverFlow(int i) {
+		System.out.println(i);
+		stackOverFlow(++i);
 	}
 }
