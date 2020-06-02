@@ -9,7 +9,8 @@ class HelloWorld {
 		println(v3)
 		
 		var v4 = v1 * 10
-		println(v4)
+		println(v4)	
+					
 	}
 	
 	override toString() {
