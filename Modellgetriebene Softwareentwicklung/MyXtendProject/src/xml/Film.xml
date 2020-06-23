@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<film sprache="DE" 
-		xmlns="http://www.example.org/Film" 
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-		xsi:schemaLocation="http://www.example.org/Film Film.xsd ">
-  <title>Hallo</title>
-  <spieldauer>Guten Morgen</spieldauer>
-</film>
+<p:filmarchiv xmlns:p="http://www.example.org/Film" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Film Film.xsd ">
+  <p:film sprache="">
+    <p:approvaedForAllAudiences/>
+    <p:approved/>
+    <p:title>p:title</p:title>
+    <p:spieldauer>p:spieldauer</p:spieldauer>
+    <p:freigabe>
+      <p:altersfreigabe>18</p:altersfreigabe>
+    </p:freigabe>
+  </p:film>
+  <p:film sprache="">
+    <p:approvaedForAllAudiences/>
+    <p:approved/>
+    <p:title>p:title</p:title>
+    <p:spieldauer>p:spieldauer</p:spieldauer>
+    <p:freigabe>
+      <p:ohneAltersfreigabe/>
+    </p:freigabe>
+  </p:film>
+  <p:film sprache="">
+    <p:approvaedForAllAudiences/>
+    <p:approved/>
+    <p:title>p:title</p:title>
+    <p:spieldauer>p:spieldauer</p:spieldauer>
+    <p:freigabe>
+      <p:ohneAltersfreigabe/>
+    </p:freigabe>
+  </p:film>
+  <p:film sprache="">
+    <p:approvaedForAllAudiences/>
+    <p:approved/>
+    <p:title>p:title</p:title>
+    <p:spieldauer>p:spieldauer</p:spieldauer>
+    <p:freigabe>
+      <p:ohneAltersfreigabe/>
+    </p:freigabe>
+  </p:film>
+</p:filmarchiv>

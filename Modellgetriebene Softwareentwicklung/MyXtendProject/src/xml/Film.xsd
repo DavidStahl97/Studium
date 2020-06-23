@@ -3,17 +3,34 @@
 		targetNamespace="http://www.example.org/Film" 
 		xmlns="http://www.example.org/Film" 
 		elementFormDefault="qualified">
-	<xsd:element name="film">
+		
+	<xsd:element name="filmarchiv">
 		<xsd:complexType>
-			<xsd:sequence>	
-				<xsd:element name="approvaedForAllAudiences" type="approvaedForAllAudiencesTyp"/>
-				<xsd:element name="approved">
-					<xsd:complexType />
+			<xsd:sequence minOccurs="2" maxOccurs="unbounded">
+				<xsd:element name="film">
+					<xsd:complexType>
+						<xsd:sequence>	
+							<xsd:element name="approvaedForAllAudiences" type="approvaedForAllAudiencesTyp"/>
+							<xsd:element name="approved">
+								<xsd:complexType />
+							</xsd:element>			
+							<xsd:element name="title" type="xsd:string"/>
+							<xsd:element name="spieldauer" type="xsd:string"/>
+							<xsd:element name="freigabe">
+								<xsd:complexType>
+									<xsd:choice>
+										<xsd:element name="ohneAltersfreigabe">
+											<xsd:complexType />
+										</xsd:element>							
+										<xsd:element name="altersfreigabe" type="xsd:int"/>
+									</xsd:choice>
+								</xsd:complexType>							
+							</xsd:element>
+						</xsd:sequence>
+						<xsd:attribute name="sprache" type="xsd:string" use="required"/>
+					</xsd:complexType>
 				</xsd:element>			
-				<xsd:element name="title" type="xsd:string"/>
-				<xsd:element name="spieldauer" type="xsd:string"/>
 			</xsd:sequence>
-			<xsd:attribute name="sprache" type="xsd:string" use="required"/>
 		</xsd:complexType>
 	</xsd:element>
 	
