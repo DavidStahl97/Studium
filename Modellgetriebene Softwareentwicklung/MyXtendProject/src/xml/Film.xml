@@ -6,8 +6,11 @@
     <p:title>p:title</p:title>
     <p:spieldauer>p:spieldauer</p:spieldauer>
     <p:freigabe>
-      <p:altersfreigabe>18</p:altersfreigabe>
+      <p:ohneAltersfreigabe/>
     </p:freigabe>
+    <p:isfn13>233-2-2323-2332-1</p:isfn13>
+    <p:isfn10>233-2-2323-23-1</p:isfn10>
+    <p:filmbudget>2344</p:filmbudget>
   </p:film>
   <p:film sprache="">
     <p:approvaedForAllAudiences/>
@@ -17,6 +20,9 @@
     <p:freigabe>
       <p:ohneAltersfreigabe/>
     </p:freigabe>
+    <p:isfn13>233-2-2323-2332-1</p:isfn13>
+    <p:isfn10>233-2-2323-23-1</p:isfn10>
+    <p:filmbudget>2344</p:filmbudget>
   </p:film>
   <p:film sprache="">
     <p:approvaedForAllAudiences/>
@@ -26,6 +32,9 @@
     <p:freigabe>
       <p:ohneAltersfreigabe/>
     </p:freigabe>
+    <p:isfn13>233-2-2323-2332-1</p:isfn13>
+    <p:isfn10>233-2-2323-23-1</p:isfn10>
+    <p:filmbudget>2344</p:filmbudget>
   </p:film>
   <p:film sprache="">
     <p:approvaedForAllAudiences/>
@@ -35,5 +44,8 @@
     <p:freigabe>
       <p:ohneAltersfreigabe/>
     </p:freigabe>
+    <p:isfn13>233-2-2323-2332-1</p:isfn13>
+    <p:isfn10>233-2-2323-23-1</p:isfn10>
+    <p:filmbudget>2344</p:filmbudget>
   </p:film>
 </p:filmarchiv>
