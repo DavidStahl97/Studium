@@ -12,6 +12,10 @@ public class Order {
   @Accessors
   private LocalDate date;
   
+  public double calculateRabat() {
+    return this.amount;
+  }
+  
   @Pure
   public double getAmount() {
     return this.amount;

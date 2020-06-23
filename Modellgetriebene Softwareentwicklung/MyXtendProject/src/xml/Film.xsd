@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.example.org/Film" 
+		xmlns="http://www.example.org/Film" 
+		elementFormDefault="qualified">
+	<xsd:element name="film">
+		<xsd:complexType>
+			<xsd:sequence>	
+				<xsd:element name="approvaedForAllAudiences" type="approvaedForAllAudiencesTyp"/>
+				<xsd:element name="approved">
+					<xsd:complexType />
+				</xsd:element>			
+				<xsd:element name="title" type="xsd:string"/>
+				<xsd:element name="spieldauer" type="xsd:string"/>
+			</xsd:sequence>
+			<xsd:attribute name="sprache" type="xsd:string" use="required"/>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="approvaedForAllAudiencesTyp"/>
+</xsd:schema>

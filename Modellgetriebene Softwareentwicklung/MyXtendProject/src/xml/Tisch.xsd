@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.example.org/Tisch" 
+		xmlns="http://www.example.org/Tisch" 
+		elementFormDefault="qualified">
+	<xsd:element name="strasse">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="xsd:string">
+					<xsd:attribute name="hausnummer" type="xsd:short"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>	
+</xsd:schema>

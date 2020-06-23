@@ -6,4 +6,8 @@ import java.time.LocalDate
 class Order {
 	@Accessors double amount;
 	@Accessors LocalDate date;
+	
+	def double calculateRabat() {
+		return amount;
+	}
 }

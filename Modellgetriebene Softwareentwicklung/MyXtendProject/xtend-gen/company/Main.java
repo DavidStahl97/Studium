@@ -7,6 +7,7 @@ import company.Order;
 import company.PhoneOrder;
 import company.PostalOrder;
 import java.time.LocalDate;
+import java.util.Arrays;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -55,5 +56,70 @@ public class Main {
     };
     final Company company = ObjectExtensions.<Company>operator_doubleArrow(_company, _function);
     System.out.println("hallo");
+  }
+  
+  protected double _calculateOrderRebate(final PhoneOrder order) {
+    double _xifexpression = (double) 0;
+    double _amount = order.getAmount();
+    boolean _greaterThan = (_amount > 1000);
+    if (_greaterThan) {
+      _xifexpression = 0.15;
+    } else {
+      double _xifexpression_1 = (double) 0;
+      double _amount_1 = order.getAmount();
+      boolean _greaterThan_1 = (_amount_1 > 700);
+      if (_greaterThan_1) {
+        _xifexpression_1 = 0.1;
+      } else {
+        _xifexpression_1 = 0.0;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  protected double _calculateOrderRebate(final OnlineOrder order) {
+    double _xifexpression = (double) 0;
+    double _amount = order.getAmount();
+    boolean _greaterThan = (_amount > 600);
+    if (_greaterThan) {
+      _xifexpression = 0.15;
+    } else {
+      double _xifexpression_1 = (double) 0;
+      double _amount_1 = order.getAmount();
+      boolean _greaterThan_1 = (_amount_1 > 400);
+      if (_greaterThan_1) {
+        _xifexpression_1 = 0.1;
+      } else {
+        _xifexpression_1 = 0.0;
+      }
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  protected double _calculateOrderRebate(final PostalOrder order) {
+    double _xifexpression = (double) 0;
+    double _amount = order.getAmount();
+    boolean _greaterThan = (_amount > 550);
+    if (_greaterThan) {
+      _xifexpression = 0.1;
+    } else {
+      _xifexpression = 0.0;
+    }
+    return _xifexpression;
+  }
+  
+  public double calculateOrderRebate(final Order order) {
+    if (order instanceof OnlineOrder) {
+      return _calculateOrderRebate((OnlineOrder)order);
+    } else if (order instanceof PhoneOrder) {
+      return _calculateOrderRebate((PhoneOrder)order);
+    } else if (order instanceof PostalOrder) {
+      return _calculateOrderRebate((PostalOrder)order);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(order).toString());
+    }
   }
 }
