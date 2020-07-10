@@ -46,6 +46,7 @@ public class GenerateJavaCodeAction implements IObjectActionDelegate {
 		IProject project = fileEcore.getProject();
 
 		ResourceSet resourceSet = new ResourceSetImpl();
+		
 		// load the ecore file
 		URI uriEcoreFile = URI.createFileURI(fileEcore.getRawLocation()
 				.toString());
@@ -55,10 +56,20 @@ public class GenerateJavaCodeAction implements IObjectActionDelegate {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		// load the metamodel file
+		URI uriMetamodelFile = URI.createFileURI(fileEcore.getRawLocation()
+				.toString().replace(".ecore", ".metamodel"));
+		Resource resMetamodelFile = resourceSet.createResource(uriMetamodelFile);
+		try {
+			resMetamodelFile.load(Collections.emptyMap());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		// start generation
 		System.out.println("Generating Java code now.");
-		GenerateJob job = new GenerateJob("Generating Java code", resEcoreFile,
+		GenerateJob job = new GenerateJob("Generating Java code", resEcoreFile, resMetamodelFile,
 				project);
 		job.setUser(true);
 		job.schedule();
@@ -78,13 +89,15 @@ public class GenerateJavaCodeAction implements IObjectActionDelegate {
 	private class GenerateJob extends Job implements IJobChangeListener {
 
 		long jobBegin;
-		Resource resEcoreFile;
+		Resource resEcoreFile, resMetamodel;
 		IProject project;
+		
 
-		public GenerateJob(String name, Resource resEcoreFile, IProject project) {
+		public GenerateJob(String name, Resource resEcoreFile, Resource resMetamodelFile, IProject project) {
 			super(name);
 			this.resEcoreFile = resEcoreFile;
 			this.project = project;
+			this.resMetamodel = resMetamodelFile;
 			addJobChangeListener(this);
 		}
 
@@ -93,7 +106,7 @@ public class GenerateJavaCodeAction implements IObjectActionDelegate {
 			// start the generation
 			jobBegin = System.currentTimeMillis();
 			MDDGenerator generator = new MDDGenerator();
-			generator.doGenerate(resEcoreFile, project, monitor);
+			generator.doGenerate(resEcoreFile, resMetamodel, project, monitor);
 			return Status.OK_STATUS;
 		}
 

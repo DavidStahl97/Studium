@@ -182,12 +182,14 @@ public class Ecore2JavaBuilder extends IncrementalProjectBuilder {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						
+						
 						IFolder sourceFolder = project.getFolder("src-gen2");
 						sourceFolder.delete(true, progressMonitor);
 						sourceFolder.create(false, true, null);
 
 						MDDGenerator ecore2javagen = new MDDGenerator();
-						ecore2javagen.doGenerate(res, project, progressMonitor);
+						ecore2javagen.doGenerate(res, null, project, progressMonitor);
 						// EClass e = new EClass();
 						// e.getESuperTypes().get(0).getEAllAttributes().c
 

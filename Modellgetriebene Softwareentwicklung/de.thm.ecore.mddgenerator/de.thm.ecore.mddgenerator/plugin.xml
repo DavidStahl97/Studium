@@ -44,4 +44,12 @@
       </action>
    </objectContribution>
 </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Metamodel -->
+      <package
+            uri="http://thm.ecore.mddgenerator.de"
+            class="Metamodel.MetamodelPackage"
+            genModel="model/Metamodel.genmodel"/>
+   </extension>
+
 </plugin>

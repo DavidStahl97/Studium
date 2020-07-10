@@ -1,23 +1,30 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MDDGenerator
+Bundle-Name: %pluginName
 Bundle-SymbolicName: de.thm.ecore.mddgenerator;singleton:=true
+Automatic-Module-Name: de.thm.ecore.mddgenerator
 Bundle-Version: 1.0.1
+Bundle-ClassPath: .
 Bundle-Activator: de.thm.ecore.mddgenerator.util.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;bundle-version="3.8.0",
  org.eclipse.ui;bundle-version="3.103.0",
  org.eclipse.jdt.core;bundle-version="3.8.1",
  org.eclipse.jdt.launching;bundle-version="3.6.100",
- org.eclipse.emf.ecore;bundle-version="2.8.0",
+ org.eclipse.emf.ecore;bundle-version="2.8.0";visibility:=reexport,
  org.eclipse.xtend.lib,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.jface.text;bundle-version="3.8.101"
+Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: Metamodel,
+ Metamodel.impl,
+ Metamodel.util
 Import-Package: org.eclipse.core.commands,
  org.eclipse.emf.common.util,
  org.eclipse.jface.viewers,
  org.eclipse.ui.handlers
-Bundle-Vendor: Technische Hochschule Mittelhessen
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 

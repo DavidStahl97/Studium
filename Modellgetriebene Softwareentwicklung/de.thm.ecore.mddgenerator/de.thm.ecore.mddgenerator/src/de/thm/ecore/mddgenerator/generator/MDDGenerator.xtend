@@ -13,6 +13,7 @@ import de.thm.ecore.mddgenerator.util.JavaFormatter
 import de.thm.ecore.mddgenerator.util.XmlFormatter
 import org.eclipse.emf.ecore.EAttribute
 import org.eclipse.emf.ecore.EcorePackage
+import Metamodel.PersistenceConfig
 
 /**
  * The generator for ecore files.
@@ -41,6 +42,8 @@ class MDDGenerator {
 	public static final String MIN_INCLUSIVE = "minInclusive";
 	
 	var ImportStatementFinder importFinder = new ImportStatementFinder()
+	
+	Resource metaModelResource;
 	
 	/**
 	 * Creates a file (containing the content-CharSequence) within the given IFolder.
@@ -86,8 +89,10 @@ class MDDGenerator {
 	/**
 	 * Starts the generation of the given Resource file in the given IProject.
 	 */
-	def void doGenerate(Resource resourceEcore, IProject project, IProgressMonitor progressMonitor) {
+	def void doGenerate(Resource resourceEcore, Resource resourceMetamodel, IProject project, IProgressMonitor progressMonitor) {
 		try {
+			this.metaModelResource = resourceMetamodel;
+			
 			// begin the task with the amount of work
 			progressMonitor.beginTask("Generating Java code", 2);
 			
@@ -136,6 +141,8 @@ class MDDGenerator {
 			}
 			makeProgressAndCheckCanceled(progressMonitor);
 			
+			createFile(project.getFolder("/META-INF"), "persistence.xml", true, compilePersistenceXML(resourceEcore), progressMonitor);	
+			
 			// finish the progress monitor
 			progressMonitor.done;
 		
@@ -155,18 +162,18 @@ class MDDGenerator {
 		'''
 			package «PACKAGE»entities;
 			
-			import java.lang.reflect.Field;
-			import java.util.Comparator;
-			
 			/**
 			* This is the {@link «e.name»} entity class.
 			*
 			*@generated
 			*/
-			public class «e.name»Gen «IF !e.EAllSuperTypes.empty» extends «e.EAllSuperTypes.head.name» «ENDIF» implements Comparator<Field> {
+			public class «e.name»Gen «IF !e.EAllSuperTypes.empty» extends «e.EAllSuperTypes.head.name» «ENDIF» {
 			
 				// attributes
 				«FOR a : e.EAllAttributes»
+					/**
+					* This is the «a.name» attribute.
+					*/
 					private «a.EType.instanceTypeName» «a.name»;
 				«ENDFOR»
 				
@@ -209,36 +216,34 @@ class MDDGenerator {
 					}
 				«ENDIF»
 				
-				//TODO getter setter
-				«FOR a : e.EAllAttributes»
-					public void set«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»(«a.EType.instanceTypeName» «a.name») {
-						this.«a.name» = «a.name»;	
-					}	
+				«FOR a : e.EAllAttributes»	
+					public «a.EType.instanceTypeName» get«a.name.toFirstUpper»() {
+						return «a.name»;
+					}
 					
-					public «a.EType.instanceTypeName» get«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»() {
-						return this.«a.name»;	
-					}	
+					public void set«a.name.toFirstUpper»(«a.EType.instanceTypeName» «a.name») {
+						this.«a.name» = «a.name»;
+					}
 				«ENDFOR»
 				
 				«FOR a : e.EAllReferences.filter[!many]»
-					public void set«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»(«a.EReferenceType.name» «a.name») {
-						this.«a.name» = «a.name»;	
-					}	
+					public «a.EReferenceType.name» get«a.name.toFirstUpper»() {
+						return «a.name»;
+					}
 					
-					public «a.EReferenceType.name» get«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»() {
-						return this.«a.name»;	
-					}	
+					public void set«a.name.toFirstUpper»(«a.EReferenceType.name» «a.name») {
+						this.«a.name» = «a.name»;
+					}
 				«ENDFOR»
-				
 				«FOR a : e.EAllReferences.filter[many]»
-					public void set«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»(java.util.ArrayList<«a.EReferenceType.name»> «a.name») {
-						this.«a.name» = «a.name»;	
-					}	
+					public java.util.ArrayList<«a.EReferenceType.name»> get«a.name.toFirstUpper»() {
+						return «a.name»;
+					}
 					
-					public java.util.ArrayList<«a.EReferenceType.name»> get«a.name.substring(0,1).toUpperCase»«a.name.substring(1)»() {
-						return this.«a.name»;	
-					}	
-				«ENDFOR»												
+					public void set«a.name.toFirstUpper»(ArrayList<«a.EReferenceType.name»> «a.name») {
+						this.«a.name» = «a.name»;
+					}
+				«ENDFOR»
 				
 				@Override
 				public String toString() {
@@ -253,11 +258,6 @@ class MDDGenerator {
 						return null; //TODO
 					«ENDIF»
 				}
-				
-				@Override
-				public int compare(Field f1, Field f2) {
-					return f1.getName().compareTo(f2.getName());	
-				}	
 			
 			}
 		'''
@@ -271,6 +271,55 @@ class MDDGenerator {
 				
 			}
 		'''
+	}
+	
+	def compilePersistenceXML(Resource r) {
+		'''
+			<?xml version="1.0" encoding="UTF-8"?>
+			
+			<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+						 version="2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+						 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence       http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_1.xsd">
+						
+
+				<!-- main unit -->
+				<persistence-unit name="mainunit" transaction-type="RESOURCE_LOCAL">
+					<provider>
+						org.eclipse.persistence.jpa.PersistenceProvider
+					</provider>
+			
+					<!-- entities -->
+					«FOR e : r.allContents.toIterable.filter(typeof(EClass))»
+						<class>«PACKAGE»entities.«e.name»</class>
+					«ENDFOR»
+					
+					<properties>
+						<!-- SQL print on console -->
+						<!--<property name="eclipselink.logging.level.sql" value="FINEST"/> <property 
+							name="eclipselink.logging.parameters" value="true"/> -->
+			
+						<property name="eclipselink.weaving" value="static"/>
+						<property name="javax.persistence.lock.timeout" value="5000"/>
+						<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+						<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/«getDBSchema»"/>
+						<property name="javax.persistence.jdbc.user" value="root"/>
+						<property name="javax.persistence.jdbc.password" value=""/>
+						<property name="eclipselink.cache.shared.default" value="false"/>
+						<!-- <property name="eclipselink.ddl-generation" value="create-tables"/>
+						<property name="eclipselink.ddl-generation.output-mode" value="database"/> -->
+					</properties>
+				</persistence-unit>
+			
+			</persistence>
+		'''
+	}	
+	
+	def getDBSchema() {
+		var persistenceConfig = this.metaModelResource.allContents.toIterable.filter(typeof(PersistenceConfig)).head;
+		
+		if (persistenceConfig === null) return "Hallo_Welt";
+		
+		return persistenceConfig.dbschema;
 	}
 	
 	def isString(EAttribute a) {
