@@ -155,12 +155,15 @@ class MDDGenerator {
 		'''
 			package «PACKAGE»entities;
 			
+			import java.lang.reflect.Field;
+			import java.util.Comparator;
+			
 			/**
 			* This is the {@link «e.name»} entity class.
 			*
 			*@generated
 			*/
-			public class «e.name»Gen «IF !e.EAllSuperTypes.empty» extends «e.EAllSuperTypes.head.name» «ENDIF» {
+			public class «e.name»Gen «IF !e.EAllSuperTypes.empty» extends «e.EAllSuperTypes.head.name» «ENDIF» implements Comparator<Field> {
 			
 				// attributes
 				«FOR a : e.EAllAttributes»
@@ -250,6 +253,11 @@ class MDDGenerator {
 						return null; //TODO
 					«ENDIF»
 				}
+				
+				@Override
+				public int compare(Field f1, Field f2) {
+					return f1.getName().compareTo(f2.getName());	
+				}	
 			
 			}
 		'''

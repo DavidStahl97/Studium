@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="AktivityDiagramm" nsURI="http://www.example.org/AktivityDiagramm"
+    nsPrefix="AktivityDiagramm">
+  <eClassifiers xsi:type="ecore:EClass" name="Aktivitätsdiagramm">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="starter" lowerBound="1"
+        eType="#//Aktivität"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Aktivität" eSuperTypes="#//Objekt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pfeil" eType="#//Pfeil"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pfeil">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+        eType="#//Objekt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Knoten" eSuperTypes="#//Objekt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verweise" lowerBound="1"
+        upperBound="-1" eType="#//Objekt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Objekt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Parallelisierung" eSuperTypes="#//Objekt">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="verweise" lowerBound="2"
+        upperBound="-1" eType="#//Objekt"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated PurchaseOrder -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="de.thm.zdh.PurchaseOrder.presentation.PurchaseOrderModelWizardID"
+            name="%_UI_PurchaseOrderModelWizard_label"
+            class="de.thm.zdh.PurchaseOrder.presentation.PurchaseOrderModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PurchaseOrderModelFile.gif">
+         <description>%_UI_PurchaseOrderModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated PurchaseOrder -->
+      <editor
+            id="de.thm.zdh.PurchaseOrder.presentation.PurchaseOrderEditorID"
+            name="%_UI_PurchaseOrderEditor_label"
+            icon="icons/full/obj16/PurchaseOrderModelFile.gif"
+            extensions="purchaseorder"
+            class="de.thm.zdh.PurchaseOrder.presentation.PurchaseOrderEditor"
+            contributorClass="de.thm.zdh.PurchaseOrder.presentation.PurchaseOrderActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

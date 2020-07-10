@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated PurchaseOrder -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="com.example.simple.po.presentation.PoModelWizardID"
+            name="%_UI_PoModelWizard_label"
+            class="com.example.simple.po.presentation.PoModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PoModelFile.gif">
+         <description>%_UI_PoModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated PurchaseOrder -->
+      <editor
+            id="com.example.simple.po.presentation.PoEditorID"
+            name="%_UI_PoEditor_label"
+            icon="icons/full/obj16/PoModelFile.gif"
+            extensions="po"
+            class="com.example.simple.po.presentation.PoEditor"
+            contributorClass="com.example.simple.po.presentation.PoActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
