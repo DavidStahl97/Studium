@@ -8,6 +8,7 @@
   <genPackages prefix="Metamodel" disposableProviderFactory="true" ecorePackage="Metamodel.ecore#/">
     <genClasses ecoreClass="Metamodel.ecore#//PersistenceConfig">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//PersistenceConfig/dbschema"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Metamodel.ecore#//PersistenceConfig/jdbcUserName"/>
     </genClasses>
     <genClasses ecoreClass="Metamodel.ecore#//RootConfig">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Metamodel.ecore#//RootConfig/persistenceConfig"/>

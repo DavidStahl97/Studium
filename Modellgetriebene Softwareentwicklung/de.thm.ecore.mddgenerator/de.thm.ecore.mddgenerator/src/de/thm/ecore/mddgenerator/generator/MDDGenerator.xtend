@@ -322,6 +322,14 @@ class MDDGenerator {
 		return persistenceConfig.dbschema;
 	}
 	
+	def getJSBCUserName() {
+		var persistenceConfig = this.metaModelResource.allContents.toIterable.filter(typeof(PersistenceConfig)).head;
+		
+		if (persistenceConfig === null) return "Hallo_Welt";
+		
+		return persistenceConfig.jdbcUserName;
+	}
+	
 	def isString(EAttribute a) {
 		a.EAttributeType.classifierID == EcorePackage.ESTRING
 	}

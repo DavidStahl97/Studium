@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link Metamodel.impl.PersistenceConfigImpl#getDbschema <em>Dbschema</em>}</li>
+ *   <li>{@link Metamodel.impl.PersistenceConfigImpl#getJdbcUserName <em>Jdbc User Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,6 +46,26 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected String dbschema = DBSCHEMA_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getJdbcUserName() <em>Jdbc User Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJdbcUserName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String JDBC_USER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getJdbcUserName() <em>Jdbc User Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJdbcUserName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String jdbcUserName = JDBC_USER_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -94,10 +115,35 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 	 * @generated
 	 */
 	@Override
+	public String getJdbcUserName() {
+		return jdbcUserName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setJdbcUserName(String newJdbcUserName) {
+		String oldJdbcUserName = jdbcUserName;
+		jdbcUserName = newJdbcUserName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME, oldJdbcUserName, jdbcUserName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MetamodelPackage.PERSISTENCE_CONFIG__DBSCHEMA:
 				return getDbschema();
+			case MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME:
+				return getJdbcUserName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -112,6 +158,9 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case MetamodelPackage.PERSISTENCE_CONFIG__DBSCHEMA:
 				setDbschema((String)newValue);
+				return;
+			case MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME:
+				setJdbcUserName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -128,6 +177,9 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 			case MetamodelPackage.PERSISTENCE_CONFIG__DBSCHEMA:
 				setDbschema(DBSCHEMA_EDEFAULT);
 				return;
+			case MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME:
+				setJdbcUserName(JDBC_USER_NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -142,6 +194,8 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case MetamodelPackage.PERSISTENCE_CONFIG__DBSCHEMA:
 				return DBSCHEMA_EDEFAULT == null ? dbschema != null : !DBSCHEMA_EDEFAULT.equals(dbschema);
+			case MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME:
+				return JDBC_USER_NAME_EDEFAULT == null ? jdbcUserName != null : !JDBC_USER_NAME_EDEFAULT.equals(jdbcUserName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -158,6 +212,8 @@ public class PersistenceConfigImpl extends MinimalEObjectImpl.Container implemen
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (dbschema: ");
 		result.append(dbschema);
+		result.append(", jdbcUserName: ");
+		result.append(jdbcUserName);
 		result.append(')');
 		return result.toString();
 	}

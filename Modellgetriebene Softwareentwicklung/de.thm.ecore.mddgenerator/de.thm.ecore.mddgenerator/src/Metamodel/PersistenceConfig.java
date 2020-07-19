@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link Metamodel.PersistenceConfig#getDbschema <em>Dbschema</em>}</li>
+ *   <li>{@link Metamodel.PersistenceConfig#getJdbcUserName <em>Jdbc User Name</em>}</li>
  * </ul>
  *
  * @see Metamodel.MetamodelPackage#getPersistenceConfig()
@@ -42,5 +43,27 @@ public interface PersistenceConfig extends EObject {
 	 * @generated
 	 */
 	void setDbschema(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Jdbc User Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Jdbc User Name</em>' attribute.
+	 * @see #setJdbcUserName(String)
+	 * @see Metamodel.MetamodelPackage#getPersistenceConfig_JdbcUserName()
+	 * @model
+	 * @generated
+	 */
+	String getJdbcUserName();
+
+	/**
+	 * Sets the value of the '{@link Metamodel.PersistenceConfig#getJdbcUserName <em>Jdbc User Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Jdbc User Name</em>' attribute.
+	 * @see #getJdbcUserName()
+	 * @generated
+	 */
+	void setJdbcUserName(String value);
 
 } // PersistenceConfig

@@ -3,6 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Metamodel" nsURI="http://thm.ecore.mddgenerator.de" nsPrefix="de.thm.ecore.mddgenerator">
   <eClassifiers xsi:type="ecore:EClass" name="PersistenceConfig">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dbschema" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jdbcUserName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RootConfig">
     <eStructuralFeatures xsi:type="ecore:EReference" name="persistenceConfig" lowerBound="1"

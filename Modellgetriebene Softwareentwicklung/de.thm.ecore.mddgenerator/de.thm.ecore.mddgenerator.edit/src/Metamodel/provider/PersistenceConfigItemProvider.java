@@ -61,6 +61,7 @@ public class PersistenceConfigItemProvider
 			super.getPropertyDescriptors(object);
 
 			addDbschemaPropertyDescriptor(object);
+			addJdbcUserNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -88,6 +89,28 @@ public class PersistenceConfigItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Jdbc User Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addJdbcUserNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_PersistenceConfig_jdbcUserName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_PersistenceConfig_jdbcUserName_feature", "_UI_PersistenceConfig_type"),
+				 MetamodelPackage.Literals.PERSISTENCE_CONFIG__JDBC_USER_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns PersistenceConfig.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,7 +129,7 @@ public class PersistenceConfigItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PersistenceConfig)object).getDbschema();
+		String label = ((PersistenceConfig)object).getJdbcUserName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PersistenceConfig_type") :
 			getString("_UI_PersistenceConfig_type") + " " + label;
@@ -126,6 +149,7 @@ public class PersistenceConfigItemProvider
 
 		switch (notification.getFeatureID(PersistenceConfig.class)) {
 			case MetamodelPackage.PERSISTENCE_CONFIG__DBSCHEMA:
+			case MetamodelPackage.PERSISTENCE_CONFIG__JDBC_USER_NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

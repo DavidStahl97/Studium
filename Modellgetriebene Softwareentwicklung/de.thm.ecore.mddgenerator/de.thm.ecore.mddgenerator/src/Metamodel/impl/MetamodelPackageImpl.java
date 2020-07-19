@@ -122,6 +122,16 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	@Override
+	public EAttribute getPersistenceConfig_JdbcUserName() {
+		return (EAttribute)persistenceConfigEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getRootConfig() {
 		return rootConfigEClass;
 	}
@@ -167,6 +177,7 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Create classes and their features
 		persistenceConfigEClass = createEClass(PERSISTENCE_CONFIG);
 		createEAttribute(persistenceConfigEClass, PERSISTENCE_CONFIG__DBSCHEMA);
+		createEAttribute(persistenceConfigEClass, PERSISTENCE_CONFIG__JDBC_USER_NAME);
 
 		rootConfigEClass = createEClass(ROOT_CONFIG);
 		createEReference(rootConfigEClass, ROOT_CONFIG__PERSISTENCE_CONFIG);
@@ -204,9 +215,10 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		// Initialize classes, features, and operations; add parameters
 		initEClass(persistenceConfigEClass, PersistenceConfig.class, "PersistenceConfig", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPersistenceConfig_Dbschema(), ecorePackage.getEString(), "dbschema", null, 0, 1, PersistenceConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPersistenceConfig_JdbcUserName(), ecorePackage.getEString(), "jdbcUserName", null, 0, 1, PersistenceConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(rootConfigEClass, RootConfig.class, "RootConfig", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRootConfig_PersistenceConfig(), this.getPersistenceConfig(), null, "persistenceConfig", null, 0, 1, RootConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRootConfig_PersistenceConfig(), this.getPersistenceConfig(), null, "persistenceConfig", null, 1, 1, RootConfig.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

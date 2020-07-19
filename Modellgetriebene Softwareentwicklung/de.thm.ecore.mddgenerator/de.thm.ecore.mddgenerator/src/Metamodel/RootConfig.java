@@ -28,7 +28,7 @@ public interface RootConfig extends EObject {
 	 * @return the value of the '<em>Persistence Config</em>' containment reference.
 	 * @see #setPersistenceConfig(PersistenceConfig)
 	 * @see Metamodel.MetamodelPackage#getRootConfig_PersistenceConfig()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	PersistenceConfig getPersistenceConfig();

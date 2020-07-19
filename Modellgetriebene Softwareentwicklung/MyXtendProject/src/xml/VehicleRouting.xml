@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.example.org/Vehicle" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/Vehicle VehicleRouting.xsd ">
+  <productList>
+    <product>
+      <name>name</name>
+      <weight>0.0</weight>
+    </product>
+  </productList>
+  <functionList>
+    <function>
+      <name>name</name>
+      <calculationFunction>calculationFunction</calculationFunction>
+    </function>
+  </functionList>
+  <network>
+    <nodeList>
+      <demand>
+        <unit>unit</unit>
+        <latestTime>0</latestTime>
+        <position>
+          <x>0</x>
+          <y>0</y>
+        </position>
+        <amount>amount</amount>
+      </demand>
+      <depot>
+      	<latestTime></latestTime>
+      	<position>
+      	
+      	</position>
+      	<demandList>
+      		<demand>sdfsdf</demand>
+      	</demandList>
+      </depot>
+    </nodeList>
+    <edgeList>
+      <edge/>
+    </edgeList>
+  </network>
+  <agentList>
+    <agent>
+      <name>name</name>
+      <maxWeigth>0</maxWeigth>
+    </agent>
+  </agentList>
+</model>

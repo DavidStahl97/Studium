@@ -76,13 +76,22 @@ public interface MetamodelPackage extends EPackage {
 	int PERSISTENCE_CONFIG__DBSCHEMA = 0;
 
 	/**
+	 * The feature id for the '<em><b>Jdbc User Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PERSISTENCE_CONFIG__JDBC_USER_NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Persistence Config</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PERSISTENCE_CONFIG_FEATURE_COUNT = 1;
+	int PERSISTENCE_CONFIG_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Persistence Config</em>' class.
@@ -153,6 +162,17 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getPersistenceConfig_Dbschema();
 
 	/**
+	 * Returns the meta object for the attribute '{@link Metamodel.PersistenceConfig#getJdbcUserName <em>Jdbc User Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Jdbc User Name</em>'.
+	 * @see Metamodel.PersistenceConfig#getJdbcUserName()
+	 * @see #getPersistenceConfig()
+	 * @generated
+	 */
+	EAttribute getPersistenceConfig_JdbcUserName();
+
+	/**
 	 * Returns the meta object for class '{@link Metamodel.RootConfig <em>Root Config</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +233,14 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PERSISTENCE_CONFIG__DBSCHEMA = eINSTANCE.getPersistenceConfig_Dbschema();
+
+		/**
+		 * The meta object literal for the '<em><b>Jdbc User Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PERSISTENCE_CONFIG__JDBC_USER_NAME = eINSTANCE.getPersistenceConfig_JdbcUserName();
 
 		/**
 		 * The meta object literal for the '{@link Metamodel.impl.RootConfigImpl <em>Root Config</em>}' class.
